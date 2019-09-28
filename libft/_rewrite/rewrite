@@ -1,0 +1,36 @@
+split переписать на скорость (убрать ft_delimiter, положить что-нибудь в j)
+написать memswap строки инты и проч
+Makefile OBJ = $(SRCS:%.c=%.o) генерация списко файлов .o из .c. Добавить невошедшее
+Проверить .h на дом функции
+Добить atoi
+Valgrind
+все что со звездой протект
+Makefile Серега
+strequ
+Strlcpy (strlen в цикле)
+strncmp (strlen в цикле)
+Strtrim пересмотреть
+Strrchr сделать один проход, запоминать последнее
+Lstmap x2
+Fast gnl
+Циклы с size_t -1: strjoin
+		   memjoin
+strnew + memcpy 
+itoa min int
+
+Написать strnew_char() (или memaloc_char) вместо нуль терминатора заполнять выбраним символом, а нуль терминатор в конце
+
++в strnew (memalloc) поменять местами (size + 1) temp =
++Подправить lstnew (перепроверить (void *)malloc(sizeof(content))
++Strjoin (возможно другие парные) один из параметров может быть NULL
++memjoin
+
+#include "libft.h"
+
+void	ft_putstr(char const *s) - быстрый
+{
+	if (s)
+	{
+		write(1, s, ft_strlen(s));
+	}
+}
