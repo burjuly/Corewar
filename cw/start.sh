@@ -1,1 +1,1 @@
-gcc *.c ../libft/libft.a -o corewar
+gcc -g *.c ../libft/libft.a -o corewar

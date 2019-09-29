@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/29 00:22:53 by waddam           ###   ########.fr       */
+/*   Updated: 2019/09/29 19:32:01 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,19 @@
 
 # include "./libft/libft.h"
 # include "op.h"
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include <stdio.h>
 
 typedef struct		s_plr
 {
-	int				num;
+	short			num;
 	char			name[PROG_NAME_LENGTH + 1];
-	size_t			code_size;
+	short			code_size;
 	char			comment[COMMENT_LENGTH + 1];
-	char			code[CHAMP_MAX_SIZE];
+	char			code[CHAMP_MAX_SIZE + 1];
+	short			flag_n;
 }					t_plr;
 
 // carriage - каретка
@@ -48,12 +52,13 @@ typedef struct		s_cw
 	short			cclt_die;	// текущий cycle to die
 	int				cur_ccl;	// ноимер текущего цикла
 	short			checks;		// количество проверок
-	short			flag_n;
-	short			flag_dump;
+	// short			flag_n;
+	int				dump;
 }					t_cw;
 
 void		ft_leave(char *msg);
 void		ft_initialize(t_cw *cw);
 void		ft_parse(int argc, char **argv, t_cw *cw);
+void		ft_write_plr(char **argv, int *i, t_cw *cw, int pos);
 
 #endif
