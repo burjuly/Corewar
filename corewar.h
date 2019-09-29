@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/29 21:19:09 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/09/30 00:33:45 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ typedef struct		s_crg
 {
 	short			pc;
 	short			carry;
-	// short			plr;		// номер игрока, который породил каретку ???
 	short			reg[REG_NUMBER];
 	short			cur_op;		// код операции, на которой стоит каретка
 	short			bef_op;		// количество циклов, оставшиеся до исполнения операции, на которой стоит каретка
@@ -52,7 +51,6 @@ typedef struct		s_cw
 	short			cclt_die;	// текущий cycle to die
 	int				cur_ccl;	// ноимер текущего цикла
 	short			checks;		// количество проверок
-	// short			flag_n;
 	int				dump;
 }					t_cw;
 
@@ -61,7 +59,9 @@ void		ft_initialize(t_cw *cw);
 void		ft_parse(int argc, char **argv, t_cw *cw);
 void		ft_write_plr(char **argv, int *i, t_cw *cw, int pos);
 void		ft_byte_reverse(char *bytes_array);
-void   		ft_game(t_cw *cw);
+void		ft_game(t_cw *cw);
 void		ft_print_map(t_cw *cw);
+void		ft_correct_plrs(t_cw *cw);
+int			ft_check_repeat(int *array, size_t size);
 
 #endif

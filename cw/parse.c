@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 20:04:49 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/29 21:01:58 by waddam           ###   ########.fr       */
+/*   Updated: 2019/09/30 01:01:56 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ static void	ft_flag_n(int argc, char **argv, int *i, t_cw *cw)
 		if (ft_strlen(argv[*i]) > 1 || ft_isdigit(argv[*i][0]) == 0)
 			ft_leave("ERROR. Bad arguments for the -n flag");
 		pos = ft_atoi(argv[*i]);
-		if (pos > MAX_PLAYERS)
+		if (pos > MAX_PLAYERS || pos < 1)
 			ft_leave("ERROR. Bad arguments for the -n flag \
-(set incorrect number for next player)");
+(set incorrect number for player)");
 		(*i)++;
 		if (ft_analyze_plr(argv, i) != 0)
 			ft_leave("ERROR. Bad arguments for the -n flag \
@@ -100,4 +100,5 @@ Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
 Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
 		i++;
 	}
+	ft_correct_plrs(cw);
 }
