@@ -1,7 +1,9 @@
+cw/corewar
+cw/.DS_Store
 test.c
 a.out*
 *.dSYM
 .vscode
 *.cor
 *.s
-cw/corewar
+.DS_Store
