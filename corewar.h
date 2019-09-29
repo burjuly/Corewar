@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/29 20:20:40 by waddam           ###   ########.fr       */
+/*   Updated: 2019/09/29 21:19:09 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,7 @@ void		ft_initialize(t_cw *cw);
 void		ft_parse(int argc, char **argv, t_cw *cw);
 void		ft_write_plr(char **argv, int *i, t_cw *cw, int pos);
 void		ft_byte_reverse(char *bytes_array);
+void   		ft_game(t_cw *cw);
+void		ft_print_map(t_cw *cw);
 
 #endif

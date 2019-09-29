@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
+/*   additions_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/28 17:59:29 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/29 21:20:13 by draudrau         ###   ########.fr       */
+/*   Created: 2019/09/29 19:59:05 by waddam            #+#    #+#             */
+/*   Updated: 2019/09/29 20:37:48 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void	ft_leave(char *msg)
+static void	ft_swap_char(char *a, char *b)
 {
-	ft_putendl_fd(msg, 2);
-	exit(0);
+	char	temp;
+
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
-void	ft_initialize(t_cw *cw)
+void		ft_byte_reverse(char *bytes_array)
 {
-	ft_bzero(cw, sizeof(t_cw));
-	cw->cclt_die = CYCLE_TO_DIE;
-}
-
-int		main(int argc, char **argv)
-{
-	t_cw	cw;
-
-	ft_parse(argc, argv, &cw);
-	ft_game(&cw);
-	return (0);
+	ft_swap_char(&bytes_array[0], &bytes_array[3]);
+	ft_swap_char(&bytes_array[1], &bytes_array[2]);
 }

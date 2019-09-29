@@ -1,0 +1,7 @@
+test.c
+a.out*
+*.dSYM
+.vscode
+*.cor
+*.s
+cw/corewar
