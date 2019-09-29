@@ -6,12 +6,18 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:48:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/29 19:29:00 by waddam           ###   ########.fr       */
+/*   Updated: 2019/09/29 21:10:16 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
-// TODO safe read ft_check_mheader
+
+/*
+** TODO
+** safe read ft_check_mheader
+** close ft_write_data
+*/
+
 static void ft_check_mheader(int fd)
 {
 	char	bytes_array[4];
@@ -35,8 +41,10 @@ static void ft_fill_plr(int fd, t_plr *plr)
 		ft_leave("ERROR. Incorrect champion structure");
 	if (read(fd, buf, 4) <= 0 && *((int *)buf) == 0)
 		ft_leave("ERROR. Incorrect champion structure");
-	if (read(fd, &(plr->code_size), 4) <= 0)
+	if (read(fd, buf, 4) <= 0)
 		ft_leave("ERROR. Incorrect champion structure");
+	ft_byte_reverse(buf);
+	plr->code_size = *((int *)buf);
 	if (read(fd, &(plr->comment), COMMENT_LENGTH) <= 0)
 		ft_leave("ERROR. Incorrect champion structure");
 	if (read(fd, buf, 4) <= 0 && *((int *)buf) == 0)

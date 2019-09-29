@@ -6,12 +6,17 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 20:04:49 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/29 19:15:16 by waddam           ###   ########.fr       */
+/*   Updated: 2019/09/29 21:01:58 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
-// TODO корректный переход по i (провалидировали - сдвинули)
+
+/*
+** TODO
+** корректный переход по i (провалидировали - сдвинули)
+** сделать ft_analyze_plr - универсальной (путь не путь - работает)
+*/
 
 static int	ft_analyze_plr(char **argv, int *i)
 {
@@ -21,6 +26,8 @@ static int	ft_analyze_plr(char **argv, int *i)
 
 	path_plr = argv[*i];
 	name_plr = ft_strrchr(path_plr, '/');
+	if (name_plr == NULL)
+		return (1);
 	name_plr++;
 	if ((len = ft_strlen(name_plr)) <= 4)
 		return (1);
@@ -45,7 +52,6 @@ static void	ft_flag_n(int argc, char **argv, int *i, t_cw *cw)
 			ft_leave("ERROR. Bad arguments for the -n flag \
 (incorrect champion format)");
 		ft_write_plr(argv, i, cw, pos);
-		// (*i)++;
 	}
 	else
 		ft_leave("ERROR. Bad arguments for the -n flag");
@@ -92,5 +98,6 @@ Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
 		else
 			ft_leave("ERROR. Bad input.\n\
 Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
+		i++;
 	}
 }
