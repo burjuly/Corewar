@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/30 00:33:45 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/01 00:42:17 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,24 @@
 
 typedef struct		s_plr
 {
-	short			num;
+	int				num;
 	char			name[PROG_NAME_LENGTH + 1];
-	short			code_size;
+	int				code_size;
 	char			comment[COMMENT_LENGTH + 1];
 	char			code[CHAMP_MAX_SIZE + 1];
-	short			flag_n;
+	int				flag_n;
 }					t_plr;
 
 // carriage - каретка
 typedef struct		s_crg
 {
-	short			pc;
-	short			carry;
-	short			reg[REG_NUMBER];
-	short			cur_op;		// код операции, на которой стоит каретка
-	short			bef_op;		// количество циклов, оставшиеся до исполнения операции, на которой стоит каретка
+	int				pc;
+	int				carry;
+	int				reg[REG_NUMBER];
+	int				cur_op;		// код операции, на которой стоит каретка
+	int				bef_op;		// количество циклов, оставшиеся до исполнения операции, на которой стоит каретка
 	int				num_live;	// цикл, в котором в последний раз была выполнена операция live
-	short			step;		// количество байт, которые нужно будет «перешагнуть», чтобы оказаться на следующей операции
+	int				step;		// количество байт, которые нужно будет «перешагнуть», чтобы оказаться на следующей операции
 }					t_crg;
 
 typedef struct		s_cw
@@ -47,10 +47,10 @@ typedef struct		s_cw
 	t_plr			plr[MAX_PLAYERS];
 	t_crg			crg;
 	int				map[MEM_SIZE];
-	short			plr_nbrs;	// количество игроков
-	short			cclt_die;	// текущий cycle to die
+	int				plr_nbrs;	// количество игроков
+	int				cclt_die;	// текущий cycle to die
 	int				cur_ccl;	// ноимер текущего цикла
-	short			checks;		// количество проверок
+	int				checks;		// количество проверок
 	int				dump;
 }					t_cw;
 
@@ -62,6 +62,9 @@ void		ft_byte_reverse(char *bytes_array);
 void		ft_game(t_cw *cw);
 void		ft_print_map(t_cw *cw);
 void		ft_correct_plrs(t_cw *cw);
-int			ft_check_repeat(int *array, size_t size);
+void		ft_sort_plrs(t_plr *plr, int size);
+
+// debug
+void		ft_print_plrs(t_plr *plr, int size);
 
 #endif

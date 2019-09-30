@@ -1,34 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   corewar.c                                          :+:      :+:    :+:   */
+/*   debug_cw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/28 17:59:29 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/01 01:11:34 by waddam           ###   ########.fr       */
+/*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
+/*   Updated: 2019/10/01 01:09:59 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void	ft_leave(char *msg)
+void	ft_print_plrs(t_plr *plr, int size)
 {
-	ft_putendl_fd(msg, 2);
-	exit(0);
-}
+	int		i;
 
-void	ft_initialize(t_cw *cw)
-{
-	ft_bzero(cw, sizeof(t_cw));
-	cw->cclt_die = CYCLE_TO_DIE;
-}
-
-int		main(int argc, char **argv)
-{
-	t_cw	cw;
-
-	ft_parse(argc, argv, &cw);
-	ft_game(&cw);
-	return (0);
+	i = 0;
+	while (i < size)
+	{
+		printf(">>Player%i<<\n", i + 1);
+		printf("num:       %i\n", plr[i].num);
+		printf("name:      %s\n", plr[i].name);
+		printf("code_size: %i\n", plr[i].code_size);
+		printf("comment:   %s\n", plr[i].comment);
+		printf("code:      %s\n", plr[i].code);
+		printf("flag_n:    %i\n", plr[i].flag_n);
+		i++;
+		if (i != size)
+			printf("\n");
+	}
 }

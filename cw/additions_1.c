@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:59:05 by waddam            #+#    #+#             */
-/*   Updated: 2019/09/30 01:04:50 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/01 00:28:28 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,30 @@ void		ft_byte_reverse(char *bytes_array)
 	ft_swap_char(&bytes_array[1], &bytes_array[2]);
 }
 
-int			ft_check_repeat(int *array, size_t size)
+void		ft_sort_plrs(t_plr *plr, int size)
 {
 	int		i;
-	int		j;
-	int		temp;
+	t_plr	temp;
 
 	i = 0;
-	while (i < size)
+	while (i < size - 1)
 	{
-		temp = array[i];
-		j = 0;
-		while (j < size)
+		if (plr[i].num > plr[i + 1].num)
 		{
-			if (temp == array[j] && j != i)
-				return (1);
-			j++;
+			temp = plr[i];
+			plr[i] = plr[i + 1];
+			plr[i + 1] = temp;
+		}
+		else if (plr[i].num == plr[i + 1].num)
+		{
+			if (plr[i + 1].flag_n == 1)
+			{
+				temp = plr[i];
+				plr[i] = plr[i + 1];
+				plr[i + 1] = temp;
+				(plr[i + 1].num)++;
+			}
 		}
 		i++;
 	}
-	return (0);
 }
