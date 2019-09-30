@@ -1,9 +1,0 @@
-cw/corewar
-cw/.DS_Store
-test.c
-a.out*
-*.dSYM
-.vscode
-*.cor
-*.s
-.DS_Store
