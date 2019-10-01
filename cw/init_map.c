@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/01 16:16:57 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/01 16:28:47 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void    ft_add_carriage(t_cw *cw, int k, int pc)
             ft_leave("Придумать что-нибудь на случай, если не выделилась память");
         cw->crg->num_plr = -k; // кладем номер plr со знаком '-'
         cw->crg->pc = pc;
+        cw->crg->reg[0] = -k;
         cw->crg->next = NULL;
     }
     else 
@@ -48,6 +49,7 @@ void    ft_add_carriage(t_cw *cw, int k, int pc)
             ft_leave("Придумать что-нибудь на случай, если не выделилась память");
         new->num_plr = -(k + 1); // кладем номер plr со знаком '-'
         new->pc = pc;
+        new->reg[0] = -k;
         new->next = start;
     }
 }
