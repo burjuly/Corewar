@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/01 16:28:47 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/02 14:30:17 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,30 +27,33 @@ void    ft_print_map(t_cw *cw)
 
 }
 
-void    ft_add_carriage(t_cw *cw, int k, int pc)
+void    *ft_add_carriage(t_cw *cw, int k, int pc)
 {
     t_crg   *start;
     t_crg   *new;
 
-    start = NULL;
-    if (cw->crg == NULL) // Если создаем 1-ю каретку
+    start = cw->crg;
+    if (start == NULL) // Если создаем 1-ю каретку
     {
-        if (!(cw->crg = (t_crg *)malloc(sizeof(t_crg))))
+        if (!(start = (t_crg *)malloc(sizeof(t_crg))))
             ft_leave("Придумать что-нибудь на случай, если не выделилась память");
-        cw->crg->num_plr = -k; // кладем номер plr со знаком '-'
-        cw->crg->pc = pc;
-        cw->crg->reg[0] = -k;
-        cw->crg->next = NULL;
+        ft_bzero(start, sizeof(t_crg));
+        start->num_plr = -k; // кладем номер plr со знаком '-'
+        start->pc = pc;
+        start->reg[0] = -k;
+        start->next = NULL;
+        cw->crg = start;
     }
     else 
     {
-        start = cw->crg; // запоминаем начало списка
         if (!(new = (t_crg *)malloc(sizeof(t_crg))))
             ft_leave("Придумать что-нибудь на случай, если не выделилась память");
-        new->num_plr = -(k + 1); // кладем номер plr со знаком '-'
+        ft_bzero(new, sizeof(t_crg));
+        new->num_plr = -k; // кладем номер plr со знаком '-'
         new->pc = pc;
         new->reg[0] = -k;
         new->next = start;
+        cw->crg = new;
     }
 }
 
@@ -70,23 +73,23 @@ int    ft_search_next_plr(t_cw *cw, int num)
 
 void    ft_add_plr_on_map(t_cw *cw)
 {
-    int i;
-    int j;
-    int k;
-    int delta;
+    int     i;
+    int     j;
+    int     k;
+    int     delta;
 
     i = 0;
     k = 1;
     delta = MEM_SIZE / cw->plr_nbrs; // отступ между чемпионами
     ft_memset(cw->map, 0, MEM_SIZE);
-    while (i < 4096)
+    while (i < 4096 && k <= cw->plr_nbrs)
     {
         j = ft_search_next_plr(cw, k); // Ищем кого будем добавлять на арену следующим
         if (j < cw->plr_nbrs)
             ft_memcpy(&(cw->map[i]), cw->plr[j].code, cw->plr[j].code_size);
         else
             break ;
-        ft_add_carriage(cw, k, i); // Добавляем новую каретку с номером
+        ft_add_carriage(cw, k, i); // Добавляем новую каретку
         i = i + delta; // Позиция, где начнется код следующего чемпиона
         k++;
     }
@@ -96,5 +99,22 @@ void    ft_add_plr_on_map(t_cw *cw)
 void    ft_game(t_cw *cw)
 {
     ft_add_plr_on_map(cw);
-    ft_print_map(cw);
+
+    /**********************************************/
+    // Проверка что записалоcь в регистры каретки
+    t_crg *lst = cw->crg;
+    int num = 0;
+    while (lst != NULL)
+    {
+        int i = 0;
+        while (i < 16)
+        {
+            printf("каретка №%d reg = %d [%d]\n", num, i, lst->reg[i]);
+            i++;
+        }
+        num++;
+        lst = lst->next;
+    }
+    /************************************************/
+    //ft_print_map(cw);
 }

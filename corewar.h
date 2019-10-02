@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/01 16:15:42 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/02 13:38:55 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void				ft_print_plrs(t_plr *plr, int size);
 
 // арена
 void				ft_print_map(t_cw *cw);
-void				ft_add_carriage(t_cw *cw, int k, int pc);
+void				*ft_add_carriage(t_cw *cw, int k, int pc);
 int					ft_search_next_plr(t_cw *cw, int num);
 void				ft_add_plr_on_map(t_cw *cw);
 void				ft_game(t_cw *cw);
