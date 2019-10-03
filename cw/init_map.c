@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/03 01:43:53 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/03 17:05:32 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void    ft_add_plr_on_map(t_cw *cw)
     k = 1;
     delta = MEM_SIZE / cw->plr_nbrs; // отступ между чемпионами
     ft_memset(cw->map, 0, MEM_SIZE);
+    printf("Introducing contestants...\n");
     while (i < 4096 && k <= cw->plr_nbrs)
     {
         j = ft_search_next_plr(cw, k); // Ищем кого будем добавлять на арену следующим
@@ -96,7 +97,7 @@ void    ft_add_plr_on_map(t_cw *cw)
     cw->last_plr = j; // игрок, о котором в последний раз сказали, что он жив
 }
 
-void    ft_game(t_cw *cw)
+void    ft_map(t_cw *cw)
 {
     ft_add_plr_on_map(cw);
 
