@@ -6,6 +6,10 @@ echo "valid"
 ./corewar -n 2 ../zork.cor -n 1 ../zork.cor
 ./corewar zork.cor
 ./corewar zork.cor -n 2 jumper.cor
+./corewar jumper.cor zork.cor -n 1 zork.cor zork.cor
+./corewar -n 3 jumper.cor zork.cor  bee_gees.cor -n 2 bigzork.cor
+./corewar jumper.cor zork.cor -n 1 bee_gees.cor
+./corewar zork.cor -n 1 bee_gees.cor jumper.cor
 
 #invalid
 echo "invalid"

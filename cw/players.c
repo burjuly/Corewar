@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:48:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/01 01:00:52 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/03 01:29:50 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ void		ft_write_plr(char **argv, int *i, t_cw *cw, int pos)
 		j++;
 	if (j >= 4)
 		ft_leave("Error: Too many champions");
+	cw->plr_nbrs++;
 	if (pos > 0)
 	{
 		cw->plr[j].flag_n = 1;
 		cw->plr[j].num = pos;
 	}
 	else
-		cw->plr[j].num = *i;
-	cw->plr_nbrs++;
+		cw->plr[j].num = cw->plr_nbrs;
 	ft_write_data(argv[*i], cw->plr + j);
 }
 
@@ -107,8 +107,8 @@ void		ft_correct_plrs(t_cw *cw)
 	int		i;
 
 	i = 0;
-	ft_valid_plrs(cw->plr, cw->plr_nbrs);
 	// ft_print_plrs(cw->plr, cw->plr_nbrs);
+	ft_valid_plrs(cw->plr, cw->plr_nbrs);
 	// printf("\n");
 	ft_sort_plrs(cw->plr, cw->plr_nbrs);
 	// ft_print_plrs(cw->plr, cw->plr_nbrs);

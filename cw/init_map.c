@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/02 14:30:17 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/03 01:43:53 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void    ft_print_map(t_cw *cw)
 
 }
 
-void    *ft_add_carriage(t_cw *cw, int k, int pc)
+void    ft_add_carriage(t_cw *cw, int k, int pc)
 {
     t_crg   *start;
     t_crg   *new;
@@ -44,7 +44,7 @@ void    *ft_add_carriage(t_cw *cw, int k, int pc)
         start->next = NULL;
         cw->crg = start;
     }
-    else 
+    else
     {
         if (!(new = (t_crg *)malloc(sizeof(t_crg))))
             ft_leave("Придумать что-нибудь на случай, если не выделилась память");

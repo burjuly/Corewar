@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/02 13:38:55 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/03 03:01:41 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,28 @@ typedef struct		s_cw
 	char			map[MEM_SIZE];
 	int				plr_nbrs;	// количество игроков
 	int				cclt_die;	// текущий cycle to die
-	int				round;	// количество прошедших с начала игры циклов
+	int				round;		// количество прошедших с начала игры циклов
 	int				checks;		// количество проверок
 	int				dump;
 
-	int 			count_live; // количество выполненных операций live за последний период, длинной в cycles_to_die
-	int				last_plr; // игрок, о котором в последний раз сказали, что он жив
+	int 			count_live;	// количество выполненных операций live за последний период, длинной в cycles_to_die
+	int				last_plr;	// игрок, о котором в последний раз сказали, что он жив
 
 }					t_cw;
+
+typedef struct 		s_op
+{
+	char			*name;			// название операции
+	char			arg_nbrs;		// количество аргуиментов
+	char			args[3];		// массив аргументов
+	char			num;			// номер операции
+	int				ccl_cost;		// "стоимость" в циклах
+	char			*comment;		// комментарий
+	char			need_arg_code;	// нужен ли код типов аргументов
+	char			low_tdir;		// использует T_DIR = 2
+// 	char			carry_mod;		// модифицирует carry
+// 	void			(*f)(t_cw *, t_crg *) // указатель на функцию соответствующей операции
+}					t_op;
 
 void				ft_leave(char *msg);
 void				ft_initialize(t_cw *cw);
@@ -75,7 +89,7 @@ void				ft_print_plrs(t_plr *plr, int size);
 
 // арена
 void				ft_print_map(t_cw *cw);
-void				*ft_add_carriage(t_cw *cw, int k, int pc);
+void				ft_add_carriage(t_cw *cw, int k, int pc);
 int					ft_search_next_plr(t_cw *cw, int num);
 void				ft_add_plr_on_map(t_cw *cw);
 void				ft_game(t_cw *cw);
