@@ -23,3 +23,4 @@ echo "invalid"
 ./corewar -n 1 ../zork.cor -n 1 ../zork.cor
 ./corewar -n 0 ../zork.cor -n 1 ../zork.cor
 ./corewar -n 3 ../zork.cor -n 1 ../zork.cor
+./corewar zork.cor -na 1 zork.cor

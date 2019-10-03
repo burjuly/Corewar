@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/10/03 14:36:25 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/04 00:29:28 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 #define CHAMP_MAX_SIZE		  (MEM_SIZE / 6)
 
 #define COMMENT_CHAR			  '#'
-#define ALT_COMMENT_CHAR    ';'
+#define ALT_COMMENT_CHAR    ';' // удалить, если ассемблерист не реализует
 #define LABEL_CHAR				  ':'
 #define DIRECT_CHAR				  '%'
 #define SEPARATOR_CHAR      ','
@@ -49,7 +49,7 @@
 #define NBR_LIVE            21
 #define MAX_CHECKS          10
 
-typedef char	t_arg_type;
+typedef char	t_arg_type; // можно удалить
 
 #define T_REG               1
 #define T_DIR               2
@@ -60,7 +60,7 @@ typedef char	t_arg_type;
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
-typedef struct              header_s
+typedef struct              header_s // удалить не используем
 {
   unsigned int              magic;
   char                      prog_name[PROG_NAME_LENGTH + 1];

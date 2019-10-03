@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 17:59:29 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/03 01:47:38 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/04 00:22:17 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_leave(char *msg)
 void	ft_initialize(t_cw *cw)
 {
 	ft_bzero(cw, sizeof(t_cw));
-	cw->cclt_die = CYCLE_TO_DIE;
+	cw->c_to_die = CYCLE_TO_DIE;
 }
 
 int		main(int argc, char **argv)
@@ -41,6 +41,6 @@ int		main(int argc, char **argv)
     }
 	/*******************************************/
 
-	ft_game(&cw);
+	// ft_game(&cw);
 	return (0);
 }
