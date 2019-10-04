@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   players.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:48:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/03 01:29:50 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/04 20:37:43 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_fill_plr(int fd, t_plr *plr)
 
 	if (read(fd, buf, 4) <= 0)
 		ft_leave("Error: Incorrect champion structure");
-	ft_byte_reverse(buf);
+	ft_byte_reverse(buf, 4);
 	if (*((int *)buf) - COREWAR_EXEC_MAGIC != 0)
 		ft_leave("Error: The specified file is not a champion");
 	if (read(fd, &(plr->name), PROG_NAME_LENGTH) <= 0)
@@ -28,7 +28,7 @@ static void	ft_fill_plr(int fd, t_plr *plr)
 		ft_leave("Error: Incorrect champion structure");
 	if (read(fd, buf, 4) <= 0)
 		ft_leave("Error: Incorrect champion structure");
-	ft_byte_reverse(buf);
+	ft_byte_reverse(buf, 4);
 	plr->code_size = *((int *)buf);
 	if (read(fd, &(plr->comment), COMMENT_LENGTH) <= 0)
 		ft_leave("Error: Incorrect champion structure");

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/03 17:05:32 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/04 20:22:17 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void    ft_print_map(t_cw *cw)
 
 }
 
+// k - номер игрока со знаком "+"
 void    ft_add_carriage(t_cw *cw, int k, int pc)
 {
     t_crg   *start;

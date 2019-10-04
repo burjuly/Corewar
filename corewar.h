@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/04 01:14:16 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/04 22:00:51 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct		s_crg
 typedef struct		s_cw
 {
 	t_plr			plr[MAX_PLAYERS];	// массив структур типа "игрок"
-	t_crg			*crg;				// указатель на список кареток
+	t_crg			*crg;				// указатель на список кареток	
 	char			map[MEM_SIZE];		// карта
 	int				plr_nbrs;	// количество игроков
 	int				c_to_die;	// текущий cycle to die
@@ -80,7 +80,7 @@ void				ft_leave(char *msg);
 void				ft_initialize(t_cw *cw);
 void				ft_parse(int argc, char **argv, t_cw *cw);
 void				ft_write_plr(char **argv, int *i, t_cw *cw, int pos);
-void				ft_byte_reverse(char *bytes_array);
+int					ft_byte_reverse(char *bytes_array, int count);
 void				ft_game(t_cw *cw);
 void				ft_print_map(t_cw *cw);
 void				ft_correct_plrs(t_cw *cw);
@@ -95,5 +95,11 @@ void				ft_add_carriage(t_cw *cw, int k, int pc);
 int					ft_search_next_plr(t_cw *cw, int num);
 void				ft_add_plr_on_map(t_cw *cw);
 void				ft_map(t_cw *cw);
+
+//fork
+int		ft_byte_reverse_all(t_cw *cw, int pc, int count);
+void	ft_fork(t_cw *cw, t_crg *crg);
+
+
 
 #endif
