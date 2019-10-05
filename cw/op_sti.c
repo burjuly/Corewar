@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ld.c                                               :+:      :+:    :+:   */
+/*   op_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/04 21:37:54 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/04 22:07:27 by draudrau         ###   ########.fr       */
+/*   Created: 2019/10/05 15:55:36 by waddam            #+#    #+#             */
+/*   Updated: 2019/10/05 15:56:04 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-int     ft_valid_arg_ld(int pc)
+void	ft_init_sti(t_op *op)
 {
-    
-}
-void    ft_ld(t_cw *cw, t_crg *crg)
-{
-    int arg_1;
-    int arg_2;
-
-    //if (ft_valid_arg_ld(crg->pc + 1) == 0)
-    //
-    //
-    if (arg_1 == 2) // первый аргумент T_DIR
-    {
-        
-    }
-
+	ft_init_arg1(op);
+	ft_init_arg2(op);
+	op->arg_nbrs = 3;
+	op->ccl_cost = 25;
+	op->need_arg_code = 1;
+	op->low_tdir = 1;
 }

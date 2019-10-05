@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   players.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:48:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/04 20:37:43 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/04 22:51:06 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ void		ft_correct_plrs(t_cw *cw)
 	int		i;
 
 	i = 0;
-	// ft_print_plrs(cw->plr, cw->plr_nbrs);
+	ft_print_plrs(cw->plr, cw->plr_nbrs);
 	ft_valid_plrs(cw->plr, cw->plr_nbrs);
-	// printf("\n");
+	printf("\n");
 	ft_sort_plrs(cw->plr, cw->plr_nbrs);
-	// ft_print_plrs(cw->plr, cw->plr_nbrs);
+	ft_print_plrs(cw->plr, cw->plr_nbrs);
 }

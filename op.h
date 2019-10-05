@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/10/04 00:29:28 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/05 01:34:48 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@
 #define NBR_LIVE            21
 #define MAX_CHECKS          10
 
-typedef char	t_arg_type; // можно удалить
+typedef char	t_arg_type; // удалить, если ассемблерист не реализует
 
 #define T_REG               1
 #define T_DIR               2
@@ -60,7 +60,7 @@ typedef char	t_arg_type; // можно удалить
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
-typedef struct              header_s // удалить не используем
+typedef struct              header_s // удалить, если ассемблерист не реализует
 {
   unsigned int              magic;
   char                      prog_name[PROG_NAME_LENGTH + 1];
