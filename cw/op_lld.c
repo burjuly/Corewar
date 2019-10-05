@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_lld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:58:17 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/05 16:00:18 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/05 18:38:10 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 void	ft_init_lld(t_op *op)
 {
-	ft_init_arg1(op);
-	ft_init_arg2(op);
 	op->arg_nbrs = 2;
 	op->ccl_cost = 10;
 	op->need_arg_code = 1;
 	op->low_tdir = 0;
+
+	op->code_args[0] = 144; //  DIR	REG
+	op->code_args[1] = 208; //	IND	REG
+	op->code_args[2] = '\0';
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: waddam <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 20:34:59 by waddam            #+#    #+#              #
-#    Updated: 2019/10/03 02:19:11 by waddam           ###   ########.fr        #
+#    Updated: 2019/10/05 16:50:44 by draudrau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,23 @@ SRC_CW = additions_1.c\
 		init_map.c\
 		parse.c\
 		players.c\
-		op.c
+		op_add.c \
+		op_aff.c \
+		op_and.c \
+		op_fork.c \
+		op_ld.c \
+		op_ldi.c \
+		op_lfork.c \
+		op_live.c \
+		op_lld.c \
+		op_lldi.c \
+		op_or.c \
+		op_st.c \
+		op_sti.c \
+		op_sub.c \
+		op_xor.c \
+		op_zjmp.c \
+		
 SRC_CW_PATH = ./
 SRC_CW_COMPL = $(addprefix $(SRC_CW_PATH), $(SRC_CW))
 OBJ_CW = $(SRC_CW:%.c=%.o)

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/04 20:22:17 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/05 16:29:58 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void    ft_add_carriage(t_cw *cw, int k, int pc)
         if (!(start = (t_crg *)malloc(sizeof(t_crg))))
             ft_leave("Придумать что-нибудь на случай, если не выделилась память");
         ft_bzero(start, sizeof(t_crg));
-        start->num_plr = -k; // кладем номер plr со знаком '-'
+        //start->num_plr = -k; // кладем номер plr со знаком '-'
         start->pc = pc;
         start->reg[0] = -k;
         start->next = NULL;
@@ -50,7 +50,7 @@ void    ft_add_carriage(t_cw *cw, int k, int pc)
         if (!(new = (t_crg *)malloc(sizeof(t_crg))))
             ft_leave("Придумать что-нибудь на случай, если не выделилась память");
         ft_bzero(new, sizeof(t_crg));
-        new->num_plr = -k; // кладем номер plr со знаком '-'
+        //new->num_plr = -k; // кладем номер plr со знаком '-'
         new->pc = pc;
         new->reg[0] = -k;
         new->next = start;
