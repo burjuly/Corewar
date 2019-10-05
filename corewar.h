@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/05 22:42:14 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/06 02:46:47 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define PC crg->pc
-# define NAME 1
-# define CODE_ARGS 1
-# define DIR_4 4
-# define DIR_2 2
-# define IND 2
+# define PC			crg->pc
+# define NAME		1
+# define CODE_ARGS	1
+# define DIR_4		4
+# define DIR_2		2
+# define IND		2
 
-# define DIR_REG 144
-# define IND_REG 208	
+# define DIR_REG	144
+# define IND_REG	208
 
 typedef struct		s_plr
 {
@@ -55,15 +55,12 @@ typedef struct		s_crg
 
 typedef struct 		s_op
 {
-	int				code_args[28]; // /0
-	// char			*name;			// название операции
+	int				code_args[28];	// /0
 	char			arg_nbrs;		// количество аргументов
 	char			args[3];		// массив аргументов
-	// char			num;			// номер операции
-	int				ccl_cost;		// "стоимость" в циклах
-	// char			*comment;		// комментарий
+	int				bef_op;			// "стоимость" в циклах
 	char			need_arg_code;	// нужен ли код типов аргументов
-	char			low_tdir;		// использует T_DIR = 2
+	char			t_dir;		// использует T_DIR = 2
 }					t_op;
 
 typedef struct		s_cw
@@ -77,7 +74,7 @@ typedef struct		s_cw
 	int				round;		// количество прошедших с начала игры циклов
 	int				ctd_round;	// количество прошедших с последней проверки циклов
 	int				checks;		// количество проверок
-	int				dump;		// флаг dump (его наличие)
+	int				dump;		// флаг dump (если > 0, тогда это номер цикла для dump)
 	int				count_live;	// количество выполненных операций live за последний период, длинной в cycles_to_die
 	int				last_plr;	// игрок, о котором в последний раз сказали, что он жив
 }					t_cw;
@@ -108,7 +105,6 @@ void				ft_print_map(t_cw *cw);
 void				ft_correct_plrs(t_cw *cw);
 void				ft_sort_plrs(t_plr *plr, int size);
 
-
 // debug
 void				ft_print_plrs(t_plr *plr, int size);
 
@@ -120,19 +116,17 @@ void				ft_add_plr_on_map(t_cw *cw);
 void				ft_map(t_cw *cw);
 
 //fork
-int		ft_byte_reverse_all(t_cw *cw, int pc, int count);
-void	ft_fork(t_cw *cw, t_crg *crg);
+int					ft_byte_reverse_all(t_cw *cw, int pc, int count);
+void				ft_fork(t_cw *cw, t_crg *crg);
 
 // операции
-void	op_ld(t_cw *cw, t_crg *crg);
-int		ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
+void				op_ld(t_cw *cw, t_crg *crg);
+int					ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
 
-
-//game
-void		ft_start_game(t_cw *cw);
-void        ft_do_cycle(t_cw *cw);
-void        ft_do_op(t_cw *cw, t_crg *crg);
-
+// game
+void				ft_start_game(t_cw *cw);
+void				ft_do_cycle(t_cw *cw);
+void 				ft_do_op(t_cw *cw, t_crg *crg);
 
 
 #endif

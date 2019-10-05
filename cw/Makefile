@@ -3,20 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+         #
+#    By: waddam <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 20:34:59 by waddam            #+#    #+#              #
-#    Updated: 2019/10/05 22:37:26 by draudrau         ###   ########.fr        #
+#    Updated: 2019/10/06 00:51:29 by waddam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CW = corewar
-SRC_CW = additions_1.c\
-		corewar.c\
-		debug_cw.c\
-		init_map.c\
-		parse.c\
-		players.c\
+SRC_CW = additions_1.c \
+		corewar.c \
+		debug_cw.c \
+		init_map.c \
+		parse.c \
+		players.c \
 		op_add.c \
 		op_aff.c \
 		op_and.c \
@@ -34,7 +34,7 @@ SRC_CW = additions_1.c\
 		op_xor.c \
 		op_zjmp.c \
 		game.c \
-		
+
 SRC_CW_PATH = ./
 SRC_CW_COMPL = $(addprefix $(SRC_CW_PATH), $(SRC_CW))
 OBJ_CW = $(SRC_CW:%.c=%.o)

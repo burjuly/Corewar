@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_ld.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/05 23:32:41 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/06 02:12:17 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	ft_init_ld(t_op *op)
 {
 	op->arg_nbrs = 2;
-	op->ccl_cost = 5;
+	op->bef_op = 5;
 	op->need_arg_code = 1;
-	op->low_tdir = 0;
+	op->t_dir = 4;
 
 	op->code_args[0] = DIR_REG;
 	op->code_args[1] = IND_REG;
@@ -47,7 +47,7 @@ int		ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op)
 
 // int		ft_skip_step(t_cw *cw, t_crg *crg, int code_op)
 // {
-	
+
 // }
 
 void	op_ld(t_cw *cw, t_crg *crg)
@@ -78,13 +78,13 @@ void	op_ld(t_cw *cw, t_crg *crg)
 	{
 		printf("\n Зашли в IF!!!!!!! \n");
 		pc_arg2 = pc_arg1 + DIR_4;
-		
+
 		printf("pc_arg1 = %d \n", pc_arg1);
 		arg_char[3] = cw->map[pc_arg1];
 		arg_char[2] = cw->map[pc_arg1 + 1];
 		arg_char[1] = cw->map[pc_arg1 + 2];
 		arg_char[0] = cw->map[pc_arg1 + 3];
-		
+
 		//arg1 = ft_byte_reverse_all(cw, pc_arg1, 4);
 		//arg1 = ft_byte_reverse(&(cw->map[pc_arg1]), 4);
 		arg1 = *(int*)arg_char;

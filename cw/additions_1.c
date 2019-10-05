@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   additions_1.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:59:05 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/04 21:37:38 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/06 00:28:25 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ static void	ft_swap_char(char *a, char *b)
 	*b = temp;
 }
 
-int		ft_byte_reverse(char *bytes_array, int count)
+int			ft_byte_reverse(char *bytes_array, int count)
 {
 	if (count == 2)
-        ft_swap_char(&bytes_array[0], &bytes_array[1]);
-    else if (count == 4)
-    {
-        ft_swap_char(&bytes_array[0], &bytes_array[3]);
-	    ft_swap_char(&bytes_array[1], &bytes_array[2]);
-    }
-    return (*(int*)bytes_array);
+		ft_swap_char(&bytes_array[0], &bytes_array[1]);
+	else if (count == 4)
+	{
+		ft_swap_char(&bytes_array[0], &bytes_array[3]);
+		ft_swap_char(&bytes_array[1], &bytes_array[2]);
+	}
+	return (*(int *)bytes_array);
 }
 
 static void	ft_swap_plrs(t_plr *a, t_plr *b)
