@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:56:36 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/05 18:36:19 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/05 21:24:17 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,6 @@ void ft_fork(t_cw *cw, t_crg *crg)
     int     arg;
     t_crg   *new;
 
-
-    // if (ft_valid_arg() == 0)
-    //
     i = 0;
     arg = ft_byte_reverse_all(cw, crg->pc + 1, 2);
     pc = (crg->pc + (arg % IDX_MOD)) % MEM_SIZE;

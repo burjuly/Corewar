@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/05 16:51:16 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/05 22:42:14 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdio.h>
+
+# define PC crg->pc
+# define NAME 1
+# define CODE_ARGS 1
+# define DIR_4 4
+# define DIR_2 2
+# define IND 2
+
+# define DIR_REG 144
+# define IND_REG 208	
 
 typedef struct		s_plr
 {
@@ -45,7 +55,7 @@ typedef struct		s_crg
 
 typedef struct 		s_op
 {
-	char			code_args[28]; // /0
+	int				code_args[28]; // /0
 	// char			*name;			// название операции
 	char			arg_nbrs;		// количество аргументов
 	char			args[3];		// массив аргументов
@@ -112,6 +122,16 @@ void				ft_map(t_cw *cw);
 //fork
 int		ft_byte_reverse_all(t_cw *cw, int pc, int count);
 void	ft_fork(t_cw *cw, t_crg *crg);
+
+// операции
+void	op_ld(t_cw *cw, t_crg *crg);
+int		ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
+
+
+//game
+void		ft_start_game(t_cw *cw);
+void        ft_do_cycle(t_cw *cw);
+void        ft_do_op(t_cw *cw, t_crg *crg);
 
 
 

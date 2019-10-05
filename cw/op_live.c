@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:01:03 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/05 18:23:03 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/05 18:52:59 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_init_live(t_op *op)
 {
-	op->code_args[0] = 128;
 	op->arg_nbrs = 1;
 	op->ccl_cost = 10;
 	op->need_arg_code = 0;
