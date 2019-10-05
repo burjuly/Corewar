@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/04 22:00:51 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/05 14:21:51 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct		s_cw
 	int				checks;		// количество проверок
 	int				dump;
 
+	t_op			op[16];
 	int				count_live;	// количество выполненных операций live за последний период, длинной в cycles_to_die
 	int				last_plr;	// игрок, о котором в последний раз сказали, что он жив
 
@@ -64,6 +65,8 @@ typedef struct		s_cw
 
 typedef struct 		s_op
 {
+	char			arg[28]; // /0    			
+	
 	char			*name;			// название операции
 	char			arg_nbrs;		// количество аргументов
 	char			args[3];		// массив аргументов
