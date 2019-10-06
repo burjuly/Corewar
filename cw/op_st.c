@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 12:48:50 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/06 13:58:01 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	op_st(t_cw *cw, t_crg *crg)
 	int		pc_arg2;
 	int		arg1;
 	int		arg2;
+	char	arg_char[2];
 
 	pc_arg1 = 0;
 	pc_arg2 = 0;
@@ -47,8 +48,14 @@ void	op_st(t_cw *cw, t_crg *crg)
 		arg2 = (int)cw->map[pc_arg1]; // номер регистра
 		crg->reg[arg2 - 1] = crg->reg[arg1 - 1];
 	}
-	else if ()
+	else if (code_arg == REG_IND)
 	{
-
+		arg1 = (int)cw->map[pc_arg1]; // номер регистра
+		arg_char[1] = cw->map[pc_arg2];
+		arg_char[0] = cw->map[pc_arg2 + 1];
+		arg2 = (*(int *)arg_char) % IDX_MOD;
+		if ((PC + arg2) % MEM_SIZE < 0)
+			arg2 += MEM_SIZE;
+		cw->map[(PC + arg2) % MEM_SIZE] = crg->reg[arg1 - 1];
 	}
 }
