@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 02:12:17 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/06 12:27:48 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	op_ld(t_cw *cw, t_crg *crg)
 	// 	return ;
 	// }
 	//ft_valid_reg();
-	pc_arg1 = PC + NAME + CODE_ARGS;
+	pc_arg1 = PC + OP_NAME + CODE_ARGS;
 	if (code_arg == DIR_REG) // DIR_SIZE = 4
 	{
 		printf("\n Зашли в IF!!!!!!! \n");

@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 02:46:47 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/06 12:29:00 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,18 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# define PC			crg->pc
-# define NAME		1
-# define CODE_ARGS	1
-# define DIR_4		4
-# define DIR_2		2
-# define IND		2
+# define PC				crg->pc
+# define OP_NAME		1
+# define CODE_ARGS		1
+# define DIR_4			DIR_SIZE
+# define DIR_2			(DIR_SIZE / 2)
+# define IND			IND_SIZE
+# define REG_NUM_SIZE	1
 
 # define DIR_REG	144
 # define IND_REG	208
+# define REG_REG	0b01010000
+# define REG_IND	0b01110000
 
 typedef struct		s_plr
 {
