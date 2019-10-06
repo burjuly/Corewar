@@ -6,7 +6,7 @@
 /*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 12:29:00 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/06 13:22:55 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 # define PC				crg->pc
 # define OP_NAME		1
 # define CODE_ARGS		1
-# define DIR_4			DIR_SIZE
-# define DIR_2			(DIR_SIZE / 2)
-# define IND			IND_SIZE
+# define DIR_4			4
+# define DIR_2			2
+# define IND			2
 # define REG_NUM_SIZE	1
 
 # define DIR_REG	144
