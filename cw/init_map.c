@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/05 16:29:58 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/06 19:34:28 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void    ft_print_map(t_cw *cw)
         printf("%.2hhx ", cw->map[i]);
         i++;
     }
-
+    printf("\n"); // УБРАТЬ ?
 }
 
 // k - номер игрока со знаком "+"
@@ -101,22 +101,5 @@ void    ft_add_plr_on_map(t_cw *cw)
 void    ft_map(t_cw *cw)
 {
     ft_add_plr_on_map(cw);
-
-    /**********************************************/
-    // Проверка что записалоcь в регистры каретки
-    t_crg *lst = cw->crg;
-    int num = 0;
-    while (lst != NULL)
-    {
-        int i = 0;
-        while (i < 16)
-        {
-            printf("каретка №%d reg = %d [%d]\n", num, i, lst->reg[i]);
-            i++;
-        }
-        num++;
-        lst = lst->next;
-    }
-    /************************************************/
     //ft_print_map(cw);
 }

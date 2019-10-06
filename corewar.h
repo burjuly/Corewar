@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 13:22:55 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/06 21:04:36 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,29 @@
 # define IND			2
 # define REG_NUM_SIZE	1
 
-# define DIR_REG	144
-# define IND_REG	208
-# define REG_REG	0b01010000
-# define REG_IND	0b01110000
+# define DIR_REG		144
+# define IND_REG		208
+# define REG_REG		0b01010000
+# define REG_IND		0b01110000
+# define REG_REG_REG	84
+# define REG_DIR_REG	100
+# define IND_REG_REG	212
+# define IND_DIR_REG	228
+# define DIR_REG_REG	148
+# define DIR_DIR_REG	164
+
+
+typedef struct		t_args
+{
+	int				arg1;
+	int				arg2;
+	int				arg3;
+	int				pc_arg1;
+	int				pc_arg2;
+	int				pc_arg3;
+	int				code_args;
+	int				address;
+}					t_args;
 
 typedef struct		s_plr
 {
@@ -123,13 +142,30 @@ int					ft_byte_reverse_all(t_cw *cw, int pc, int count);
 void				ft_fork(t_cw *cw, t_crg *crg);
 
 // операции
-void				op_ld(t_cw *cw, t_crg *crg);
 int					ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
+int					ft_MOD_IND(int arg); // обрезаем по модулю IND
+void				op_ld(t_cw *cw, t_crg *crg);
+void				ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args);
+
+void				op_ldi(t_cw *cw, t_crg *crg);
+void				ft_ldi_REG(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_ldi_IND(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_ldi_DIR(t_cw *cw, t_crg *crg, t_args *args);
+
+void				op_st(t_cw *cw, t_crg *crg);
+
 
 // game
 void				ft_start_game(t_cw *cw);
 void				ft_do_cycle(t_cw *cw);
 void 				ft_do_op(t_cw *cw, t_crg *crg);
 
+// reverse
+int					ft_reverse_2(t_cw *cw, int pc);
+int					ft_reverse_4(t_cw *cw, int pc);
+
+// DEBUG
+void				ft_print_args(t_args *args);
 
 #endif

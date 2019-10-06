@@ -3,14 +3,81 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/06 02:24:58 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/06 19:33:41 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
+
+void	ft_print_crg(t_crg *crg)
+{
+	int		i = 0;
+
+	while (i < 16)
+	{
+		printf("reg[%d] = %d\n", i, crg->reg[i]);
+		i++;
+	}
+		printf("pc = %d\n", crg->pc);
+		printf("carry = %d\n", crg->carry);
+		printf("cur_op = %d\n", crg->cur_op);
+		printf("bef_op = %d\n", crg->bef_op);
+		printf("last_live = %d\n", crg->last_live);
+		printf("step = %d\n", crg->step);
+}
+
+// 1	live
+// 2	ld
+// 3	st
+// 4	add
+// 5	sub
+// 6	and
+// 7	or
+// 8	xor
+// 9	zjmp
+// 10	ldi
+// 11	sti
+// 12	fork
+// 13	lld
+// 14	lldi
+// 15	lfork
+// 16	aff
+
+void	ft_do_op(t_cw *cw, t_crg *crg)
+{
+	printf("ДО ОПЕРАЦИИ\n");
+	ft_print_crg(crg);
+	if (crg->cur_op == 2)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ ld\n");
+		op_ld(cw, crg);
+	}
+	else if(crg->cur_op == 3)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ st\n");
+		op_st(cw, crg);
+	}
+	else if(crg->cur_op == 10)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
+		op_ldi(cw, crg);
+	}
+		
+
+	printf("ПОСЛЕ ОПЕРАЦИИ\n");
+	ft_print_map(cw);
+	ft_print_crg(crg);
+	exit(0);
+}
+
+
+
+
+
+
 
 /*
 ** Важно, чтобы во время цикла все описанные проверки и действия выполнялись строго
@@ -25,37 +92,6 @@
 **        парами первый и второй, либо второй и третий (поэтому не else)
 **        либо только в второй
 */
-
-// void	ft_print_crg(t_crg *crg)
-// {
-// 	int		i = 0;
-
-// 	while (i < 16)
-// 	{
-// 		printf("reg: %d = %d\n", i, crg->reg[i]);
-// 		i++;
-// 	}
-// 		printf("pc = %d\n", crg->pc);
-// 		printf("carry = %d\n", crg->carry);
-// 		printf("cur_op = %d\n", crg->cur_op);
-// 		printf("bef_op = %d\n", crg->bef_op);
-// 		printf("last_live = %d\n", crg->last_live);
-// 		printf("step = %d\n", crg->step);
-// }
-
-void	ft_do_op(t_cw *cw, t_crg *crg)
-{
-	// printf("До операции ld\n");
-	// ft_print_crg(crg);
-	if (crg->cur_op == 2)
-	{
-		// printf("ЗАШЛИ В ОПЕРАЦИЮ ld\n");
-		op_ld(cw, crg);
-	}
-	// printf("После операции ld\n");
-	// ft_print_crg(crg);
-}
-
 void	ft_do_cycle(t_cw *cw)
 {
 	t_crg	*crg;

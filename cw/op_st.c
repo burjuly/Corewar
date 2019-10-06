@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 13:58:01 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/06 14:57:50 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	op_st(t_cw *cw, t_crg *crg)
 		arg1 = (int)cw->map[pc_arg1]; // номер регистра
 		arg2 = (int)cw->map[pc_arg1]; // номер регистра
 		crg->reg[arg2 - 1] = crg->reg[arg1 - 1];
+		crg->step = 4;
 	}
 	else if (code_arg == REG_IND)
 	{
@@ -57,5 +58,7 @@ void	op_st(t_cw *cw, t_crg *crg)
 		if ((PC + arg2) % MEM_SIZE < 0)
 			arg2 += MEM_SIZE;
 		cw->map[(PC + arg2) % MEM_SIZE] = crg->reg[arg1 - 1];
+		crg->step = 5;
 	}
+	// каретка перешагивает через step ?
 }
