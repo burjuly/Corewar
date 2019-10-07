@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/06 19:33:41 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/07 14:59:57 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,10 @@ void	ft_print_crg(t_crg *crg)
 
 void	ft_do_op(t_cw *cw, t_crg *crg)
 {
+	//crg->reg[0] = 15; // ПРОПИСЫВАЕМ РЕГИСТР ВРУЧНУЮ
+	//crg->reg[1] = 63;
+	crg->reg[2] = 5;
+
 	printf("ДО ОПЕРАЦИИ\n");
 	ft_print_crg(crg);
 	if (crg->cur_op == 2)
@@ -60,13 +64,16 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 		printf("ЗАШЛИ В ОПЕРАЦИЮ st\n");
 		op_st(cw, crg);
 	}
+	else if (crg->cur_op == 6)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ and\n");
+		op_and(cw, crg);
+	}
 	else if(crg->cur_op == 10)
 	{
 		printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
 		op_ldi(cw, crg);
 	}
-		
-
 	printf("ПОСЛЕ ОПЕРАЦИИ\n");
 	ft_print_map(cw);
 	ft_print_crg(crg);

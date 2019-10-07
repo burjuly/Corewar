@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:58:17 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 21:14:51 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/06 21:54:26 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	op_lld(t_cw *cw, t_crg *crg)
 	args.arg2 = cw->map[args.pc_arg2];
 	crg->reg[args.arg2 - 1] = args.arg1;
 	args.arg1 == 1 ? (crg->carry = 1) : (crg->carry = 0);
-	// перешагиваем через step???
+	crg->pc = PC + crg->step;
+	crg->step = 0;
 }

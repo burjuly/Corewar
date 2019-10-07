@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 14:57:50 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/07 13:35:03 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,41 +24,45 @@ void	ft_init_st(t_op *op)
 	op->code_args[2] = '\0';
 }
 
+void	ft_write_int_in_map(t_cw *cw, int pc, int value)
+{
+	cw->map[(pc + 3) % MEM_SIZE] = (unsigned char)(value & 0xFF);
+	cw->map[(pc + 2) % MEM_SIZE] = (unsigned char)((value >> 8) & 0xFF);
+	cw->map[(pc + 1) % MEM_SIZE] = (unsigned char)((value >> 16) & 0xFF);
+	cw->map[pc % MEM_SIZE] = (unsigned char)((value >> 24) & 0xFF);
+}
 void	op_st(t_cw *cw, t_crg *crg)
 {
-	int		code_arg;
-	int		pc_arg1;
-	int		pc_arg2;
-	int		arg1;
-	int		arg2;
-	char	arg_char[2];
+	t_args args;
 
-	pc_arg1 = 0;
-	pc_arg2 = 0;
-	code_arg = ft_valid_code_arg(cw, crg, 2); // считали код аргумента, ниже провалидируем
-	// if ()
-	// {
-
-	// }
-	pc_arg1 = PC + OP_NAME + CODE_ARGS;
-	pc_arg2 = pc_arg1 + REG_NUM_SIZE;
-	if (code_arg == REG_REG)
+	//cw->map[1] = 0x15;   НЕПРАВИЛЬНЫЙ КОД АРГУМЕТОВ, чтобы проверить ft_wrong_code_args
+	
+	// ПРОВАЛИДИРОВАТЬ РЕГИСТРЫ
+	ft_bzero(&args, sizeof(args));
+	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
 	{
-		arg1 = (int)cw->map[pc_arg1]; // номер регистра
-		arg2 = (int)cw->map[pc_arg1]; // номер регистра
-		crg->reg[arg2 - 1] = crg->reg[arg1 - 1];
+		PC = (PC + crg->step) % MEM_SIZE;
+		return ;
+	}
+	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
+	args.pc_arg2 = (args.pc_arg1 + REG_NUM_SIZE) % MEM_SIZE;
+	if (args.code_args == REG_REG)
+	{
+		args.arg1 = (int)cw->map[args.pc_arg1]; // номер регистра
+		args.arg2 = (int)cw->map[args.pc_arg1]; // номер регистра
+		crg->reg[args.arg2 - 1] = crg->reg[args.arg1 - 1];
 		crg->step = 4;
 	}
-	else if (code_arg == REG_IND)
+	else if (args.code_args == REG_IND)
 	{
-		arg1 = (int)cw->map[pc_arg1]; // номер регистра
-		arg_char[1] = cw->map[pc_arg2];
-		arg_char[0] = cw->map[pc_arg2 + 1];
-		arg2 = (*(int *)arg_char) % IDX_MOD;
-		if ((PC + arg2) % MEM_SIZE < 0)
-			arg2 += MEM_SIZE;
-		cw->map[(PC + arg2) % MEM_SIZE] = crg->reg[arg1 - 1];
+		args.arg1 = (int)cw->map[args.pc_arg1]; // номер регистра
+		args.arg1 = crg->reg[args.arg1 - 1];
+		args.arg2 = ft_reverse_2(cw, args.pc_arg2) % IDX_MOD;
+		args.arg2 = ft_MOD_IND(args.arg2);
+		args.address = (PC + args.arg2) % MEM_SIZE;
+		ft_write_int_in_map(cw, args.address, args.arg1);
 		crg->step = 5;
 	}
-	// каретка перешагивает через step ?
+	PC = (PC + crg->step) % MEM_SIZE;
+	crg->step = 0;
 }

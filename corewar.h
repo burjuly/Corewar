@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 21:04:36 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/07 14:29:12 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,11 @@
 # define IND_DIR_REG	228
 # define DIR_REG_REG	148
 # define DIR_DIR_REG	164
+# define REG_IND_REG	116
+# define IND_IND_REG	244
+# define DIR_IND_REG	180
+
+
 
 
 typedef struct		t_args
@@ -142,8 +147,7 @@ int					ft_byte_reverse_all(t_cw *cw, int pc, int count);
 void				ft_fork(t_cw *cw, t_crg *crg);
 
 // операции
-int					ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
-int					ft_MOD_IND(int arg); // обрезаем по модулю IND
+
 void				op_ld(t_cw *cw, t_crg *crg);
 void				ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args);
 void				ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args);
@@ -154,6 +158,18 @@ void				ft_ldi_IND(t_cw *cw, t_crg *crg, t_args *args);
 void				ft_ldi_DIR(t_cw *cw, t_crg *crg, t_args *args);
 
 void				op_st(t_cw *cw, t_crg *crg);
+
+void				ft_lldi_REG(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_lldi_IND(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_lldi_DIR(t_cw *cw, t_crg *crg, t_args *args);
+void				op_lldi(t_cw *cw, t_crg *crg);
+
+// добавила 07/10
+void				op_add(t_cw *cw, t_crg *crg);
+void				op_sub(t_cw *cw, t_crg *crg);
+void				ft_and_REG(t_cw *cw, t_crg *crg, t_args *args);
+void				op_and(t_cw *cw, t_crg *crg);
+
 
 
 // game
@@ -168,4 +184,8 @@ int					ft_reverse_4(t_cw *cw, int pc);
 // DEBUG
 void				ft_print_args(t_args *args);
 
+//Валидация аргументов
+void				ft_wrong_code_args(t_crg *crg, int size_DIR, char code);
+int					ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
+int					ft_MOD_IND(int arg); // обрезаем по модулю IND
 #endif

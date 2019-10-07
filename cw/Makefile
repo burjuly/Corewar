@@ -6,7 +6,7 @@
 #    By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 20:34:59 by waddam            #+#    #+#              #
-#    Updated: 2019/10/06 17:01:19 by draudrau         ###   ########.fr        #
+#    Updated: 2019/10/07 12:40:09 by draudrau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRC_CW = additions_1.c \
 		op_zjmp.c \
 		game.c \
 		reverse.c \
+		valid_op.c \
 
 SRC_CW_PATH = ./
 SRC_CW_COMPL = $(addprefix $(SRC_CW_PATH), $(SRC_CW))
