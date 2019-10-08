@@ -6,25 +6,11 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 12:11:48 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/07 13:39:41 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/08 15:05:01 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
-
-int		ft_MOD_IND(int arg)
-{
-	arg = arg % MEM_SIZE;
-	if (arg < 0)
-		arg = arg + MEM_SIZE;
-	return (arg);
-}
-
-// int		ft_valid_REG(t_cw *cw, t_crg *crg)
-// {
-	
-
-// }
 
 void	ft_wrong_code_args(t_crg *crg, int size_DIR, char code)
 {

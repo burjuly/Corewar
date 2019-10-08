@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/07 13:28:28 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:06:47 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 // OK
 // МЕНЯЕМ CARRY
 // ПЕРЕШАГИВАЕМ
+
 void	ft_init_ld(t_op *op)
 {
 	op->arg_nbrs = 2;
@@ -27,23 +28,27 @@ void	ft_init_ld(t_op *op)
 	op->code_args[2] = '\0';
 }
 
+void	ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args) // ЕСТЬ УСЕЧЕНИЕ % IDX_MOD
+{
+	args->arg1 = ft_reverse_2(cw, args->pc_arg1);
+	args->arg1 = ft_MOD_IND(args->arg1);
+	args->arg1 = args->arg1 % IDX_MOD;
+	args->arg1 = (PC + args->arg1) % MEM_SIZE;
+	args->arg1 = ft_reverse_4(cw, args->arg1);
+}
+
+
 void	ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args) // DIR_REG 4 1  code_size = 7
 {
-		args->arg1 = ft_reverse_4(cw, args->pc_arg1);
+		ft_DIR_4(cw, args, 1);
 		args->pc_arg2 = (args->pc_arg1 + DIR_4) % MEM_SIZE;
-		args->arg2 = cw->map[args->pc_arg2];
 		crg->step = 7;
 }
 
 void	ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args) // IND_REG 2 1 code_size = 5
 {
-		args->arg1 = ft_reverse_2(cw, args->pc_arg1);
-		args->arg1 = ft_MOD_IND(args->arg1);
-		args->arg1 = args->arg1 % IDX_MOD; // ЕСТЬ УСЕЧЕНИЕ
-		args->pc_arg1 = (PC + args->arg1) % MEM_SIZE;
-		args->pc_arg1 = ft_reverse_4(cw, args->pc_arg1);
+		ft_IND_with_IDX_MOD_1(cw, crg, args);
 		args->pc_arg2 = (args->pc_arg1 + IND) % MEM_SIZE;
-		args->arg2 = cw->map[args->pc_arg2];
 		crg->step = 5;
 }
 
@@ -66,7 +71,6 @@ void	op_ld(t_cw *cw, t_crg *crg)
 	args.arg2 = cw->map[args.pc_arg2];
 	crg->reg[args.arg2 - 1] = args.arg1;
 	args.arg1 == 0 ? (crg->carry = 1) : (crg->carry = 0);
-	
 	PC = (PC + crg->step) % MEM_SIZE; // ПЕРЕШАГИВАЕМ
 	crg->step = 0;
 }

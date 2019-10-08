@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_fork.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:56:36 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 02:12:13 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/08 16:45:40 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,57 +24,59 @@ void	ft_init_fork(t_op *op)
 	op->code_args[1] = '\0';
 }
 
-int		ft_byte_reverse_all(t_cw *cw, int pc, int count)
+// int		ft_byte_reverse_all(t_cw *cw, int pc, int count)
+// {
+//     int     i;
+//     int     num;
+//     char    two_bytes[2];
+//     char    four_bytes[4];
+
+//     i = 0;
+//     if (count == 2) // 2 байта
+//     {
+//         while (i < count)
+//         {
+//             two_bytes[i] = cw->map[pc + i];
+//             i++;
+//         }
+//         num = ft_byte_reverse(two_bytes, 2);
+//     }
+//     else // 4 байта
+//     {
+//         while (i < count)
+//         {
+//             four_bytes[i] = cw->map[pc + i];
+//             i++;
+//         }
+//         num = ft_byte_reverse(two_bytes, 4);
+//     }
+//     return (num);
+// }
+
+void op_fork(t_cw *cw, t_crg *crg)
 {
     int     i;
-    int     num;
-    char    two_bytes[2];
-    char    four_bytes[4];
-
-    i = 0;
-    if (count == 2) // 2 байта
-    {
-        while (i < count)
-        {
-            two_bytes[i] = cw->map[pc + i];
-            i++;
-        }
-        num = ft_byte_reverse(two_bytes, 2);
-    }
-    else // 4 байта
-    {
-        while (i < count)
-        {
-            four_bytes[i] = cw->map[pc + i];
-            i++;
-        }
-        num = ft_byte_reverse(two_bytes, 4);
-    }
-    return (num);
-}
-
-void ft_fork(t_cw *cw, t_crg *crg)
-{
-    int     i;
-    int     pc;
-    int     arg;
+    t_args  args;
     t_crg   *new;
 
-    i = 0;
-    arg = ft_byte_reverse_all(cw, crg->pc + 1, 2);
-    pc = (crg->pc + (arg % IDX_MOD)) % MEM_SIZE;
-    ft_add_carriage(cw, -(crg->reg[0]), pc);
+	i = 0;
+    ft_bzero(&args, sizeof(args));
+    args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
+    ft_DIR_2(cw, &args, 1);
+    args.arg1 = (PC + args.arg1 % IDX_MOD) % MEM_SIZE;
+    if (args.arg1 < 0)
+         args.arg1 = args.arg1 + (args.arg1 % MEM_SIZE);
+    ft_add_carriage(cw, -(crg->reg[0]), args.arg1);
     new = cw->crg;
     while (i < REG_NUMBER)
     {
         new->reg[i] = crg->reg[i];
         i++;
     }
-    //new->num_plr = crg->num_plr;
     new->carry = crg->carry;
     new->cur_op = crg->cur_op;
     new->bef_op = crg->bef_op;
     new->last_live = crg->last_live;
     new->step = crg->step;
-    crg->pc = (crg->pc + 3) % MEM_SIZE;
+    PC = (PC + 3) % MEM_SIZE;
 }

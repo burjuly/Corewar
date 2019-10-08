@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_zjmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:52:12 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 02:14:01 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/08 16:37:41 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,18 @@ void	ft_init_zjmp(t_op *op)
 
 	op->code_args[0] = 128;	//  DIR
 	op->code_args[1] = '\0';
+}
+
+void	op_zjmp(t_cw *cw, t_crg *crg)
+{
+	t_args args;
+
+	ft_bzero(&args, sizeof(args));
+	args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
+	ft_DIR_2(cw, &args, 1);
+	if (crg->carry == 1)
+	{
+		// ПРОВЕРИТЬ!!! 
+		PC = (PC + args.arg1 % IDX_MOD) % MEM_SIZE;
+	}
 }

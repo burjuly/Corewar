@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 17:22:02 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/08 13:36:03 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	ft_print_args(t_args *args)
 	printf("CODE_ARGS = %d\n", args->code_args);
 	printf("ARG 1 = %d\n", args->arg1);
 	printf("ARG 2 = %d\n", args->arg2);
-	printf("ARG 3 = %d\n", args->arg2);
+	printf("ARG 3 = %d\n", args->arg3);
 	printf("PC_ARG 1 = %d\n", args->pc_arg1);
 	printf("PC_ARG 2 = %d\n", args->pc_arg2);
-	printf("PC_ARG 3 = %d\n", args->pc_arg2);
+	printf("PC_ARG 3 = %d\n", args->pc_arg3);
 }

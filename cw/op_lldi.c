@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 22:08:26 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/06 22:36:47 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/08 14:43:36 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,8 @@ void	op_lldi(t_cw *cw, t_crg *crg)
 	args.arg3 = (int)cw->map[args.pc_arg3];
 	ft_print_args(&args);
 	args.address = args.arg1 + args.arg2;
-	if (args.address < 0)
-		args.address = args.address % MEM_SIZE + MEM_SIZE;
+	// if (args.address < 0)
+	// 	args.address = args.address % MEM_SIZE + MEM_SIZE;
 	crg->reg[args.arg3 - 1] = ft_reverse_4(cw, ((PC + args.address)) % MEM_SIZE); // БЕЗ УСЕЧЕНИЯ % IDX_MOD
     crg->reg[args.arg3 - 1] == 0 ? (crg->carry = 1) : (crg->carry = 0);
 }

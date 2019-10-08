@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/07 14:59:57 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:44:53 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	ft_print_crg(t_crg *crg)
 }
 
 // 1	live
-// 2	ld
-// 3	st
-// 4	add
-// 5	sub
-// 6	and
+// 2	ld +
+// 3	st +
+// 4	add +
+// 5	sub +
+// 6	and +
 // 7	or
 // 8	xor
 // 9	zjmp
@@ -50,11 +50,17 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 {
 	//crg->reg[0] = 15; // ПРОПИСЫВАЕМ РЕГИСТР ВРУЧНУЮ
 	//crg->reg[1] = 63;
-	crg->reg[2] = 5;
+	//crg->reg[2] = 5;
 
 	printf("ДО ОПЕРАЦИИ\n");
 	ft_print_crg(crg);
-	if (crg->cur_op == 2)
+	
+	if (crg->cur_op == 1)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ live\n");
+		op_live(cw, crg);
+	}
+	else if (crg->cur_op == 2)
 	{
 		printf("ЗАШЛИ В ОПЕРАЦИЮ ld\n");
 		op_ld(cw, crg);
@@ -64,16 +70,72 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 		printf("ЗАШЛИ В ОПЕРАЦИЮ st\n");
 		op_st(cw, crg);
 	}
+	else if(crg->cur_op == 4)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ add\n");
+		op_add(cw, crg);
+	}
+	else if(crg->cur_op == 5)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ sub\n");
+		op_sub(cw, crg);
+	}
 	else if (crg->cur_op == 6)
 	{
 		printf("ЗАШЛИ В ОПЕРАЦИЮ and\n");
 		op_and(cw, crg);
+	}
+	else if(crg->cur_op == 7)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ or\n");
+		op_or(cw, crg);
+	}
+	else if(crg->cur_op == 8)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ xor\n");
+		op_xor(cw, crg);
+	}
+	else if(crg->cur_op == 9)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ zjmp\n");
+		op_zjmp(cw, crg);
 	}
 	else if(crg->cur_op == 10)
 	{
 		printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
 		op_ldi(cw, crg);
 	}
+	// else if(crg->cur_op == 11)
+	// {
+	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
+	// 	op_sti(cw, crg);
+	// }
+	else if(crg->cur_op == 12)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
+		op_fork(cw, crg);
+	}
+	// else if(crg->cur_op == 13)
+	// {
+	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
+	// 	op_lld(cw, crg);
+	// }
+	else if(crg->cur_op == 14)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");
+		op_lldi(cw, crg);
+	}
+	// else if(crg->cur_op == 15)
+	// {
+	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
+	// 	op_lfork(cw, crg);
+	// }
+	// else if(crg->cur_op == 16)
+	// {
+	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
+	// 	op_aff(cw, crg);
+	// }
+
 	printf("ПОСЛЕ ОПЕРАЦИИ\n");
 	ft_print_map(cw);
 	ft_print_crg(crg);

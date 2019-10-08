@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/07 13:35:03 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:22:41 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,6 @@ void	ft_init_st(t_op *op)
 	op->code_args[2] = '\0';
 }
 
-void	ft_write_int_in_map(t_cw *cw, int pc, int value)
-{
-	cw->map[(pc + 3) % MEM_SIZE] = (unsigned char)(value & 0xFF);
-	cw->map[(pc + 2) % MEM_SIZE] = (unsigned char)((value >> 8) & 0xFF);
-	cw->map[(pc + 1) % MEM_SIZE] = (unsigned char)((value >> 16) & 0xFF);
-	cw->map[pc % MEM_SIZE] = (unsigned char)((value >> 24) & 0xFF);
-}
 void	op_st(t_cw *cw, t_crg *crg)
 {
 	t_args args;
@@ -46,17 +39,15 @@ void	op_st(t_cw *cw, t_crg *crg)
 	}
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	args.pc_arg2 = (args.pc_arg1 + REG_NUM_SIZE) % MEM_SIZE;
+	ft_REG(cw, crg, &args, 1);
 	if (args.code_args == REG_REG)
 	{
-		args.arg1 = (int)cw->map[args.pc_arg1]; // номер регистра
-		args.arg2 = (int)cw->map[args.pc_arg1]; // номер регистра
+		ft_REG(cw, crg, &args, 2);
 		crg->reg[args.arg2 - 1] = crg->reg[args.arg1 - 1];
 		crg->step = 4;
 	}
 	else if (args.code_args == REG_IND)
 	{
-		args.arg1 = (int)cw->map[args.pc_arg1]; // номер регистра
-		args.arg1 = crg->reg[args.arg1 - 1];
 		args.arg2 = ft_reverse_2(cw, args.pc_arg2) % IDX_MOD;
 		args.arg2 = ft_MOD_IND(args.arg2);
 		args.address = (PC + args.arg2) % MEM_SIZE;

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/07 14:29:12 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/08 16:35:36 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,8 @@ int					ft_search_next_plr(t_cw *cw, int num);
 void				ft_add_plr_on_map(t_cw *cw);
 void				ft_map(t_cw *cw);
 
-//fork
-int					ft_byte_reverse_all(t_cw *cw, int pc, int count);
-void				ft_fork(t_cw *cw, t_crg *crg);
-
 // операции
-
+void				ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args);
 void				op_ld(t_cw *cw, t_crg *crg);
 void				ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args);
 void				ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args);
@@ -164,12 +160,26 @@ void				ft_lldi_IND(t_cw *cw, t_crg *crg, t_args *args);
 void				ft_lldi_DIR(t_cw *cw, t_crg *crg, t_args *args);
 void				op_lldi(t_cw *cw, t_crg *crg);
 
-// добавила 07/10
 void				op_add(t_cw *cw, t_crg *crg);
 void				op_sub(t_cw *cw, t_crg *crg);
-void				ft_and_REG(t_cw *cw, t_crg *crg, t_args *args);
-void				op_and(t_cw *cw, t_crg *crg);
 
+void				op_and(t_cw *cw, t_crg *crg);
+void				op_or(t_cw *cw, t_crg *crg);
+void				op_xor(t_cw *cw, t_crg *crg);
+void				ft_and_REG(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_and_IND(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_and_DIR(t_cw *cw, t_crg *crg, t_args *args);
+
+
+void				op_live(t_cw *cw, t_crg *crg);
+void				op_or(t_cw *cw, t_crg *crg);
+void				op_xor(t_cw *cw, t_crg *crg);
+void				op_zjmp(t_cw *cw, t_crg *crg);
+void				op_sti(t_cw *cw, t_crg *crg);
+void				op_fork(t_cw *cw, t_crg *crg);
+void				op_lld(t_cw *cw, t_crg *crg);
+void				op_lfork(t_cw *cw, t_crg *crg);
+void				op_aff(t_cw *cw, t_crg *crg);
 
 
 // game
@@ -187,5 +197,16 @@ void				ft_print_args(t_args *args);
 //Валидация аргументов
 void				ft_wrong_code_args(t_crg *crg, int size_DIR, char code);
 int					ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
+
+// arg_IND
+void				ft_IND_with_IDX_MOD_1(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_IND_with_IDX_MOD_2(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_IND_1(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_IND_2(t_cw *cw, t_crg *crg, t_args *args);
 int					ft_MOD_IND(int arg); // обрезаем по модулю IND
+void				ft_DIR_2(t_cw *cw, t_args *args, int num_arg);
+void				ft_DIR_4(t_cw *cw, t_args *args, int num_arg);
+void				ft_REG(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
+void				ft_write_int_in_map(t_cw *cw, int pc, int value);
+
 #endif
