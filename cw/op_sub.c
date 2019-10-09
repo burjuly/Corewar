@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:44:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/07 13:52:48 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/09 13:46:21 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	ft_init_sub(t_op *op)
 
 void	op_sub(t_cw *cw, t_crg *crg)
 {
-	t_args	args;
 	int		res;
-
+	t_args	args;
+	
 	res = 0;
 	ft_bzero(&args, sizeof(args));
 	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
@@ -42,8 +42,9 @@ void	op_sub(t_cw *cw, t_crg *crg)
 	args.pc_arg2 = (PC + OP_NAME + CODE_ARGS + REG_NUM_SIZE) % MEM_SIZE;
 	args.pc_arg3 = (PC + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
 
-	args.arg1 = cw->map[args.pc_arg1];
-	args.arg2 = cw->map[args.pc_arg2];
+	ft_REG(cw, crg, &args, 1);
+	ft_REG(cw, crg, &args, 2);
+
 	args.arg3 = cw->map[args.pc_arg3]; 
 	if (args.arg1 < 1 || args.arg1 > 16 || args.arg2 < 1 // валидация REG
 	|| args.arg2 > 16 || args.arg3 < 1 || args.arg3 > 16)
@@ -51,7 +52,7 @@ void	op_sub(t_cw *cw, t_crg *crg)
 		// Обработать случай невалидных регистров
 		return ;
 	}
-	res = crg->reg[args.arg1 - 1] - crg->reg[args.arg2 - 1];
+	res = args.arg1 - args.arg2;
 	crg->reg[args.arg3 - 1] = res;
 	(res == 0) ? (crg->carry = 1) : (crg->carry = 0);
 	PC = (PC + OP_NAME + CODE_ARGS + 3 * REG_NUM_SIZE) % MEM_SIZE;

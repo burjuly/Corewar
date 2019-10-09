@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/08 16:35:36 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/09 13:23:25 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,6 @@ void				ft_add_plr_on_map(t_cw *cw);
 void				ft_map(t_cw *cw);
 
 // операции
-void				ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args);
 void				op_ld(t_cw *cw, t_crg *crg);
 void				ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args);
 void				ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args);
@@ -198,11 +197,13 @@ void				ft_print_args(t_args *args);
 void				ft_wrong_code_args(t_crg *crg, int size_DIR, char code);
 int					ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
 
-// arg_IND
-void				ft_IND_with_IDX_MOD_1(t_cw *cw, t_crg *crg, t_args *args);
-void				ft_IND_with_IDX_MOD_2(t_cw *cw, t_crg *crg, t_args *args);
-void				ft_IND_1(t_cw *cw, t_crg *crg, t_args *args);
-void				ft_IND_2(t_cw *cw, t_crg *crg, t_args *args);
+// args_help
+void				ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
+void				ft_IND(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
+// void				ft_IND_with_IDX_MOD_1(t_cw *cw, t_crg *crg, t_args *args);
+// void				ft_IND_with_IDX_MOD_2(t_cw *cw, t_crg *crg, t_args *args);
+// void				ft_IND_1(t_cw *cw, t_crg *crg, t_args *args);
+// void				ft_IND_2(t_cw *cw, t_crg *crg, t_args *args);
 int					ft_MOD_IND(int arg); // обрезаем по модулю IND
 void				ft_DIR_2(t_cw *cw, t_args *args, int num_arg);
 void				ft_DIR_4(t_cw *cw, t_args *args, int num_arg);

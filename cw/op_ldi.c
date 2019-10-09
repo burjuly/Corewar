@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:53:44 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/08 16:14:31 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/09 13:20:26 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_ldi_REG(t_cw *cw, t_crg *crg, t_args *args)
 
 void	ft_ldi_IND(t_cw *cw, t_crg *crg, t_args *args)
 {
-	ft_IND_with_IDX_MOD_1(cw, crg, args);
+	ft_IND_with_IDX_MOD(cw, crg, args, 1);
 	args->pc_arg2 = (args->pc_arg1 + IND) % MEM_SIZE;
 	if (args->code_args == IND_REG_REG) // 2 1 1   code_size = 6
 	{

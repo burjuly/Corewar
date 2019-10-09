@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/08 16:44:53 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:27:23 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,11 +115,11 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 		printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
 		op_fork(cw, crg);
 	}
-	// else if(crg->cur_op == 13)
-	// {
-	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
-	// 	op_lld(cw, crg);
-	// }
+	else if(crg->cur_op == 13)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
+		op_lld(cw, crg);
+	}
 	else if(crg->cur_op == 14)
 	{
 		printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");

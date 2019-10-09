@@ -6,47 +6,70 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:02:09 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/08 16:16:13 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:30:50 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void	ft_IND_with_IDX_MOD_1(t_cw *cw, t_crg *crg, t_args *args) // ЕСТЬ УСЕЧЕНИЕ % IDX_MOD
+void	ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args, int num_arg) // ЕСТЬ УСЕЧЕНИЕ % IDX_MOD
 {
-	args->arg1 = ft_reverse_2(cw, args->pc_arg1);
-	args->arg1 = ft_MOD_IND(args->arg1);
-	args->arg1 = args->arg1 % IDX_MOD;
-	args->arg1 = (PC + args->arg1) % MEM_SIZE;
-	args->arg1 = ft_reverse_4(cw, args->arg1);
+	if (num_arg == 1)
+	{
+		args->arg1 = ft_reverse_2(cw, args->pc_arg1);
+		//args->arg1 = ft_MOD_IND(args->arg1);
+		args->arg1 = args->arg1 % IDX_MOD;
+		args->arg1 = (PC + args->arg1) % MEM_SIZE;
+		args->arg1 = ft_reverse_4(cw, args->arg1);
+	}
+	else if (num_arg == 2)
+	{
+		args->arg2 = ft_reverse_2(cw, args->pc_arg2);
+		args->arg2 = ft_MOD_IND(args->arg2);
+		args->arg1 = args->arg1 % IDX_MOD;
+		args->arg2 = (PC + args->arg2) % MEM_SIZE;
+		args->arg2 = ft_reverse_4(cw, args->arg2);
+	}
+	
 }
 
-void	ft_IND_with_IDX_MOD_2(t_cw *cw, t_crg *crg, t_args *args) // ЕСТЬ УСЕЧЕНИЕ % IDX_MOD
+// void	ft_IND_with_IDX_MOD_2(t_cw *cw, t_crg *crg, t_args *args) // ЕСТЬ УСЕЧЕНИЕ % IDX_MOD
+// {
+// 	args->arg2 = ft_reverse_2(cw, args->pc_arg2);
+// 	args->arg2 = ft_MOD_IND(args->arg2);
+// 	args->arg1 = args->arg1 % IDX_MOD;
+// 	args->arg2 = (PC + args->arg2) % MEM_SIZE;
+// 	args->arg2 = ft_reverse_4(cw, args->arg2);
+// }
+
+void	ft_IND(t_cw *cw, t_crg *crg, t_args *args, int num_arg) // БЕЗ УСЕЧЕНИЯ % IDX_MOD
 {
-	args->arg2 = ft_reverse_2(cw, args->pc_arg2);
-	args->arg2 = ft_MOD_IND(args->arg2);
-	args->arg1 = args->arg1 % IDX_MOD;
-	args->arg2 = (PC + args->arg2) % MEM_SIZE;
-	args->arg2 = ft_reverse_4(cw, args->arg2);
+	if (num_arg == 1)
+	{
+		args->arg1 = ft_reverse_2(cw, args->pc_arg1);
+		//args->arg1 = ft_MOD_IND(args->arg1);
+		//args->arg1 = args->arg1 % IDX_MOD;
+		args->arg1 = (PC + args->arg1) % MEM_SIZE;
+		args->arg1 = ft_reverse_4(cw, args->arg1);
+	}
+	else if (num_arg == 2)
+	{
+		args->arg2 = ft_reverse_2(cw, args->pc_arg2);
+		//args->arg2 = ft_MOD_IND(args->arg2);
+		//args->arg1 = args->arg1 % IDX_MOD;
+		args->arg2 = (PC + args->arg2) % MEM_SIZE;
+		args->arg2 = ft_reverse_4(cw, args->arg2);
+	}
 }
 
-void	ft_IND_1(t_cw *cw, t_crg *crg, t_args *args) // БЕЗ УСЕЧЕНИЯ % IDX_MOD
-{
-	args->arg1 = ft_reverse_2(cw, args->pc_arg1);
-	args->arg1 = ft_MOD_IND(args->arg1);
-	//args->arg1 = args->arg1 % IDX_MOD;
-	args->arg1 = (PC + args->arg1) % MEM_SIZE;
-	args->arg1 = ft_reverse_4(cw, args->arg1);
-}
-
-void	ft_IND_2(t_cw *cw, t_crg *crg, t_args *args) // БЕЗ УСЕЧЕНИЯ % IDX_MOD
-{
-	args->arg2 = ft_reverse_2(cw, args->pc_arg2);
-	args->arg2 = ft_MOD_IND(args->arg2);
-	//args->arg1 = args->arg1 % IDX_MOD;
-	args->arg2 = (PC + args->arg2) % MEM_SIZE;
-	args->arg2 = ft_reverse_4(cw, args->arg2);
-}
+// void	ft_IND_2(t_cw *cw, t_crg *crg, t_args *args) // БЕЗ УСЕЧЕНИЯ % IDX_MOD
+// {
+// 	args->arg2 = ft_reverse_2(cw, args->pc_arg2);
+// 	args->arg2 = ft_MOD_IND(args->arg2);
+// 	//args->arg1 = args->arg1 % IDX_MOD;
+// 	args->arg2 = (PC + args->arg2) % MEM_SIZE;
+// 	args->arg2 = ft_reverse_4(cw, args->arg2);
+// }
 
 int		ft_MOD_IND(int arg)
 {

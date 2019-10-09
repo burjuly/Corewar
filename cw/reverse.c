@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 16:09:37 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/08 14:38:03 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/09 13:08:55 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int     ft_reverse_2(t_cw *cw, int pc)
 {
-    int     num;
+    short     num;
     char    two_bytes[2];
 
     if (pc < 0)
         pc = MEM_SIZE + (pc % MEM_SIZE);
     two_bytes[1] = (cw->map[pc % MEM_SIZE]);
     two_bytes[0] = (cw->map[(pc + 1) % MEM_SIZE]);
-    num = *(int*)two_bytes;
+    num = *(short*)two_bytes;
     return (num);
 }
 

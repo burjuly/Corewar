@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:58:17 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 21:54:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/09 14:43:56 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,15 @@ void	ft_init_lld(t_op *op)
 
 void	ft_lld_DIR(t_cw *cw, t_crg *crg, t_args *args) // DIR_REG 4 1  code_size = 7
 {
-		args->arg1 = ft_reverse_4(cw, args->pc_arg1);
-		args->pc_arg2 = args->pc_arg1 + DIR_4;
-		args->arg2 = cw->map[args->pc_arg2];
+		ft_DIR_4(cw, args, 1);
+		args->pc_arg2 = (args->pc_arg1 + DIR_4) % MEM_SIZE;
 		crg->step = 7;
 }
 
 void	ft_lld_IND(t_cw *cw, t_crg *crg, t_args *args) // IND_REG 2 1 code_size = 5
 {
-		args->arg1 = ft_reverse_2(cw, args->pc_arg1);
-		args->arg1 = ft_MOD_IND(args->arg1);
-		// НЕ ОБРЕЗАЕМ АРГ % IDX_MOD
-		args->arg1 = ft_reverse_4(cw, PC + args->arg1);
+		ft_IND(cw, crg, args, 1);
 		args->pc_arg2 = args->pc_arg1 + IND;
-		args->arg2 = cw->map[args->pc_arg2];
 		crg->step = 5;
 }
 
@@ -61,7 +56,9 @@ void	op_lld(t_cw *cw, t_crg *crg)
 		ft_lld_DIR(cw, crg, &args);
 	else if (args.code_args == IND_REG)
 		ft_lld_IND(cw, crg, &args);
+	
 	args.arg2 = cw->map[args.pc_arg2];
+	ft_print_args(&args);
 	crg->reg[args.arg2 - 1] = args.arg1;
 	args.arg1 == 1 ? (crg->carry = 1) : (crg->carry = 0);
 	crg->pc = PC + crg->step;
