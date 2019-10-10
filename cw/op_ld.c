@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/09 13:27:42 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:35:39 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,6 @@ void	ft_init_ld(t_op *op)
 	op->code_args[1] = IND_REG;
 	op->code_args[2] = '\0';
 }
-
-// void	ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args) // ЕСТЬ УСЕЧЕНИЕ % IDX_MOD
-// {
-// 	args->arg1 = ft_reverse_2(cw, args->pc_arg1);
-// 	args->arg1 = ft_MOD_IND(args->arg1);
-// 	args->arg1 = args->arg1 % IDX_MOD;
-// 	args->arg1 = (PC + args->arg1) % MEM_SIZE;
-// 	args->arg1 = ft_reverse_4(cw, args->arg1);
-// }
 
 
 void	ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args) // DIR_REG 4 1  code_size = 7
@@ -68,7 +59,6 @@ void	op_ld(t_cw *cw, t_crg *crg)
 		ft_ld_DIR(cw, crg, &args);
 	else if (args.code_args == IND_REG)
 		ft_ld_IND(cw, crg, &args);
-	
 	args.arg2 = cw->map[args.pc_arg2];
 	crg->reg[args.arg2 - 1] = args.arg1;
 	ft_print_args(&args);

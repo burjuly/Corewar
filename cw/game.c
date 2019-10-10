@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/09 14:27:23 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:32:34 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 	//crg->reg[1] = 63;
 	//crg->reg[2] = 5;
 
+	ft_print_map(cw);
 	printf("ДО ОПЕРАЦИИ\n");
 	ft_print_crg(crg);
 	
@@ -105,11 +106,11 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 		printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
 		op_ldi(cw, crg);
 	}
-	// else if(crg->cur_op == 11)
-	// {
-	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
-	// 	op_sti(cw, crg);
-	// }
+	else if(crg->cur_op == 11)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
+		op_sti(cw, crg);
+	}
 	else if(crg->cur_op == 12)
 	{
 		printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
@@ -125,16 +126,16 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 		printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");
 		op_lldi(cw, crg);
 	}
-	// else if(crg->cur_op == 15)
-	// {
-	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
-	// 	op_lfork(cw, crg);
-	// }
-	// else if(crg->cur_op == 16)
-	// {
-	// 	printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
-	// 	op_aff(cw, crg);
-	// }
+	else if(crg->cur_op == 15)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
+		op_lfork(cw, crg);
+	}
+	else if(crg->cur_op == 16)
+	{
+		printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
+		op_aff(cw, crg);
+	}
 
 	printf("ПОСЛЕ ОПЕРАЦИИ\n");
 	ft_print_map(cw);

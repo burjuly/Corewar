@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/09 13:23:25 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:33:21 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 # define DIR_REG		144
 # define IND_REG		208
-# define REG_REG		0b01010000
-# define REG_IND		0b01110000
+# define REG_REG		80
+# define REG_IND		112
 # define REG_REG_REG	84
 # define REG_DIR_REG	100
 # define IND_REG_REG	212
@@ -41,9 +41,9 @@
 # define REG_IND_REG	116
 # define IND_IND_REG	244
 # define DIR_IND_REG	180
-
-
-
+# define REG_REG_DIR	88
+# define REG_IND_DIR	120
+# define REG_DIR_DIR	104
 
 typedef struct		t_args
 {

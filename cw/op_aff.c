@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   op_aff.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 16:06:18 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 02:12:02 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/10 19:32:26 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../corewar.h"
+
+//ПРОВЕРЯЕМ КОД АРГ
 
 void	ft_init_aff(t_op *op)
 {
@@ -22,4 +24,20 @@ void	ft_init_aff(t_op *op)
 
 	op->code_args[0] = 64; // REG
 	op->code_args[1] = '\0';
+}
+
+void	op_aff(t_cw *cw, t_crg *crg)
+{
+	t_args	args;
+
+	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
+	{
+		//args.code_args = ft_skip_step(cw, crg, 1);
+		return ;
+	}
+	ft_bzero(&args, sizeof(args));
+	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
+	ft_REG(cw, crg, &args, 1);
+	ft_putchar(args.arg1);
+	PC = (PC + 3) % MEM_SIZE;
 }

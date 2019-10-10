@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/08 13:36:03 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/10 16:43:09 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,5 @@ void	ft_print_args(t_args *args)
 	printf("PC_ARG 1 = %d\n", args->pc_arg1);
 	printf("PC_ARG 2 = %d\n", args->pc_arg2);
 	printf("PC_ARG 3 = %d\n", args->pc_arg3);
+	printf("adrress = %d\n", args->address);
 }

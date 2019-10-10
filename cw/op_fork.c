@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:56:36 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/08 16:45:40 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/10 19:19:26 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,35 +23,6 @@ void	ft_init_fork(t_op *op)
     op->code_args[0] = 128; //  DIR
 	op->code_args[1] = '\0';
 }
-
-// int		ft_byte_reverse_all(t_cw *cw, int pc, int count)
-// {
-//     int     i;
-//     int     num;
-//     char    two_bytes[2];
-//     char    four_bytes[4];
-
-//     i = 0;
-//     if (count == 2) // 2 байта
-//     {
-//         while (i < count)
-//         {
-//             two_bytes[i] = cw->map[pc + i];
-//             i++;
-//         }
-//         num = ft_byte_reverse(two_bytes, 2);
-//     }
-//     else // 4 байта
-//     {
-//         while (i < count)
-//         {
-//             four_bytes[i] = cw->map[pc + i];
-//             i++;
-//         }
-//         num = ft_byte_reverse(two_bytes, 4);
-//     }
-//     return (num);
-// }
 
 void op_fork(t_cw *cw, t_crg *crg)
 {

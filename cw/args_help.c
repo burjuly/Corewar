@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:02:09 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/09 14:30:50 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/10 20:40:51 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,6 @@ void	ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args, int num_arg) // Е�
 	}
 	
 }
-
-// void	ft_IND_with_IDX_MOD_2(t_cw *cw, t_crg *crg, t_args *args) // ЕСТЬ УСЕЧЕНИЕ % IDX_MOD
-// {
-// 	args->arg2 = ft_reverse_2(cw, args->pc_arg2);
-// 	args->arg2 = ft_MOD_IND(args->arg2);
-// 	args->arg1 = args->arg1 % IDX_MOD;
-// 	args->arg2 = (PC + args->arg2) % MEM_SIZE;
-// 	args->arg2 = ft_reverse_4(cw, args->arg2);
-// }
 
 void	ft_IND(t_cw *cw, t_crg *crg, t_args *args, int num_arg) // БЕЗ УСЕЧЕНИЯ % IDX_MOD
 {
@@ -111,6 +102,8 @@ void	ft_REG(t_cw *cw, t_crg *crg, t_args *args, int num_arg)
 
 void	ft_write_int_in_map(t_cw *cw, int pc, int value)
 {
+	if (pc < 0)
+        pc = MEM_SIZE + (pc % MEM_SIZE);
 	cw->map[(pc + 3) % MEM_SIZE] = (unsigned char)(value & 0xFF);
 	cw->map[(pc + 2) % MEM_SIZE] = (unsigned char)((value >> 8) & 0xFF);
 	cw->map[(pc + 1) % MEM_SIZE] = (unsigned char)((value >> 16) & 0xFF);
