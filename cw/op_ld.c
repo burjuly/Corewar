@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/10 20:35:39 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:33:49 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,18 @@ void	ft_init_ld(t_op *op)
 }
 
 
-void	ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args) // DIR_REG 4 1  code_size = 7
+void	ft_ld_DIR(t_cw *cw, t_args *args) // DIR_REG 4 1  code_size = 7
 {
 		ft_DIR_4(cw, args, 1);
 		args->pc_arg2 = (args->pc_arg1 + DIR_4) % MEM_SIZE;
-		crg->step = 7;
+		//crg->step = 7;
 }
 
 void	ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args) // IND_REG 2 1 code_size = 5
 {
 		ft_IND_with_IDX_MOD(cw, crg, args, 1);
 		args->pc_arg2 = (args->pc_arg1 + IND) % MEM_SIZE;
-		crg->step = 5;
+		//crg->step = 5;
 }
 
 void	op_ld(t_cw *cw, t_crg *crg)
@@ -49,14 +49,10 @@ void	op_ld(t_cw *cw, t_crg *crg)
 	t_args args;
 
 	ft_bzero(&args, sizeof(args));
-	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
-	{
-		PC = (PC + crg->step) % MEM_SIZE;
-		return ;
-	}
+	args.code_args = crg->code_args;
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	if (args.code_args == DIR_REG) 
-		ft_ld_DIR(cw, crg, &args);
+		ft_ld_DIR(cw, &args);
 	else if (args.code_args == IND_REG)
 		ft_ld_IND(cw, crg, &args);
 	args.arg2 = cw->map[args.pc_arg2];

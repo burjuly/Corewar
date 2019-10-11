@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/10 16:43:09 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 15:25:41 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,21 @@ void	ft_print_args(t_args *args)
 	printf("PC_ARG 2 = %d\n", args->pc_arg2);
 	printf("PC_ARG 3 = %d\n", args->pc_arg3);
 	printf("adrress = %d\n", args->address);
+}
+
+void	ft_print_crg(t_crg *crg)
+{
+	int		i = 0;
+
+	while (i < 16)
+	{
+		printf("reg[%d] = %d\n", i, crg->reg[i]);
+		i++;
+	}
+		printf("pc = %d\n", crg->pc);
+		printf("carry = %d\n", crg->carry);
+		printf("cur_op = %d\n", crg->cur_op);
+		printf("bef_op = %d\n", crg->bef_op);
+		printf("last_live = %d\n", crg->last_live);
+		printf("step = %d\n", crg->step);
 }

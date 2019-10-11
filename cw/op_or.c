@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:49:46 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/08 15:35:30 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:07:51 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,7 @@ void	op_or(t_cw *cw, t_crg *crg)
 	t_args args;
 
 	ft_bzero(&args, sizeof(args));
-	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
-	{
-		PC = (PC + crg->step) % MEM_SIZE;
-		return ;
-	}
+	args.code_args = crg->code_args;
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	if (args.code_args == REG_REG_REG || args.code_args == REG_IND_REG || args.code_args == REG_DIR_REG)
 		ft_and_REG(cw, crg, &args);
@@ -52,6 +48,6 @@ void	op_or(t_cw *cw, t_crg *crg)
 	crg->reg[args.arg3 - 1] = (args.arg1 | args.arg2);
 	ft_print_args(&args);
 
-	PC = (PC + crg->step) % MEM_SIZE; // ПЕРЕШАГИВАЕМ
-	crg->step = 0;
+	//PC = (PC + crg->step) % MEM_SIZE; // ПЕРЕШАГИВАЕМ
+	//crg->step = 0;
 }

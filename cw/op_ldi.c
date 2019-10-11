@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:53:44 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/09 13:20:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:29:39 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_ldi_REG(t_cw *cw, t_crg *crg, t_args *args)
 		args->pc_arg3 = args->pc_arg2 + DIR_2;
 		ft_DIR_2(cw, args, 2);
 	}
-	args->code_args == REG_REG_REG ? (crg->step = 5) : (crg->step = 6);
+	//args->code_args == REG_REG_REG ? (crg->step = 5) : (crg->step = 6);
 }
 
 void	ft_ldi_IND(t_cw *cw, t_crg *crg, t_args *args)
@@ -63,7 +63,7 @@ void	ft_ldi_IND(t_cw *cw, t_crg *crg, t_args *args)
 		args->pc_arg3 = (args->pc_arg2 + DIR_2) % MEM_SIZE;
 		ft_DIR_2(cw, args, 2);
 	}
-	args->code_args == IND_REG_REG ? (crg->step = 6) : (crg->step = 7);
+	//args->code_args == IND_REG_REG ? (crg->step = 6) : (crg->step = 7);
 }
 
 void	ft_ldi_DIR(t_cw *cw, t_crg *crg, t_args *args)
@@ -80,20 +80,15 @@ void	ft_ldi_DIR(t_cw *cw, t_crg *crg, t_args *args)
 		args->arg2 = ft_reverse_2(cw, args->pc_arg2);
 		args->pc_arg3 = args->pc_arg2 + DIR_2;
 	}
-	args->code_args == DIR_REG_REG ? (crg->step = 6) : (crg->step = 7);
+	//args->code_args == DIR_REG_REG ? (crg->step = 6) : (crg->step = 7);
 }
 
 void	op_ldi(t_cw *cw, t_crg *crg)
 {
-	// ПРОВАЛИДИРОВАТЬ РЕГИСТР !!!!
 	t_args	args;
 
 	ft_bzero(&args, sizeof(args));
-	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
-	{
-		//args.code_args = ft_skip_step(cw, crg, 1);
-		return ;
-	}
+	args.code_args = crg->code_args;
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	
 	if (args.code_args == REG_REG_REG || args.code_args == REG_DIR_REG)

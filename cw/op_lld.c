@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:58:17 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/09 14:43:56 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:28:23 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,10 @@ void	ft_lld_IND(t_cw *cw, t_crg *crg, t_args *args) // IND_REG 2 1 code_size = 5
 
 void	op_lld(t_cw *cw, t_crg *crg)
 {
-	// ПРОВАЛИДИРОВАТЬ РЕГИСТР !!!!
 	t_args args;
 
 	ft_bzero(&args, sizeof(args));
-	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
-	{
-		//code_arg = ft_skip_step(cw, crg, 1);
-		return ;
-	}
+	args.code_args = crg->code_args;
 	args.pc_arg1 = PC + OP_NAME + CODE_ARGS;
 	if (args.code_args == DIR_REG) 
 		ft_lld_DIR(cw, crg, &args);
@@ -61,6 +56,6 @@ void	op_lld(t_cw *cw, t_crg *crg)
 	ft_print_args(&args);
 	crg->reg[args.arg2 - 1] = args.arg1;
 	args.arg1 == 1 ? (crg->carry = 1) : (crg->carry = 0);
-	crg->pc = PC + crg->step;
-	crg->step = 0;
+	//crg->pc = PC + crg->step;
+	//crg->step = 0;
 }

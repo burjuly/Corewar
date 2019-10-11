@@ -6,35 +6,18 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/10 19:32:34 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 19:47:54 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void	ft_print_crg(t_crg *crg)
-{
-	int		i = 0;
-
-	while (i < 16)
-	{
-		printf("reg[%d] = %d\n", i, crg->reg[i]);
-		i++;
-	}
-		printf("pc = %d\n", crg->pc);
-		printf("carry = %d\n", crg->carry);
-		printf("cur_op = %d\n", crg->cur_op);
-		printf("bef_op = %d\n", crg->bef_op);
-		printf("last_live = %d\n", crg->last_live);
-		printf("step = %d\n", crg->step);
-}
-
 // 1	live
-// 2	ld +
-// 3	st +
-// 4	add +
-// 5	sub +
-// 6	and +
+// 2	ld
+// 3	st
+// 4	add
+// 5	sub
+// 6	and
 // 7	or
 // 8	xor
 // 9	zjmp
@@ -52,7 +35,7 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 	//crg->reg[1] = 63;
 	//crg->reg[2] = 5;
 
-	ft_print_map(cw);
+	//ft_print_map(cw);
 	printf("ДО ОПЕРАЦИИ\n");
 	ft_print_crg(crg);
 	
@@ -165,7 +148,6 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 void	ft_do_cycle(t_cw *cw)
 {
 	t_crg	*crg;
-	int		valid;
 
 	crg = cw->crg;
 	while (crg != NULL)
@@ -204,15 +186,21 @@ void	ft_do_cycle(t_cw *cw)
 		{
 			if (crg->cur_op > 0 && crg->cur_op <= 16)    // Если хранящийся код соответствует существующей операции ...
 			{
-				valid = 1;
-				//valid = ft_valid_arg_and_reg(cw->map[crg->pc + 1]);    // тогда необходимо проверить на валидность код содержащий типы аргументов.
-				if (valid > 0)    // Если данный код корректен и указывает, что среди аргументов операции есть регистр, необходимо также убедиться в корректности номера регистра. (регистры проверили на предыдущем шаге)
+				// ft_print_map(cw);
+				// cw->map[6] = 18;
+				// ft_print_map(cw);
+				if (ft_valid_code_arg(cw, crg) != -1)    // Если данный код корректен и указывает, что среди аргументов операции есть регистр, необходимо также убедиться в корректности номера регистра. (регистры проверили на предыдущем шаге)
 				{
 					ft_do_op(cw, crg);    // Если все необходимые проверки были успешно пройдены, нужно выполнить операцию ...
 					//  (crg->pc)++;    // и передвинуть каретку на следующую позицию. (в ft_do_op она проедет до последнего байта операции)
 				}
+				else
+					ft_wrong_code_args(cw, crg);
 				//else    // Если с самим кодом все нормально, но код типов аргументов или же номер регистра ошибочен ...
 				//    crg->pc += ft_skip_step(cw->op[crg->cur_op - 1], cw->map[crg->pc + 1]);    // нужно пропустить данную операцию вместе с кодом типов аргументов и самими аргументами.
+				PC = (PC + crg->step) % MEM_SIZE;
+				crg->step = 0;
+				crg->code_args = 0;
 			}
 			else    // Если же код операции ошибочен ...
 				(crg->pc)++; // необходимо просто переместить каретку на следующий байт.
@@ -253,12 +241,12 @@ static void	ft_check(t_cw *cw)
 	cw->checks++;
 	while (curren_crg != NULL)
 	{
-		if (curren_crg->last_live > cw->c_to_die)
+		if (curren_crg->last_live > cw->cycle_to_die)
 		{
 			ft_del_carriage(cw, curren_crg, prev_crg);  // Доделать!
 		}
 		if (cw->count_live >= NBR_LIVE)
-			cw->c_to_die = cw->c_to_die - CYCLE_DELTA;
+			cw->cycle_to_die = cw->cycle_to_die - CYCLE_DELTA;
 
 		prev_crg = curren_crg;
 		curren_crg = curren_crg->next;
@@ -271,10 +259,10 @@ void		ft_start_game(t_cw *cw)
 
 	while (cw->crg != NULL)
 	{
-		if (cw->c_to_die > 0)
+		if (cw->cycle_to_die > 0)
 		{
 			crg = cw->crg;
-			while (cw->round < cw->c_to_die)
+			while (cw->round < cw->cycle_to_die)
 			{
 				ft_do_cycle(cw);
 				cw->round++;

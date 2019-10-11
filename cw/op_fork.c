@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:56:36 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/10 19:19:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:26:26 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void op_fork(t_cw *cw, t_crg *crg)
     new->bef_op = crg->bef_op;
     new->last_live = crg->last_live;
     new->step = crg->step;
-    PC = (PC + 3) % MEM_SIZE;
+    //PC = (PC + 3) % MEM_SIZE;
 }

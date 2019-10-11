@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 16:06:18 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/10 19:32:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:24:45 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,10 @@ void	op_aff(t_cw *cw, t_crg *crg)
 {
 	t_args	args;
 
-	if ((args.code_args = ft_valid_code_arg(cw, crg, crg->cur_op - 1)) == -1)
-	{
-		//args.code_args = ft_skip_step(cw, crg, 1);
-		return ;
-	}
+	//args.code_args = cw->map[(PC + 1) % MEM_SIZE];
 	ft_bzero(&args, sizeof(args));
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	ft_REG(cw, crg, &args, 1);
-	ft_putchar(args.arg1);
+	ft_putchar((char)args.arg1);
 	PC = (PC + 3) % MEM_SIZE;
 }

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:52:12 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/08 16:37:41 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:11:04 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_init_zjmp(t_op *op)
 	op->need_arg_code = 0;
 	op->t_dir = 2;
 
-	op->code_args[0] = 128;	//  DIR
+	op->code_args[0] = 128;
 	op->code_args[1] = '\0';
 }
 
@@ -31,8 +31,6 @@ void	op_zjmp(t_cw *cw, t_crg *crg)
 	args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
 	ft_DIR_2(cw, &args, 1);
 	if (crg->carry == 1)
-	{
-		// ПРОВЕРИТЬ!!! 
 		PC = (PC + args.arg1 % IDX_MOD) % MEM_SIZE;
-	}
+	crg->step = 0;
 }

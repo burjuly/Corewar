@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/10 19:33:21 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:33:32 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct		s_crg
 	int				last_live;	// цикл, в котором в последний раз была выполнена операция live
 	int				step;		// количество байт, которые нужно будет «перешагнуть», чтобы оказаться на следующей операции
 	struct s_crg	*next;
+	int				code_args;
+	int				args[4];
 }					t_crg;
 
 typedef struct 		s_op
@@ -97,7 +99,8 @@ typedef struct		s_cw
 	t_op			op[16];				// масcив операций
 	char			map[MEM_SIZE];		// карта
 	int				plr_nbrs;	// количество игроков
-	int				c_to_die;	// текущий cycle to die
+	
+	int				cycle_to_die;	// текущий cycle to die
 	int				round;		// количество прошедших с начала игры циклов
 	int				ctd_round;	// количество прошедших с последней проверки циклов
 	int				checks;		// количество проверок
@@ -134,6 +137,8 @@ void				ft_sort_plrs(t_plr *plr, int size);
 
 // debug
 void				ft_print_plrs(t_plr *plr, int size);
+void				ft_print_crg(t_crg *crg);
+void				ft_print_args(t_args *args);
 
 // арена
 void				ft_print_map(t_cw *cw);
@@ -144,7 +149,7 @@ void				ft_map(t_cw *cw);
 
 // операции
 void				op_ld(t_cw *cw, t_crg *crg);
-void				ft_ld_DIR(t_cw *cw, t_crg *crg, t_args *args);
+void				ft_ld_DIR(t_cw *cw, t_args *args);
 void				ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args);
 
 void				op_ldi(t_cw *cw, t_crg *crg);
@@ -190,20 +195,17 @@ void 				ft_do_op(t_cw *cw, t_crg *crg);
 int					ft_reverse_2(t_cw *cw, int pc);
 int					ft_reverse_4(t_cw *cw, int pc);
 
-// DEBUG
-void				ft_print_args(t_args *args);
-
 //Валидация аргументов
-void				ft_wrong_code_args(t_crg *crg, int size_DIR, char code);
-int					ft_valid_code_arg(t_cw *cw, t_crg *crg, int code_op);
+void				ft_wrong_code_args(t_cw *cw, t_crg *crg);
+int 				ft_check_REG_help(t_cw *cw, t_crg *crg);
+int					ft_check_REG(t_cw *cw, t_crg *crg);
+void				ft_parse_code_arg(t_cw *cw, t_crg *crg);
+int					ft_valid_code_arg(t_cw *cw, t_crg *crg);
+
 
 // args_help
 void				ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
 void				ft_IND(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
-// void				ft_IND_with_IDX_MOD_1(t_cw *cw, t_crg *crg, t_args *args);
-// void				ft_IND_with_IDX_MOD_2(t_cw *cw, t_crg *crg, t_args *args);
-// void				ft_IND_1(t_cw *cw, t_crg *crg, t_args *args);
-// void				ft_IND_2(t_cw *cw, t_crg *crg, t_args *args);
 int					ft_MOD_IND(int arg); // обрезаем по модулю IND
 void				ft_DIR_2(t_cw *cw, t_args *args, int num_arg);
 void				ft_DIR_4(t_cw *cw, t_args *args, int num_arg);

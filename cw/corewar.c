@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 17:59:29 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 17:36:40 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 16:57:24 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	ft_initialize(t_cw *cw)
 	ft_init_lldi(cw->op + 13);
 	ft_init_lfork(cw->op + 14);
 	ft_init_aff(cw->op + 15);
-	cw->c_to_die = CYCLE_TO_DIE;
+	cw->cycle_to_die = CYCLE_TO_DIE;
 }
 
 int		main(int argc, char **argv)
