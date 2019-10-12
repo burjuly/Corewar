@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 17:59:29 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 16:57:24 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:56:13 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_leave(char *msg)
 void	ft_initialize(t_cw *cw)
 {
 	ft_bzero(cw, sizeof(t_cw));
+	cw->dump = -1;
 	ft_init_live(cw->op + 0);
 	ft_init_ld(cw->op + 1);
 	ft_init_st(cw->op + 2);

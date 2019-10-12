@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 16:02:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:27:36 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/12 13:57:58 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void op_lfork(t_cw *cw, t_crg *crg)
     new->bef_op = crg->bef_op;
     new->last_live = crg->last_live;
     new->step = crg->step; // нужно копировать
-    PC = (PC + 3) % MEM_SIZE;
+    //PC = (PC + 3) % MEM_SIZE;
 }

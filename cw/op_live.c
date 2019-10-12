@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:01:03 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 02:18:09 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/12 19:26:30 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,19 +24,21 @@ void	ft_init_live(t_op *op)
 	printf("типы аргументов live: %d\n", (int)(op->code_args[0]));
 }
 
-void	op_live(t_cw *cw, t_crg *crg)
+void    op_live(t_cw *cw, t_crg *crg)
 {
-	int		num_plr;
+    int        num_plr;
+    t_args    args;
 
-	num_plr = -(crg->reg[0]);
-	cw->count_live++;
-	crg->last_live = cw->ctd_round;
-	// crg->last_live = cw->round; // ?
-	if (num_plr > 0 && num_plr <= cw->plr_nbrs)
-	{
-		cw->last_plr = num_plr;
-		// printf(игрок жив);
-	}
-	crg->pc += 5;
-	crg->pc %= MEM_SIZE;
+    ft_bzero(&args, sizeof(args));
+    args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
+    ft_DIR_4(cw, &args, 1);
+    num_plr = args.arg1;
+    cw->count_live++;
+    crg->last_live = cw->ctd_round;
+    if (num_plr > 0 && num_plr <= cw->plr_nbrs)
+    {
+        cw->last_plr = num_plr;
+        // printf(игрок жив); // нет
+    }
+    crg->step = 5;
 }

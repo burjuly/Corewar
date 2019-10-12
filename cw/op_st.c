@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:44:49 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/11 20:53:04 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	op_st(t_cw *cw, t_crg *crg)
 	if (args.code_args == REG_REG)
 	{
 		args.arg2 = cw->map[args.pc_arg2];
-		//ft_REG(cw, crg, &args, 2);
 		crg->reg[args.arg2 - 1] = args.arg1;
-		//crg->step = 4;
 	}
 	else if (args.code_args == REG_IND)
 	{
@@ -46,7 +44,6 @@ void	op_st(t_cw *cw, t_crg *crg)
 		args.arg2 = ft_MOD_IND(args.arg2);
 		args.address = (PC + args.arg2) % MEM_SIZE;
 		ft_write_int_in_map(cw, args.address, args.arg1);
-		//crg->step = 5;
 	}
 	ft_print_args(&args);
 	//PC = (PC + crg->step) % MEM_SIZE;

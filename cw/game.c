@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/11 19:47:54 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/12 21:18:07 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 	//crg->reg[1] = 63;
 	//crg->reg[2] = 5;
 
-	//ft_print_map(cw);
+	ft_print_map(cw);
 	printf("ДО ОПЕРАЦИИ\n");
 	ft_print_crg(crg);
 	
@@ -121,30 +121,13 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 	}
 
 	printf("ПОСЛЕ ОПЕРАЦИИ\n");
+	printf("ROUND = %d\n", cw->round);
 	ft_print_map(cw);
 	ft_print_crg(crg);
-	exit(0);
+	//exit(0);
 }
 
 
-
-
-
-
-
-/*
-** Важно, чтобы во время цикла все описанные проверки и действия выполнялись строго
-** в указанной последовательности.
-** Поскольку за один цикл одна и та же каретка может получить новый код операции и
-** установить количество циклов до её исполнения. А также уменьшить это количество
-** на единицу.
-** Если бы существовала операция со всего одним циклом ожидания, то она также была
-** бы выполнена во время этого одного цикла.
-**
-** "if" работают
-**        парами первый и второй, либо второй и третий (поэтому не else)
-**        либо только в второй
-*/
 void	ft_do_cycle(t_cw *cw)
 {
 	t_crg	*crg;
@@ -152,61 +135,29 @@ void	ft_do_cycle(t_cw *cw)
 	crg = cw->crg;
 	while (crg != NULL)
 	{
-		// printf("\n\nNEXT CYCLE\n\n");
-		// самый первый ход в игре => картеки пусты (коммент в кукбук)
-		// т.е crg->cur_op = 0, bef_op = 0, pc = 0
-
-		// 1) Устанавливаем код операции
-			// Если во время прошлого цикла каретка передвигалась ...
-		if (crg->bef_op == 0)     // Перемещение имело место быть
-		{
-
-			crg->cur_op = cw->map[crg->pc];    // Узнать код операции = считать байт, на котором находится каретка
-			// Если полученное число соответствует коду реальной операции, то его необходимо запомнить
-			// Запомнили на предыдущем этапе тк там повтор по тексту, поэтому можно и так
-			if (crg->cur_op > 0 && crg->cur_op <= 16)
-				crg->bef_op = cw->op[crg->cur_op - 1].bef_op;    // также нужно установить значение переменной, которая хранит количество циклов до исполнения операции.
-				// crg->bef_op = g_op_tab[crg->cur_op - 1].bef_op;    // также нужно установить значение переменной, которая хранит количество циклов до исполнения операции.
-			// Если считанное число не попадает в диапазон [0x01; 0x10],
-			// то есть полученный код указывает на несуществующую операцию.
-			// В этом случае необходимо запомнить считанный код, а значение переменной,
-			// хранящей количество циклов до выполнения, оставить равным нулю (все уже сделано).
-		}
-		// printf("GAME after IF #1\n");
-		// ft_print_crg(crg);
-		// 2) Уменьшить количество циклов до исполнения
-			// Если количество циклов до выполнения, которое хранит соответствующая переменная в каретке, больше нуля
-		if (crg->bef_op > 0)
-			(crg->bef_op)--;
-		// printf("GAME after IF #2\n");
-		// ft_print_crg(crg);
-		// 3) Выполнить операцию
-			// Если количество циклов до исполнения равно нулю ...
 		if (crg->bef_op == 0)
 		{
-			if (crg->cur_op > 0 && crg->cur_op <= 16)    // Если хранящийся код соответствует существующей операции ...
+			crg->cur_op = cw->map[crg->pc];
+			if (crg->cur_op > 0 && crg->cur_op <= 16)
+				crg->bef_op = cw->op[crg->cur_op - 1].bef_op;
+		}
+		if (crg->bef_op > 0)
+			(crg->bef_op)--;
+		if (crg->bef_op == 0)
+		{
+			if (crg->cur_op > 0 && crg->cur_op <= 16)
 			{
-				// ft_print_map(cw);
-				// cw->map[6] = 18;
-				// ft_print_map(cw);
-				if (ft_valid_code_arg(cw, crg) != -1)    // Если данный код корректен и указывает, что среди аргументов операции есть регистр, необходимо также убедиться в корректности номера регистра. (регистры проверили на предыдущем шаге)
-				{
-					ft_do_op(cw, crg);    // Если все необходимые проверки были успешно пройдены, нужно выполнить операцию ...
-					//  (crg->pc)++;    // и передвинуть каретку на следующую позицию. (в ft_do_op она проедет до последнего байта операции)
-				}
+				if (ft_valid_code_arg(cw, crg) != -1)
+					ft_do_op(cw, crg);
 				else
 					ft_wrong_code_args(cw, crg);
-				//else    // Если с самим кодом все нормально, но код типов аргументов или же номер регистра ошибочен ...
-				//    crg->pc += ft_skip_step(cw->op[crg->cur_op - 1], cw->map[crg->pc + 1]);    // нужно пропустить данную операцию вместе с кодом типов аргументов и самими аргументами.
 				PC = (PC + crg->step) % MEM_SIZE;
 				crg->step = 0;
 				crg->code_args = 0;
 			}
-			else    // Если же код операции ошибочен ...
-				(crg->pc)++; // необходимо просто переместить каретку на следующий байт.
+			else
+				(crg->pc)++;
 		}
-		// printf("GAME after IF #3\n");
-		// ft_print_crg(crg);
 		crg = crg->next;
 	}
 }
@@ -219,9 +170,10 @@ void	ft_del_carriage(t_cw *cw, t_crg *cur, t_crg *prev)
 	if (prev == NULL) // Если удаляемая каретка первая в списке
 	{
 		cw->crg = cur->next;
-		tmp = cur;
-		cur = cw->crg;
-		free(tmp);
+		// tmp = cur;
+		// cur = cw->crg;
+		// free(tmp);
+		free(cur);
 	}
 	else
 	{
@@ -231,48 +183,60 @@ void	ft_del_carriage(t_cw *cw, t_crg *cur, t_crg *prev)
 	}
 }
 
-static void	ft_check(t_cw *cw)
+static void	ft_check_crgs(t_cw *cw)
 {
-	t_crg	*curren_crg;
+	t_crg	*cur_crg;
 	t_crg	*prev_crg;
 
-	curren_crg = cw->crg;
+	cur_crg = cw->crg;
 	prev_crg = NULL;
-	cw->checks++;
-	while (curren_crg != NULL)
+	// cw->checks++;
+	while (cur_crg != NULL)
 	{
-		if (curren_crg->last_live > cw->cycle_to_die)
-		{
-			ft_del_carriage(cw, curren_crg, prev_crg);  // Доделать!
-		}
-		if (cw->count_live >= NBR_LIVE)
-			cw->cycle_to_die = cw->cycle_to_die - CYCLE_DELTA;
-
-		prev_crg = curren_crg;
-		curren_crg = curren_crg->next;
+		if (cw->round - cur_crg->last_live >= cw->cycle_to_die
+			|| cw->cycle_to_die <= 0)
+			ft_del_carriage(cw, cur_crg, prev_crg);
+		// if (cw->count_live >= NBR_LIVE)
+		// 	cw->c_to_die = cw->c_to_die - CYCLE_DELTA;
+		prev_crg = cur_crg;
+		cur_crg = cur_crg->next;
+	}
+	if (cw->count_live >= NBR_LIVE || cw->checks == MAX_CHECKS)
+	{
+		cw->cycle_to_die = cw->cycle_to_die - CYCLE_DELTA;
+		cw->checks = 0;
 	}
 }
 
 void		ft_start_game(t_cw *cw)
 {
-	t_crg	*crg;
-
 	while (cw->crg != NULL)
 	{
-		if (cw->cycle_to_die > 0)
+		cw->round++;
+		printf("ROUND START GAME = %d\n", cw->round);
+		cw->ctd_round++;
+		if (cw->round == cw->dump)
 		{
-			crg = cw->crg;
-			while (cw->round < cw->cycle_to_die)
-			{
-				ft_do_cycle(cw);
-				cw->round++;
-			}
+			ft_print_map(cw);
+			break ;
 		}
-		else // конец игры ?
+		ft_do_cycle(cw);
+		if (cw->cycle_to_die == cw->ctd_round || cw->cycle_to_die <= 0)
 		{
-			ft_do_cycle(cw);
-			cw->round++;
+			cw->checks++;
+			ft_check_crgs(cw);
+			cw->count_live = 0;
+			cw->ctd_round = 0;
 		}
-		ft_check(cw);
 	}
+	if (cw->dump > cw->round)
+	{
+		ft_print_map(cw);
+		return ;
+	}
+	if (cw->round != cw->dump)
+		printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\"), has won !\n",
+		cw->last_plr, cw->plr[cw->last_plr - 1].code_size, 
+		cw->plr[cw->last_plr - 1].name, cw->plr[cw->last_plr - 1].comment);
+	//printf("all cyc %i\n", cw->round++);
 }

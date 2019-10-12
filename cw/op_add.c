@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:43:24 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:24:35 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/12 17:54:34 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	op_add(t_cw *cw, t_crg *crg)
 	t_args	args;
 
 	ft_bzero(&args, sizeof(args));
-	//args.code_args = crg->code_args;
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	args.pc_arg2 = (PC + OP_NAME + CODE_ARGS + REG_NUM_SIZE) % MEM_SIZE;
 	args.pc_arg3 = (PC + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
@@ -41,6 +40,4 @@ void	op_add(t_cw *cw, t_crg *crg)
 	args.arg3 = cw->map[args.pc_arg3]; 
 	crg->reg[args.arg3 - 1] = crg->reg[args.arg1 - 1] + crg->reg[args.arg2 - 1];
 	(crg->reg[args.arg3 - 1] == 0) ? (crg->carry = 1) : (crg->carry = 0);
-	//PC = (PC + OP_NAME + CODE_ARGS + 3 * REG_NUM_SIZE) % MEM_SIZE;
-	//crg->step = 0;
 }

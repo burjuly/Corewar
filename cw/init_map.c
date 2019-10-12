@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/06 23:56:15 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/12 20:29:12 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,20 @@ void    ft_print_map(t_cw *cw)
     int i;
 
     i = 0;
-    while (i < 4096)
+    while (i < MEM_SIZE)
     {
         if (i % 64 == 0 && i != 0)
             printf("\n");
-        printf("%.2hhx ", cw->map[i]);
+        if (i % 64 == 0 && i != (MEM_SIZE - 1))
+			printf("0x%04x :", i);
+		if (i % 1 == 0)
+		    printf(" ");
+		printf("%.2hhx", cw->map[i]);
         i++;
     }
-    printf("\n"); // УБРАТЬ ?
+    printf("\n");
 }
+
 
 // k - номер игрока со знаком "+"
 void    ft_add_carriage(t_cw *cw, int k, int pc)
@@ -95,7 +100,7 @@ void    ft_add_plr_on_map(t_cw *cw)
         i = i + delta; // Позиция, где начнется код следующего чемпиона
         k++;
     }
-    cw->last_plr = j; // игрок, о котором в последний раз сказали, что он жив
+    cw->last_plr = j + 1; // игрок, о котором в последний раз сказали, что он жив
 }
 
 void    ft_map(t_cw *cw)

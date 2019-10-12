@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 12:11:48 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/11 19:55:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/12 21:11:16 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ int 	ft_check_REG_help(t_cw *cw, t_crg *crg)
 
 	i = 0;
 	ft_parse_code_arg(cw, crg);
-	pc = OP_NAME + (int)(cw->op[crg->cur_op - 1].need_arg_code);
+	crg->step = OP_NAME + (int)(cw->op[crg->cur_op - 1].need_arg_code);
+	pc = (PC + crg->step) % MEM_SIZE;
 	while (crg->args[i] != 0)
 	{
 		if (crg->args[i] == 1)
@@ -58,16 +59,22 @@ int 	ft_check_REG_help(t_cw *cw, t_crg *crg)
 				printf("НЕВАЛИДНЫЙ РЕГИСТР");
 				return (-1);
 			}
-				
-			pc = pc + REG_NUM_SIZE;
+			pc = (pc + REG_NUM_SIZE) % MEM_SIZE;
+			crg->step = crg->step + REG_NUM_SIZE;
 		}
 		else if (crg->args[i] == 2)
-			pc = pc + (int)(cw->op[crg->cur_op - 1].t_dir);
+		{
+			pc = (pc + (int)(cw->op[crg->cur_op - 1].t_dir)) % MEM_SIZE;
+			crg->step = crg->step + (int)(cw->op[crg->cur_op - 1].t_dir);
+		}
 		else if (crg->args[i] == 3)
+		{
 			pc = pc + IND;
+			crg->step = crg->step + IND;
+		}	
 		i++;
 	}
-	crg->step = pc; // ?????????
+	//crg->step = pc - PC; // ?????????
 	return (1);
 }
 
