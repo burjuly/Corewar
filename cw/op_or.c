@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_or.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:49:46 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/13 19:28:16 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	op_or(t_cw *cw, t_crg *crg)
 		ft_and_DIR(cw, crg, &args);
 	args.arg3 = cw->map[args.pc_arg3];
 	crg->reg[args.arg3 - 1] = (args.arg1 | args.arg2);
+	crg->reg[args.arg3 - 1] == 0 ? (crg->carry = 1) : (crg->carry = 0);
 	// ft_print_args(&args);
 
 	//PC = (PC + crg->step) % MEM_SIZE; // ПЕРЕШАГИВАЕМ

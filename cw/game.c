@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/13 15:05:03 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:49:15 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 	// ft_print_map(cw);
 	// printf("ДО ОПЕРАЦИИ\n");
 	// ft_print_crg(crg);
-	
-	ft_print_name_op(crg);
-	printf("ROUND = %d\n", cw->round);
+
+	// ft_print_name_op(crg);
+	// printf("ROUND = %d\n", cw->round);
 	//printf("ROUND_ctd = %d\n", cw->ctd_round);
 	if (crg->cur_op == 1)
 		op_live(cw, crg);
@@ -108,7 +108,9 @@ void	ft_do_cycle(t_cw *cw)
 				else
 					ft_wrong_code_args(cw, crg);
 				PC = (PC + crg->step) % MEM_SIZE;
-				printf("PC ПОСЛЕ ОПЕРАЦИИ = %d\n\n", crg->pc);
+				// printf("PC ПОСЛЕ ОПЕРАЦИИ = %d\n\n", crg->pc);
+				printf("\nROUND = %d\n", cw->round);
+				ft_print_crg(cw->crg);
 				crg->step = 0;
 				crg->code_args = 0;
 			}
@@ -119,23 +121,23 @@ void	ft_do_cycle(t_cw *cw)
 	}
 }
 
-void	ft_del_carriage(t_cw *cw, t_crg *cur, t_crg *prev)
+void	ft_del_carriage(t_cw *cw, t_crg **cur, t_crg *prev)
 {
 	t_crg	*tmp;
 
 	tmp = NULL;
 	if (prev == NULL) // Если удаляемая каретка первая в списке
 	{
-		cw->crg = cur->next;
+		cw->crg = (*cur)->next;
 		// tmp = cur;
-		// cur = cw->crg;
 		// free(tmp);
-		free(cur);
+		free(*cur);
+		*cur = cw->crg;
 	}
 	else
 	{
-		tmp = cur->next;
-		free(cur);
+		tmp = (*cur)->next;
+		// free(*cur);
 		prev->next = tmp;
 	}
 }
@@ -152,11 +154,12 @@ static void	ft_check_crgs(t_cw *cw)
 	{
 		if (cw->round - cur_crg->last_live >= cw->cycle_to_die
 			|| cw->cycle_to_die <= 0)
-			ft_del_carriage(cw, cur_crg, prev_crg);
+			ft_del_carriage(cw, &cur_crg, prev_crg);
 		// if (cw->count_live >= NBR_LIVE)
 		// 	cw->c_to_die = cw->c_to_die - CYCLE_DELTA;
 		prev_crg = cur_crg;
-		cur_crg = cur_crg->next;
+		if (cur_crg != NULL)
+			cur_crg = cur_crg->next;
 	}
 	if (cw->count_live >= NBR_LIVE || cw->checks == MAX_CHECKS)
 	{
@@ -167,6 +170,7 @@ static void	ft_check_crgs(t_cw *cw)
 
 void		ft_start_game(t_cw *cw)
 {
+	int debug = 0;
 	//ft_print_map(cw);
 	while (cw->crg != NULL)
 	{
@@ -181,6 +185,8 @@ void		ft_start_game(t_cw *cw)
 		cw->round++;
 		// printf("ROUND START GAME = %d\n", cw->round);
 		cw->ctd_round++;
+		if (cw->round == 3200)
+			debug = 1;
 		ft_do_cycle(cw);
 		if (cw->cycle_to_die == cw->ctd_round || cw->cycle_to_die <= 0)
 		{
@@ -193,7 +199,7 @@ void		ft_start_game(t_cw *cw)
 	if (cw->dump > cw->round)
 	{
 		ft_print_map(cw);
-		return ;
+		exit(0);
 	}
 	//printf("ROUND = %d\n", cw->round);
 	if (cw->round != cw->dump)

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:56:36 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 16:02:05 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:58:33 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ void op_fork(t_cw *cw, t_crg *crg)
     ft_bzero(&args, sizeof(args));
     args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
     ft_DIR_2(cw, &args, 1);
-    // ?????????????????????
-    crg->pc = (crg->pc + 3) % MEM_SIZE;
-    crg->step = 0;
+
     args.arg1 = args.arg1 % IDX_MOD;
     if (args.arg1 < 0)
          args.arg1 = MEM_SIZE + (args.arg1 % MEM_SIZE);
     args.arg1 = (PC + args.arg1) % MEM_SIZE;
 
+    crg->pc = (crg->pc + 3) % MEM_SIZE;
+    crg->step = 0;
+    
     ft_add_carriage(cw, -(crg->reg[0]), args.arg1);
     new = cw->crg;
     while (i < REG_NUMBER)

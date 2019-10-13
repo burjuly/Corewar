@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 14:19:11 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:00:25 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ typedef struct		s_cw
 	int				dump;		// флаг dump (если > 0, тогда это номер цикла для dump)
 	int				count_live;	// количество выполненных операций live за последний период, длинной в cycles_to_die
 	int				last_plr;	// игрок, о котором в последний раз сказали, что он жив
+	int				count_crg;
 }					t_cw;
 
 void				ft_leave(char *msg);
@@ -191,6 +192,7 @@ void				op_aff(t_cw *cw, t_crg *crg);
 void				ft_start_game(t_cw *cw);
 void				ft_do_cycle(t_cw *cw);
 void 				ft_do_op(t_cw *cw, t_crg *crg);
+void				ft_del_carriage(t_cw *cw, t_crg **cur, t_crg *prev);
 
 // reverse
 int					ft_reverse_2(t_cw *cw, int pc);

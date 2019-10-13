@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 14:18:53 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 19:05:42 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ void	ft_print_crg(t_crg *crg)
 		printf("reg[%d] = %d\n", i, crg->reg[i]);
 		i++;
 	}
-		printf("pc = %d\n", crg->pc);
-		printf("carry = %d\n", crg->carry);
-		printf("cur_op = %d\n", crg->cur_op);
-		printf("bef_op = %d\n", crg->bef_op);
-		printf("last_live = %d\n", crg->last_live);
-		printf("step = %d\n", crg->step);
+	printf("pc = %d\n", crg->pc);
+	printf("carry = %d\n", crg->carry);
+	printf("cur_op = %d\n", crg->cur_op);
+	//printf("bef_op = %d\n", crg->bef_op);
+	//printf("last_live = %d\n", crg->last_live);
+	//printf("step = %d\n", crg->step);
 }
 
 void	ft_print_name_op(t_crg *crg)

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:52:12 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 15:35:47 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:25:03 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void	op_zjmp(t_cw *cw, t_crg *crg)
 	}
 	else
 		crg->step = 3;
-	printf("CARRY JUMP = %d\n", crg->carry);
+	//printf("CARRY JUMP = %d\n", crg->carry);
 }

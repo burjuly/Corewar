@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/13 15:58:15 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:35:05 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	ft_add_carriage(t_cw *cw, int k, int pc)
 		new->next = start;
 		cw->crg = new;
 	}
-	//printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n",
-	//	k, cw->plr[k - 1].code_size, cw->plr[k - 1].name, cw->plr[k - 1].comment);
+	cw->count_crg++;
+	//printf("Добавили каретку %d\n",cw->count_crg );
+	//printf("ROUND = %d\n\n", cw->round);
 }
 
 int	ft_search_next_plr(t_cw *cw, int num)

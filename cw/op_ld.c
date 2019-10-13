@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 15:29:16 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 18:25:08 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ void	op_ld(t_cw *cw, t_crg *crg)
 	crg->reg[args.arg2 - 1] = args.arg1;
 	// ft_print_args(&args);
 	args.arg1 == 0 ? (crg->carry = 1) : (crg->carry = 0);
-	printf("CARRY LD = %d\n", crg->carry);
+	//printf("CARRY LD = %d\n", crg->carry);
 }
 
