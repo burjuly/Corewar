@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 22:37:43 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 23:49:41 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	ft_print_args(t_args *args)
 	printf("adrress = %d\n", args->address);
 }
 
-void	ft_print_crg(t_crg *crg)
+void	ft_print_crg(t_cw *cw, t_crg *crg)
 {
 	int		i = 0;
 	int		j = 1;
@@ -61,6 +61,7 @@ void	ft_print_crg(t_crg *crg)
 		printf("pc = %d\n", crg->pc);
 		printf("carry = %d\n", crg->carry);
 		printf("cur_op = %d\n", crg->cur_op);
+		printf("LAST_LIVE= %d\n", cw->round - crg->last_live);
 		//printf("bef_op = %d\n", crg->bef_op);
 		crg = crg->next;
 		j++;

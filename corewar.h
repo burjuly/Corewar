@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 18:00:25 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 23:50:26 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void				ft_sort_plrs(t_plr *plr, int size);
 
 // debug
 void				ft_print_plrs(t_plr *plr, int size);
-void				ft_print_crg(t_crg *crg);
+void				ft_print_crg(t_cw *cw, t_crg *crg);
 void				ft_print_args(t_args *args);
 void				ft_print_name_op(t_crg *crg);
 
