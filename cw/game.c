@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/13 19:49:15 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 22:19:16 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,13 @@ void	ft_do_cycle(t_cw *cw)
 					ft_wrong_code_args(cw, crg);
 				PC = (PC + crg->step) % MEM_SIZE;
 				// printf("PC ПОСЛЕ ОПЕРАЦИИ = %d\n\n", crg->pc);
-				printf("\nROUND = %d\n", cw->round);
-				ft_print_crg(cw->crg);
+				if (cw->round >= 20000)
+				{
+					printf("\nROUND = %d\n", cw->round);
+					printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
+					printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
+					ft_print_crg(cw->crg);
+				}
 				crg->step = 0;
 				crg->code_args = 0;
 			}

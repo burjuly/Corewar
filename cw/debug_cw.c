@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 19:05:42 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 22:18:16 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,32 @@ void	ft_print_args(t_args *args)
 void	ft_print_crg(t_crg *crg)
 {
 	int		i = 0;
+	int		j = 1;
 
-	while (i < 16)
+	while (crg != NULL)
 	{
-		printf("reg[%d] = %d\n", i, crg->reg[i]);
-		i++;
+		i = 0;
+		printf("КАРЕТКА №%d\n", j);
+			while (i < 16)
+		{
+			printf("reg[%d] = %d\n", i, crg->reg[i]);
+			i++;
+		}
+		printf("pc = %d\n", crg->pc);
+		printf("carry = %d\n", crg->carry);
+		printf("cur_op = %d\n", crg->cur_op);
+		printf("bef_op = %d\n", crg->bef_op);
+		crg = crg->next;
+		j++;
 	}
-	printf("pc = %d\n", crg->pc);
-	printf("carry = %d\n", crg->carry);
-	printf("cur_op = %d\n", crg->cur_op);
+	// while (i < 16)
+	// {
+	// 	printf("reg[%d] = %d\n", i, crg->reg[i]);
+	// 	i++;
+	// }
+	// printf("pc = %d\n", crg->pc);
+	// printf("carry = %d\n", crg->carry);
+	// printf("cur_op = %d\n", crg->cur_op);
 	//printf("bef_op = %d\n", crg->bef_op);
 	//printf("last_live = %d\n", crg->last_live);
 	//printf("step = %d\n", crg->step);
