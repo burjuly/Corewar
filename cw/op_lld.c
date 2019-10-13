@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_lld.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:58:17 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:28:23 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ void	op_lld(t_cw *cw, t_crg *crg)
 	ft_bzero(&args, sizeof(args));
 	args.code_args = crg->code_args;
 	args.pc_arg1 = PC + OP_NAME + CODE_ARGS;
-	if (args.code_args == DIR_REG) 
+	if (args.code_args == DIR_REG)
 		ft_lld_DIR(cw, crg, &args);
 	else if (args.code_args == IND_REG)
 		ft_lld_IND(cw, crg, &args);
-	
+
 	args.arg2 = cw->map[args.pc_arg2];
-	ft_print_args(&args);
+	// ft_print_args(&args);
 	crg->reg[args.arg2 - 1] = args.arg1;
 	args.arg1 == 1 ? (crg->carry = 1) : (crg->carry = 0);
 	//crg->pc = PC + crg->step;

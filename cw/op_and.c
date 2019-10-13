@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_and.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:46:19 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:25:20 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_init_and(t_op *op)
 	op->code_args[5] = IND_DIR_REG;
 	op->code_args[6] = DIR_REG_REG;
 	op->code_args[7] = DIR_IND_REG;
-	op->code_args[8] = DIR_DIR_REG; 
+	op->code_args[8] = DIR_DIR_REG;
 	op->code_args[9] = '\0';
 }
 
@@ -120,11 +120,11 @@ void	op_and(t_cw *cw, t_crg *crg)
 		ft_and_IND(cw, crg, &args);
 	else if (args.code_args == DIR_REG_REG || args.code_args == DIR_IND_REG || args.code_args == DIR_DIR_REG)
 		ft_and_DIR(cw, crg, &args);
-	args.arg3 = cw->map[args.pc_arg3]; 
+	args.arg3 = cw->map[args.pc_arg3];
 	crg->reg[args.arg3 - 1] = (args.arg1 & args.arg2);
 	crg->reg[args.arg3 - 1] == 0 ? (crg->carry = 1) : (crg->carry = 0);
 	//PC = (PC + crg->step) % MEM_SIZE;
 	//crg->step = 0;
-	
-	ft_print_args(&args);
+
+	// ft_print_args(&args);
 }

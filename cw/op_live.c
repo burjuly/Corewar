@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:01:03 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/12 19:26:30 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:50:03 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_init_live(t_op *op)
 
 	op->code_args[0] = 128;
 	op->code_args[1] = '\0';
-	printf("типы аргументов live: %d\n", (int)(op->code_args[0]));
 }
 
 void    op_live(t_cw *cw, t_crg *crg)

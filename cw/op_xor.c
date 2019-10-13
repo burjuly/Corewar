@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_xor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:51:23 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:08:49 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	op_xor(t_cw *cw, t_crg *crg)
 		ft_and_IND(cw, crg, &args);
 	else if (args.code_args == DIR_REG_REG || args.code_args == DIR_IND_REG || args.code_args == DIR_DIR_REG)
 		ft_and_DIR(cw, crg, &args);
-	args.arg3 = cw->map[args.pc_arg3]; 
+	args.arg3 = cw->map[args.pc_arg3];
 	crg->reg[args.arg3 - 1] = (args.arg1 ^ args.arg2);
-	ft_print_args(&args);
+	// ft_print_args(&args);
 
 	// PC = (PC + crg->step) % MEM_SIZE; // ПЕРЕШАГИВАЕМ
 	// crg->step = 0;

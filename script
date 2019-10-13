@@ -1,0 +1,1 @@
+./corewar ../../jumper.cor -dump 5 > ../../our; ../../corewar ../../jumper.cor -d 5 > ../../their; diff ../../their ../../our > ../../diff.diff

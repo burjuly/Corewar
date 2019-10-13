@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/12 21:18:07 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:38:30 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,95 +35,95 @@ void	ft_do_op(t_cw *cw, t_crg *crg)
 	//crg->reg[1] = 63;
 	//crg->reg[2] = 5;
 
-	ft_print_map(cw);
-	printf("ДО ОПЕРАЦИИ\n");
-	ft_print_crg(crg);
-	
+	// ft_print_map(cw);
+	// printf("ДО ОПЕРАЦИИ\n");
+	// ft_print_crg(crg);
+
 	if (crg->cur_op == 1)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ live\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ live\n");
 		op_live(cw, crg);
 	}
 	else if (crg->cur_op == 2)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ ld\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ ld\n");
 		op_ld(cw, crg);
 	}
 	else if(crg->cur_op == 3)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ st\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ st\n");
 		op_st(cw, crg);
 	}
 	else if(crg->cur_op == 4)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ add\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ add\n");
 		op_add(cw, crg);
 	}
 	else if(crg->cur_op == 5)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ sub\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ sub\n");
 		op_sub(cw, crg);
 	}
 	else if (crg->cur_op == 6)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ and\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ and\n");
 		op_and(cw, crg);
 	}
 	else if(crg->cur_op == 7)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ or\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ or\n");
 		op_or(cw, crg);
 	}
 	else if(crg->cur_op == 8)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ xor\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ xor\n");
 		op_xor(cw, crg);
 	}
 	else if(crg->cur_op == 9)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ zjmp\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ zjmp\n");
 		op_zjmp(cw, crg);
 	}
 	else if(crg->cur_op == 10)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
 		op_ldi(cw, crg);
 	}
 	else if(crg->cur_op == 11)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
 		op_sti(cw, crg);
 	}
 	else if(crg->cur_op == 12)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
 		op_fork(cw, crg);
 	}
 	else if(crg->cur_op == 13)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
 		op_lld(cw, crg);
 	}
 	else if(crg->cur_op == 14)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");
 		op_lldi(cw, crg);
 	}
 	else if(crg->cur_op == 15)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
 		op_lfork(cw, crg);
 	}
 	else if(crg->cur_op == 16)
 	{
-		printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
+		// printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
 		op_aff(cw, crg);
 	}
 
-	printf("ПОСЛЕ ОПЕРАЦИИ\n");
-	printf("ROUND = %d\n", cw->round);
-	ft_print_map(cw);
-	ft_print_crg(crg);
+	// printf("ПОСЛЕ ОПЕРАЦИИ\n");
+	// printf("ROUND = %d\n", cw->round);
+	// ft_print_map(cw);
+	// ft_print_crg(crg);
 	//exit(0);
 }
 
@@ -212,14 +212,17 @@ void		ft_start_game(t_cw *cw)
 {
 	while (cw->crg != NULL)
 	{
-		cw->round++;
-		printf("ROUND START GAME = %d\n", cw->round);
-		cw->ctd_round++;
+		// cw->round++;
+		// printf("ROUND START GAME = %d\n", cw->round);
+		// cw->ctd_round++;
 		if (cw->round == cw->dump)
 		{
 			ft_print_map(cw);
 			break ;
 		}
+		cw->round++;
+		// printf("ROUND START GAME = %d\n", cw->round);
+		cw->ctd_round++;
 		ft_do_cycle(cw);
 		if (cw->cycle_to_die == cw->ctd_round || cw->cycle_to_die <= 0)
 		{
@@ -236,7 +239,7 @@ void		ft_start_game(t_cw *cw)
 	}
 	if (cw->round != cw->dump)
 		printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\"), has won !\n",
-		cw->last_plr, cw->plr[cw->last_plr - 1].code_size, 
+		cw->last_plr, cw->plr[cw->last_plr - 1].code_size,
 		cw->plr[cw->last_plr - 1].name, cw->plr[cw->last_plr - 1].comment);
 	//printf("all cyc %i\n", cw->round++);
 }

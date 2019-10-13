@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_sti.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:55:36 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/12 19:11:23 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,8 @@ void	op_sti(t_cw *cw, t_crg *crg)
 	else if (args.code_args == REG_DIR_REG || args.code_args == REG_DIR_DIR)
 		ft_sti_DIR(cw, crg, &args);
 	args.address = (PC + (args.arg2 + args.arg3) % IDX_MOD) % MEM_SIZE;
-	ft_print_args(&args);
+	// ft_print_args(&args);
 	ft_write_int_in_map(cw, args.address, args.arg1);
 	//PC = PC + crg->step;
 }
-	
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_aff.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 16:06:18 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 21:03:08 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	op_aff(t_cw *cw, t_crg *crg)
 	ft_bzero(&args, sizeof(args));
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	ft_REG(cw, crg, &args, 1);
-	ft_print_args(&args);
+	// ft_print_args(&args);
 	ft_putchar((char)(args.arg1 % 256));
 	PC = (PC + 3) % MEM_SIZE;
 }

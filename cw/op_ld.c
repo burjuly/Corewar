@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_ld.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:33:49 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,13 @@ void	op_ld(t_cw *cw, t_crg *crg)
 	ft_bzero(&args, sizeof(args));
 	args.code_args = crg->code_args;
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
-	if (args.code_args == DIR_REG) 
+	if (args.code_args == DIR_REG)
 		ft_ld_DIR(cw, &args);
 	else if (args.code_args == IND_REG)
 		ft_ld_IND(cw, crg, &args);
 	args.arg2 = cw->map[args.pc_arg2];
 	crg->reg[args.arg2 - 1] = args.arg1;
-	ft_print_args(&args);
+	// ft_print_args(&args);
 	args.arg1 == 0 ? (crg->carry = 1) : (crg->carry = 0);
 	PC = (PC + crg->step) % MEM_SIZE; // ПЕРЕШАГИВАЕМ
 	crg->step = 0;

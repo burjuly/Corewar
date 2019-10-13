@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 20:53:04 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	op_st(t_cw *cw, t_crg *crg)
 		args.address = (PC + args.arg2) % MEM_SIZE;
 		ft_write_int_in_map(cw, args.address, args.arg1);
 	}
-	ft_print_args(&args);
+	// ft_print_args(&args);
 	//PC = (PC + crg->step) % MEM_SIZE;
 	//crg->step = 0;
 }
