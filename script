@@ -1,2 +1,2 @@
-ARG = (3000)
+ARG=3000
 ./corewar ../../jumper.cor -dump $ARG > ../../our; ../../corewar ../../jumper.cor -d $ARG > ../../their; diff ../../their ../../our > ../../diff.diff
