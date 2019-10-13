@@ -1,2 +1,4 @@
-ARG=3000
-./corewar ../../jumper.cor -dump $ARG > ../../our; ../../corewar ../../jumper.cor -d $ARG > ../../their; diff ../../their ../../our > ../../diff.diff
+ARG=391
+./cw/corewar ./test_op/jumper.cor -dump $ARG > ./test_op/our;
+../vm_champs/corewar ./test_op/jumper.cor -d $ARG > ./test_op/their;
+diff ./test_op/our ./test_op/their > ./test_op/diff.diff

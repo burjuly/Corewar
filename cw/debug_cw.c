@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/11 15:25:41 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/13 14:18:53 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,40 @@ void	ft_print_crg(t_crg *crg)
 		printf("bef_op = %d\n", crg->bef_op);
 		printf("last_live = %d\n", crg->last_live);
 		printf("step = %d\n", crg->step);
+}
+
+void	ft_print_name_op(t_crg *crg)
+{
+	if (crg->cur_op == 1)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ live\n");
+	else if (crg->cur_op == 2)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ ld\n");
+	else if(crg->cur_op == 3)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ st\n");
+	else if(crg->cur_op == 4)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ add\n");
+	else if(crg->cur_op == 5)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ sub\n");
+	else if (crg->cur_op == 6)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ and\n");
+	else if(crg->cur_op == 7)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ or\n");
+	else if(crg->cur_op == 8)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ xor\n");
+	else if(crg->cur_op == 9)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ zjmp\n");
+	else if(crg->cur_op == 10)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
+	else if(crg->cur_op == 11)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
+	else if(crg->cur_op == 12)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
+	else if(crg->cur_op == 13)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
+	else if(crg->cur_op == 14)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");
+	else if(crg->cur_op == 15)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
+	else if(crg->cur_op == 16)
+		printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
 }
