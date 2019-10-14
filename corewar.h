@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 23:50:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/15 02:07:15 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct		s_cw
 	t_op			op[16];				// масcив операций
 	char			map[MEM_SIZE];		// карта
 	int				plr_nbrs;	// количество игроков
-	
+
 	int				cycle_to_die;	// текущий cycle to die
 	int				round;		// количество прошедших с начала игры циклов
 	int				ctd_round;	// количество прошедших с последней проверки циклов
@@ -192,7 +192,7 @@ void				op_aff(t_cw *cw, t_crg *crg);
 void				ft_start_game(t_cw *cw);
 void				ft_do_cycle(t_cw *cw);
 void 				ft_do_op(t_cw *cw, t_crg *crg);
-void				ft_del_carriage(t_cw *cw, t_crg **cur, t_crg *prev);
+void				ft_del_carriage(t_cw *cw, t_crg **cur, t_crg **prev);
 
 // reverse
 int					ft_reverse_2(t_cw *cw, int pc);
