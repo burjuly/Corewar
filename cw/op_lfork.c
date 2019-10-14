@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 16:02:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/12 13:57:58 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/14 14:34:31 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_init_lfork(t_op *op)
 
 void op_lfork(t_cw *cw, t_crg *crg)
 {
-	int     i;
+    int     i;
     t_args  args;
     t_crg   *new;
 
@@ -34,10 +34,15 @@ void op_lfork(t_cw *cw, t_crg *crg)
     ft_bzero(&args, sizeof(args));
     args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
     ft_DIR_2(cw, &args, 1);
-	args.arg1 = (PC + args.arg1) % MEM_SIZE; // без усечения на % IDX_MOD
-	if (args.arg1 < 0)
-        args.arg1 = MEM_SIZE + (args.arg1 % MEM_SIZE);
-	ft_add_carriage(cw, -(crg->reg[0]), args.arg1);
+    
+    if (args.arg1 < 0)
+         args.arg1 = MEM_SIZE + (args.arg1 % MEM_SIZE);
+    args.arg1 = (PC + args.arg1) % MEM_SIZE;
+
+    crg->pc = (crg->pc + 3) % MEM_SIZE;
+    crg->step = 0;
+    
+    ft_add_carriage(cw, -(crg->reg[0]), args.arg1);
     new = cw->crg;
     while (i < REG_NUMBER)
     {
@@ -48,6 +53,5 @@ void op_lfork(t_cw *cw, t_crg *crg)
     new->cur_op = crg->cur_op;
     new->bef_op = crg->bef_op;
     new->last_live = crg->last_live;
-    new->step = crg->step; // нужно копировать
-    //PC = (PC + 3) % MEM_SIZE;
+    new->step = crg->step;
 }

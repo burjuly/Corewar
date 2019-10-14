@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/14 00:05:06 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/14 14:42:56 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,15 @@ void	ft_do_cycle(t_cw *cw)
 	t_crg	*crg;
 
 	crg = cw->crg;
-	
-	if (cw->round >= 21219 && cw->round <= 21250)
-	{
-		printf("\nROUND = %d\n", cw->round);
-		printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
-		printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
-		ft_print_crg(cw, cw->crg);
-	}
+	cw->round++;
+	cw->ctd_round++;
+	// if (cw->round >= 21219 && cw->round <= 21221)
+	// {
+	// 	printf("\nROUND = %d\n", cw->round);
+	// 	printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
+	// 	printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
+	// 	ft_print_crg(cw, cw->crg);
+	// }
 	while (crg != NULL)
 	{
 		if (crg->bef_op == 0)
@@ -116,14 +117,13 @@ void	ft_do_cycle(t_cw *cw)
 				else
 					ft_wrong_code_args(cw, crg);
 				PC = (PC + crg->step) % MEM_SIZE;
-				// printf("PC ПОСЛЕ ОПЕРАЦИИ = %d\n\n", crg->pc);
-				// if (cw->round >= 21219 && cw->round <= 24450)
-				// {
-				// 	printf("\nROUND = %d\n", cw->round);
-				// 	printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
-				// 	printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
-				// 	ft_print_crg(cw->crg);
-				// }
+				if (cw->round >= 24330 && cw->round <= 24331)
+				{
+					printf("\nROUND = %d\n", cw->round);
+					printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
+					printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
+					ft_print_crg(cw, cw->crg);
+				}
 				crg->step = 0;
 				crg->code_args = 0;
 			}
@@ -132,6 +132,13 @@ void	ft_do_cycle(t_cw *cw)
 		}
 		crg = crg->next;
 	}
+	// if (cw->round >= 20000 && cw->round <= 25000)
+	// {
+	// 	printf("\nROUND = %d\n", cw->round);
+	// 	printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
+	// 	printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
+	// 	ft_print_crg(cw, cw->crg);
+	// }
 }
 
 void	ft_del_carriage(t_cw *cw, t_crg **cur, t_crg *prev)
@@ -153,6 +160,7 @@ void	ft_del_carriage(t_cw *cw, t_crg **cur, t_crg *prev)
 		// free(*cur);
 		prev->next = tmp;
 	}
+	cw->count_crg--;
 }
 
 static void	ft_check_crgs(t_cw *cw)
@@ -162,14 +170,12 @@ static void	ft_check_crgs(t_cw *cw)
 
 	cur_crg = cw->crg;
 	prev_crg = NULL;
-	// cw->checks++;
+	
+	cw->checks++;
 	while (cur_crg != NULL)
 	{
-		if (cw->round - cur_crg->last_live >= cw->cycle_to_die
-			|| cw->cycle_to_die <= 0)
+		if (cw->round - cur_crg->last_live >= cw->cycle_to_die || cw->cycle_to_die <= 0)
 			ft_del_carriage(cw, &cur_crg, prev_crg);
-		// if (cw->count_live >= NBR_LIVE)
-		// 	cw->c_to_die = cw->c_to_die - CYCLE_DELTA;
 		prev_crg = cur_crg;
 		if (cur_crg != NULL)
 			cur_crg = cur_crg->next;
@@ -187,23 +193,17 @@ void		ft_start_game(t_cw *cw)
 	//ft_print_map(cw);
 	while (cw->crg != NULL)
 	{
-		// cw->round++;
-		// printf("ROUND START GAME = %d\n", cw->round);
-		// cw->ctd_round++;
 		if (cw->round == cw->dump)
 		{
 			ft_print_map(cw);
 			break ;
 		}
-		cw->round++;
-		// printf("ROUND START GAME = %d\n", cw->round);
-		cw->ctd_round++;
-		if (cw->round == 3200)
+		if (cw->round == 21219)
 			debug = 1;
 		ft_do_cycle(cw);
 		if (cw->cycle_to_die == cw->ctd_round || cw->cycle_to_die <= 0)
 		{
-			cw->checks++;
+			//cw->checks++;
 			ft_check_crgs(cw);
 			cw->count_live = 0;
 			cw->ctd_round = 0;

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:52:12 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 18:25:03 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/14 14:50:28 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	op_zjmp(t_cw *cw, t_crg *crg)
 	ft_bzero(&args, sizeof(args));
 	args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
 	ft_DIR_2(cw, &args, 1);
-	// ft_print_args(&args);
+
 	args.arg1 = args.arg1 % IDX_MOD;
 	if (args.arg1 < 0)
         args.arg1 = MEM_SIZE + (args.arg1 % MEM_SIZE);

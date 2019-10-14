@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/13 21:19:20 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/14 12:50:07 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,12 @@ void	ft_add_carriage(t_cw *cw, int k, int pc)
 		if (!(new = (t_crg *)malloc(sizeof(t_crg))))
 			ft_leave("Error: Memory not allocated");
 		ft_bzero(new, sizeof(t_crg));
-		//new->num_plr = -k; // кладем номер plr со знаком '-'
 		new->pc = pc;
 		new->reg[0] = -k;
 		new->next = start;
 		cw->crg = new;
 	}
 	cw->count_crg++;
-	//printf("Добавили каретку %d\n",cw->count_crg );
-	//printf("ROUND = %d\n\n", cw->round);
 }
 
 int	ft_search_next_plr(t_cw *cw, int num)
