@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 12:11:48 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/12 21:11:16 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/16 14:04:45 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int 	ft_check_REG_help(t_cw *cw, t_crg *crg)
 		{
 			if (cw->map[pc] < 1 || cw->map[pc] > 16)
 			{
-				printf("НЕВАЛИДНЫЙ РЕГИСТР");
+				//printf("НЕВАЛИДНЫЙ РЕГИСТР\n");
 				return (-1);
 			}
 			pc = (pc + REG_NUM_SIZE) % MEM_SIZE;

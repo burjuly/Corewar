@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/15 02:07:15 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/16 13:59:38 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void				op_aff(t_cw *cw, t_crg *crg);
 void				ft_start_game(t_cw *cw);
 void				ft_do_cycle(t_cw *cw);
 void 				ft_do_op(t_cw *cw, t_crg *crg);
-void				ft_del_carriage(t_cw *cw, t_crg **cur, t_crg **prev);
+void				ft_del_carriage(t_cw *cw, t_crg **cur, t_crg **prev, int *flag);
 
 // reverse
 int					ft_reverse_2(t_cw *cw, int pc);
