@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/14 12:50:07 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:37:26 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	ft_add_plr_on_map(t_cw *cw)
 	k = 1;
 	delta = MEM_SIZE / cw->plr_nbrs; // отступ между чемпионами
 	ft_memset(cw->map, 0, MEM_SIZE);
-	//printf("Introducing contestants...\n"); РАСКОММЕНТИТЬ!!!!!!!
+	printf("Introducing contestants...\n");
 	while (i < 4096 && k <= cw->plr_nbrs)
 	{
 		j = ft_search_next_plr(cw, k); // Ищем кого будем добавлять на арену следующим
@@ -97,6 +97,7 @@ void	ft_add_plr_on_map(t_cw *cw)
 		else
 			break ;
 		ft_add_carriage(cw, k, i); // Добавляем новую каретку
+		printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", j + 1, cw->plr[j].code_size, cw->plr[j].name, cw->plr[j].comment);
 		i = i + delta; // Позиция, где начнется код следующего чемпиона
 		k++;
 	}

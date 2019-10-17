@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:01:03 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/16 15:08:02 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/17 16:16:07 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ void    op_live(t_cw *cw, t_crg *crg)
     cw->count_live++;
     crg->last_live = cw->round;
     if ((-num_plr) > 0 && (-num_plr) <= cw->plr_nbrs)
-    {
-        //printf("LIVE!!!!!\n");
         cw->last_plr = -num_plr;
-        //printf(игрок жив);
-    }
-    //printf("LAST = %d\n", cw->last_plr);
     crg->step = 5;
 }
