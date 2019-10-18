@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/18 15:57:19 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/18 22:18:33 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void	ft_do_cycle(t_cw *cw)
 	cw->round++;
 	cw->ctd_round++;
 /************************************************************/
-	// if (cw->round >= 4700 && cw->round <= 4705)
+	// if (cw->round >= 5500 && cw->round <= 5606)
 	// 	ft_print_crg(cw, cw->crg);
 /***********************************************************/
 	while (crg != NULL)
 	{
 		num_crg++; // УБРАТЬ
-		if (cw->round == 4703 && num_crg == 4)
+		if (cw->round >= 5583 && num_crg == 52)
 			debug = 1;
 		i++;
 		if (crg->bef_op == 0)
@@ -113,7 +113,7 @@ void	ft_do_cycle(t_cw *cw)
 				crg->code_args = 0;
 			}
 			else
-				(crg->pc)++;
+				PC = (PC + 1) % MEM_SIZE;
 		}
 		crg = crg->next;
 	}
@@ -182,8 +182,9 @@ void		ft_start_game(t_cw *cw)
 		if (cw->round == cw->dump)
 		{
 			ft_print_map(cw);
+			// Зашрифить каретки ?
 			exit(0);
-			break ;
+			//break ;
 		}
 		// if (cw->round == 24329)
 		// 	debug = 1;
@@ -201,10 +202,8 @@ void		ft_start_game(t_cw *cw)
 	// 	printf("ROUND = %d\n", cw->round);
 	// 	exit(0);
 	// }
-	//printf("ROUND = %d\n", cw->round);
-	if (cw->round != cw->dump)
-		printf("Contestant %d, weighing %d bytes, \"%s\" (\"%s\"), has won !\n",
-		cw->last_plr, cw->plr[cw->last_plr - 1].code_size,
-		cw->plr[cw->last_plr - 1].name, cw->plr[cw->last_plr - 1].comment);
-	//printf("all cyc %i\n", cw->round++);
+	printf("ROUND = %d\n", cw->round); // УБРАТЬ
+	printf("Contestant %d, \"%s\", has won !\n", cw->last_plr, cw->plr[cw->last_plr - 1].name);
+	// if (cw->round != cw->dump)
+	// 	printf("Contestant %d, \"%s\", has won !\n", cw->last_plr, cw->plr[cw->last_plr - 1].name);
 }

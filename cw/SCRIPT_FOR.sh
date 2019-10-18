@@ -1,11 +1,11 @@
-for (( i=24400; i <= 24402; i++ ))
+for (( i=5000; i <= 10000; i++ ))
 do
 
-./corewar ../jumper.cor ../jumper.cor -dump $i > ../LOG/RES_RUS ;
-../../FR/Corewar/corewar ../jumper.cor ../jumper.cor -dump $i > ../LOG/RES_FR ;
+./corewar ../CHAMPS/bee_gees.cor ../CHAMPS/jumper.cor  -dump $i > ../LOG/RES_RUS ;
+../../FR/Corewar/corewar ../CHAMPS/bee_gees.cor ../CHAMPS/jumper.cor -dump $i > ../LOG/RES_FR ;
 diff ../LOG/RES_FR  ../LOG/RES_RUS  >> ../LOG/diff_fr.diff;
 
-../../INTRA/corewar ../jumper.cor ../jumper.cor -d $i > ../LOG/RES_INTRA ;
+../../INTRA/corewar ../CHAMPS/bee_gees.cor ../CHAMPS/jumper.cor -d $i > ../LOG/RES_INTRA ;
 diff ../LOG/RES_INTRA  ../LOG/RES_RUS  >> ../LOG/diff_intra.diff;
 
 done

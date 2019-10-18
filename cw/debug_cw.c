@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/18 15:48:15 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/18 21:57:00 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	ft_print_crg(t_cw *cw, t_crg *crg)
 		}
 		printf("pc = %d\n", crg->pc);
 		printf("carry = %d\n", crg->carry);
-		//printf("cur_op = %d\n", crg->cur_op);
+		printf("cur_op = %d\n", crg->cur_op);
 		//printf("LAST_LIVE= %d\n", cw->round - crg->last_live);
 		//printf("bef_op = %d\n", crg->bef_op);
 		crg = crg->next;

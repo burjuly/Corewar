@@ -1,2 +1,0 @@
-make;
-./corewar ../test_op/jumper.cor > ../test_op/RES_RUS
