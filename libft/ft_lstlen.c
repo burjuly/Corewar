@@ -3,27 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 18:12:44 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/21 18:15:38 by waddam           ###   ########.fr       */
+/*   Created: 2019/07/30 13:36:18 by cdraugr-          #+#    #+#             */
+/*   Updated: 2019/08/29 15:50:59 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_lstlen(t_list *lst)
+int		ft_lstlen(t_list *begin)
 {
-	size_t	len;
+	int		len;
 
+	if (!begin)
+		return (0);
 	len = 0;
-	if (lst)
+	while (begin)
 	{
-		while (lst)
-		{
-			len++;
-			lst = lst->next;
-		}
+		begin = begin->next;
+		++len;
 	}
 	return (len);
 }

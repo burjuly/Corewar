@@ -3,60 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/16 20:06:16 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/16 20:19:14 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/29 12:38:06 by cdraugr-          #+#    #+#             */
+/*   Updated: 2019/09/01 14:32:37 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-static int	ft_count(int count, unsigned int temp)
-{
-	while (temp > 9)
-	{
-		temp = temp / 10;
-		count++;
-	}
-	return (count);
-}
-
-static char	*ft_allocate(int count, unsigned int temp, char sign)
+char		*ft_itoa(int number)
 {
 	char	*str;
+	int		numlen;
+	int		sign;
+	int		digit;
 
-	if (!(str = (char *)malloc(sizeof(char) * (count + 1))))
-		return (NULL);
-	str[count] = '\0';
-	while (count > 0)
+	sign = (number < 0) ? 1 : 0;
+	if (number == -2147483648)
+		return (ft_strdup("-2147483648"));
+	number = (number < 0) ? -number : number;
+	numlen = ft_int_size(number) + (sign ? 1 : 0);
+	if ((str = ft_strnew(numlen)))
 	{
-		str[count - 1] = (temp % 10) + '0';
-		temp = temp / 10;
-		count--;
+		str[numlen--] = '\0';
+		while (numlen >= sign)
+		{
+			digit = number % 10;
+			str[numlen--] = digit + '0';
+			number /= 10;
+		}
+		if (sign)
+			str[0] = '-';
 	}
-	if (sign == '-')
-		str[0] = '-';
 	return (str);
-}
-
-char		*ft_itoa(int n)
-{
-	char			sign;
-	int				count;
-	unsigned int	temp;
-
-	sign = '+';
-	count = 1;
-	temp = 0;
-	if (n < 0)
-	{
-		temp = -n;
-		sign = '-';
-		count++;
-	}
-	else
-		temp = n;
-	count = ft_count(count, temp);
-	return (ft_allocate(count, temp, sign));
 }

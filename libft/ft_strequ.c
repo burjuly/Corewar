@@ -3,44 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 22:37:52 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/10 22:38:23 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/29 10:18:28 by cdraugr-          #+#    #+#             */
+/*   Updated: 2019/08/29 15:55:57 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-static int	ft_se_base(char const *s1, char const *s2)
-{
-	while (*s1 && *s2)
-	{
-		if (*s1 == *s2)
-		{
-			s1++;
-			s2++;
-			continue ;
-		}
-		return (0);
-	}
-	if ((*s1 > *s2) || (*s1 < *s2))
-		return (0);
-	return (1);
-}
+#include "libft.h"
 
-int			ft_strequ(char const *s1, char const *s2)
+int	ft_strequ(char const *s1, char const *s2)
 {
-	if (s1)
-	{
-		if (s2)
-			return (ft_se_base(s1, s2));
-		else
-			return (0);
-	}
-	else
-	{
-		if (s2)
-			return (0);
-		else
-			return (1);
-	}
+	return (s1 && s2 && !ft_strcmp(s1, s2));
 }

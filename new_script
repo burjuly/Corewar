@@ -1,4 +1,0 @@
-ARG=24690
-./corewar ../../jumper.cor -dump $ARG | tail -n 64 > ../../our; ../../corewar_def ../../jumper.cor -d $ARG > ../../their; diff ../../our ../../their > ../../diff.diff
-# 24450
-# 24690 - последний вывод карты, далее обЪявление победителя

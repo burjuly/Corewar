@@ -3,38 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: cdraugr- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 21:29:09 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/19 15:03:29 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/28 16:47:11 by cdraugr-          #+#    #+#             */
+/*   Updated: 2018/12/28 16:47:13 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *s1, const char *s2, size_t len)
+char	*ft_strnstr(const char *str, const char *to_find, size_t len)
 {
-	char	*hst;
-	char	*ndl;
-	size_t	i;
-	size_t	j;
+	unsigned int pos;
+	unsigned int i;
 
-	hst = (char *)s1;
-	ndl = (char *)s2;
-	i = 0;
-	if (ndl[0] == '\0')
-		return (hst);
-	while (hst[i] != '\0' && i < len)
+	if (!*to_find)
+		return ((char*)str);
+	pos = 0;
+	while (str[pos] != '\0' && (size_t)pos < len)
 	{
-		j = 0;
-		if (hst[i] == ndl[j])
+		if (str[pos] == to_find[0])
 		{
-			while ((hst[i + j] == ndl[j]) && (ndl[j] != '\0') && i + j < len)
-				j++;
-			if (ndl[j] == '\0')
-				return (&hst[i]);
+			i = 1;
+			while (to_find[i] != '\0' && str[pos + i] == to_find[i] &&
+					(size_t)(pos + i) < len)
+				++i;
+			if (to_find[i] == '\0')
+				return ((char*)&str[pos]);
 		}
-		i++;
+		++pos;
 	}
-	return (NULL);
+	return (0);
 }

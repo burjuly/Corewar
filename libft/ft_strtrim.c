@@ -3,65 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 18:23:37 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/12 18:23:46 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/29 11:40:06 by cdraugr-          #+#    #+#             */
+/*   Updated: 2019/08/29 15:58:36 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_len(char const *s)
+char		*ft_strtrim(char const *s)
 {
-	size_t	count;
-	size_t	len;
+	char	*result;
+	size_t	i;
+	size_t	start;
+	size_t	finish;
 
-	count = 0;
-	len = ft_strlen(s);
-	while ((*s == ' ') || (*s == '\n') || (*s == '\t'))
-	{
-		s++;
-		count++;
-	}
-	while (*s)
-		s++;
-	s--;
-	while ((*s == ' ') || (*s == '\n') || (*s == '\t'))
-	{
-		s--;
-		count++;
-		if (count > len)
-			return (0);
-	}
-	len = len - count;
-	return (len);
-}
-
-char			*ft_strtrim(char const *s)
-{
-	char	*temp;
-	size_t	len;
-	size_t	temp_len;
-
-	if (s == NULL)
+	if (!s)
 		return (NULL);
-	len = ft_len(s);
-	temp_len = len;
-	if (!(temp = (char *)malloc(sizeof(char) * (len + 1))))
-		return (NULL);
-	while ((*s == ' ') || (*s == '\n') || (*s == '\t'))
-		s++;
-	while (len > 0)
+	i = 0;
+	start = 0;
+	finish = ft_strlen(s);
+	while (ft_is_blank(s[start]))
+		start++;
+	while (finish && (ft_is_blank(s[finish - 1])))
+		--finish;
+	if ((result = ft_strnew((finish > start) ? (finish - start) : 0)))
 	{
-		*temp++ = *s++;
-		len--;
+		while (start < finish)
+			result[i++] = s[start++];
+		result[i] = '\0';
 	}
-	*temp = '\0';
-	while (temp_len > 0)
-	{
-		temp_len--;
-		temp--;
-	}
-	return (temp);
+	return (result);
 }

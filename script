@@ -1,4 +1,0 @@
-ARG=24000
-./corewar ../../jumper.cor -dump $ARG > ../../our; ../../corewar ../../jumper.cor -d $ARG > ../../their; diff ../../their ../../our > ../../diff.diff
-# 24450
-# 24690 - последний вывод карты
