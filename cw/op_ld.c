@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:21:04 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 18:25:08 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/18 15:45:08 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ void	ft_init_ld(t_op *op)
 }
 
 
-void	ft_ld_DIR(t_cw *cw, t_args *args) // DIR_REG 4 1  code_size = 7
+void	ft_ld_DIR(t_cw *cw, t_args *args)
 {
 		ft_DIR_4(cw, args, 1);
 		args->pc_arg2 = (args->pc_arg1 + DIR_4) % MEM_SIZE;
 }
 
-void	ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args) // IND_REG 2 1 code_size = 5
+void	ft_ld_IND(t_cw *cw, t_crg *crg, t_args *args)
 {
 		ft_IND_with_IDX_MOD(cw, crg, args, 1);
 		args->pc_arg2 = (args->pc_arg1 + IND) % MEM_SIZE;
@@ -54,8 +54,6 @@ void	op_ld(t_cw *cw, t_crg *crg)
 		ft_ld_IND(cw, crg, &args);
 	args.arg2 = cw->map[args.pc_arg2];
 	crg->reg[args.arg2 - 1] = args.arg1;
-	// ft_print_args(&args);
 	args.arg1 == 0 ? (crg->carry = 1) : (crg->carry = 0);
-	//printf("CARRY LD = %d\n", crg->carry);
 }
 

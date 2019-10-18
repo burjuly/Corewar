@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/17 22:36:49 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/18 15:57:19 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,20 +71,22 @@ void	ft_do_cycle(t_cw *cw)
 {
 	t_crg	*crg;
 	int		i;
+	int		num_crg = 0; //УБРАТЬ
+	int		debug = 0;
+	
 	i = 0;
-
 	crg = cw->crg;
 	cw->round++;
 	cw->ctd_round++;
-	// if (cw->round >= 23809 && cw->round <= 23810)
-	// {
-	// 	printf("\nROUND = %d\n", cw->round);
-	// 	printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
-	// 	printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
+/************************************************************/
+	// if (cw->round >= 4700 && cw->round <= 4705)
 	// 	ft_print_crg(cw, cw->crg);
-	// }
+/***********************************************************/
 	while (crg != NULL)
 	{
+		num_crg++; // УБРАТЬ
+		if (cw->round == 4703 && num_crg == 4)
+			debug = 1;
 		i++;
 		if (crg->bef_op == 0)
 		{
@@ -103,13 +105,10 @@ void	ft_do_cycle(t_cw *cw)
 				else
 					ft_wrong_code_args(cw, crg);
 				PC = (PC + crg->step) % MEM_SIZE;
-				if (cw->round >= 23809 && cw->round <= 23810)
-				{
-					printf("\nROUND = %d\n", cw->round);
-					printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
-					printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
-					ft_print_crg(cw, cw->crg);
-				}
+/************************************************************/
+				// if (cw->round >= 4703 && cw->round <= 4704)
+				// 	ft_print_crg(cw, cw->crg);
+/***********************************************************/				
 				crg->step = 0;
 				crg->code_args = 0;
 			}
@@ -196,12 +195,12 @@ void		ft_start_game(t_cw *cw)
 			cw->ctd_round = 0;
 		}
 	}
-	if (cw->dump > cw->round)
-	{
-		ft_print_map(cw);
-		printf("ROUND = %d\n", cw->round);
-		exit(0);
-	}
+	// if (cw->dump > cw->round)
+	// {
+	// 	ft_print_map(cw);
+	// 	printf("ROUND = %d\n", cw->round);
+	// 	exit(0);
+	// }
 	//printf("ROUND = %d\n", cw->round);
 	if (cw->round != cw->dump)
 		printf("Contestant %d, weighing %d bytes, \"%s\" (\"%s\"), has won !\n",

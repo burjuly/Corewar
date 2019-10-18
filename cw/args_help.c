@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 15:02:09 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/10 20:40:51 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/18 15:50:31 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_IND_with_IDX_MOD(t_cw *cw, t_crg *crg, t_args *args, int num_arg) // Ğ•Ğ
 	else if (num_arg == 2)
 	{
 		args->arg2 = ft_reverse_2(cw, args->pc_arg2);
-		args->arg2 = ft_MOD_IND(args->arg2);
+		//args->arg2 = ft_MOD_IND(args->arg2);
 		args->arg1 = args->arg1 % IDX_MOD;
 		args->arg2 = (PC + args->arg2) % MEM_SIZE;
 		args->arg2 = ft_reverse_4(cw, args->arg2);

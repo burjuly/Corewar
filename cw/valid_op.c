@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 12:11:48 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/16 14:04:45 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/18 15:23:42 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_wrong_code_args(t_cw *cw, t_crg *crg)
 	int		mask;
 	int		count_args;
 
+	crg->step = 0;
 	shift = 6;
 	mask = 0xC0;
 	code = cw->map[crg->pc + 1];
