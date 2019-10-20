@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 12:11:48 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 20:49:34 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:55:37 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_wrong_code_args(t_cw *cw, t_crg *crg)
 	+ crg->step;
 }
 
-int		ft_check_REG_help(t_cw *cw, t_crg *crg)
+int		ft_ld_indft_check_reg_help(t_cw *cw, t_crg *crg)
 {
 	int		i;
 	int		pc;
@@ -49,7 +49,7 @@ int		ft_check_REG_help(t_cw *cw, t_crg *crg)
 	i = 0;
 	ft_parse_code_arg(cw, crg);
 	crg->step = OP_NAME + (int)(cw->op[crg->cur_op - 1].need_arg_code);
-	pc = (PC + crg->step) % MEM_SIZE;
+	pc = (crg->pc + crg->step) % MEM_SIZE;
 	while (crg->args[i] != 0)
 	{
 		if (crg->args[i] == 1)
@@ -101,7 +101,7 @@ int		ft_valid_code_arg(t_cw *cw, t_crg *crg)
 	int	code_arg;
 
 	i = 0;
-	pc = (PC + 1) % MEM_SIZE;
+	pc = (crg->pc + 1) % MEM_SIZE;
 	code_arg = cw->map[pc];
 	if (cw->op[crg->cur_op - 1].need_arg_code == 0)
 		return (1);
@@ -112,7 +112,7 @@ int		ft_valid_code_arg(t_cw *cw, t_crg *crg)
 	while (cw->op[crg->cur_op - 1].code_args[i])
 	{
 		if (code_arg == (unsigned char)cw->op[crg->cur_op - 1].code_args[i])
-			if (ft_check_REG(cw, crg) == 1)
+			if (ft_ld_indft_check_reg(cw, crg) == 1)
 			{
 				crg->code_args = cw->op[crg->cur_op - 1].code_args[i];
 				return (cw->op[crg->cur_op - 1].code_args[i]);

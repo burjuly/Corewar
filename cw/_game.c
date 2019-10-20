@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/21 01:53:51 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/21 01:41:05 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,23 @@ static void	ft_do_op(t_cw *cw, t_crg *crg)
 static void	ft_do_cycle(t_cw *cw)
 {
 	t_crg	*crg;
+	int		i;
+	int		num_crg = 0; //УБРАТЬ
+	int		debug = 0;
 
+	i = 0;
 	crg = cw->crg;
+	/************************************************************/
+	// if (cw->round >= 6195 &cd .->crg);
+	/***********************************************************/
 	while (crg != NULL)
 	{
+		num_crg++; // УБРАТЬ
+		if (cw->round >= 6194 && num_crg == 4)
+			debug = 1;
+		// if (cw->round >= 13695 && num_crg == 16464)
+		// 	debug = 1;
+		i++;
 		if (crg->bef_op == 0)
 		{
 			crg->cur_op = cw->map[crg->pc];
@@ -86,11 +99,16 @@ static void	ft_do_cycle(t_cw *cw)
 		{
 			if (crg->cur_op > 0 && crg->cur_op <= 16)
 			{
+				//cw->map[1] = 106;
 				if (ft_valid_code_arg(cw, crg) != -1)
 					ft_do_op(cw, crg);
 				else
 					ft_wrong_code_args(cw, crg);
 				crg->pc = (crg->pc + crg->step) % MEM_SIZE;
+	/************************************************************/
+				// if (cw->round >= 4703 && cw->round <= 4704)
+				// 	ft_print_crg(cw, cw->crg);
+	/***********************************************************/
 				crg->step = 0;
 				crg->code_args = 0;
 			}
@@ -127,13 +145,18 @@ static void	ft_check_crgs(t_cw *cw)
 {
 	t_crg	*cur_crg;
 	t_crg	*prev_crg;
+	int		i = 0;
 	int		flag;
+	int		debug = 0;
 
 	cur_crg = cw->crg;
 	prev_crg = NULL;
 	while (cur_crg != NULL)
 	{
+		i++;
 		flag = 0;
+		if (cw->round == 19312 && i == 39731)
+			debug = 1;
 		if (cw->round - cur_crg->last_live >=
 			cw->cycle_to_die || cw->cycle_to_die <= 0)
 			ft_del_carriage(cw, &cur_crg, &prev_crg, &flag);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:30:52 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:49:28 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	op_st(t_cw *cw, t_crg *crg)
 
 	ft_bzero(&args, sizeof(args));
 	args.code_args = crg->code_args;
-	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
+	args.pc_arg1 = (crg->pc + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	args.pc_arg2 = (args.pc_arg1 + REG_NUM_SIZE) % MEM_SIZE;
-	ft_REG(cw, crg, &args, 1);
+	ft_reg(cw, crg, &args, 1);
 	if (args.code_args == REG_REG)
 	{
 		args.arg2 = cw->map[args.pc_arg2];
@@ -40,8 +40,8 @@ void	op_st(t_cw *cw, t_crg *crg)
 	else if (args.code_args == REG_IND)
 	{
 		args.arg2 = ft_reverse_2(cw, args.pc_arg2) % IDX_MOD;
-		args.arg2 = ft_MOD_IND(args.arg2);
-		args.address = (PC + args.arg2) % MEM_SIZE;
+		args.arg2 = ft_mod_ind(args.arg2);
+		args.address = (crg->pc + args.arg2) % MEM_SIZE;
 		ft_write_int_in_map(cw, args.address, args.arg1);
 	}
 }

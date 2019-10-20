@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_sub.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:44:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:38:19 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 01:05:27 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ void	op_sub(t_cw *cw, t_crg *crg)
 
 	ft_bzero(&args, sizeof(args));
 	args.code_args = crg->code_args;
-	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
-	args.pc_arg2 = (PC + OP_NAME + CODE_ARGS + REG_NUM_SIZE) % MEM_SIZE;
-	args.pc_arg3 = (PC + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
+	args.pc_arg1 = (crg->pc + OP_NAME + CODE_ARGS) % MEM_SIZE;
+	args.pc_arg2 = (crg->pc + OP_NAME + CODE_ARGS + REG_NUM_SIZE) % MEM_SIZE;
+	args.pc_arg3 =
+		(crg->pc + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
 	args.arg1 = cw->map[args.pc_arg1];
 	args.arg2 = cw->map[args.pc_arg2];
 	args.arg3 = cw->map[args.pc_arg3];

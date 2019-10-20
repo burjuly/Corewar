@@ -6,8 +6,8 @@
 # NUM=25902
 # MAPS="zork.cor zork.cor zork.cor"
 # NUM=27432
-# MAPS="jumper.cor jumper.cor jumper.cor"
-# NUM=24401
+MAPS="jumper.cor jumper.cor jumper.cor"
+NUM=24401
 # MAPS="fluttershy.cor fluttershy.cor fluttershy.cor"
 # NUM=25902
 # MAPS="bee_gees.cor bee_gees.cor bee_gees.cor"
@@ -60,8 +60,8 @@
 # NUM=55555
 # MAPS="zork.cor Olezhka_super.cor"
 # NUM=33060
-MAPS="Olezhka_super.cor zork.cor"
-NUM=33060
+# MAPS="Olezhka_super.cor zork.cor"
+# NUM=33060
 MIN=NUM
 MAX=NUM+2
 for (( i=$MIN; i <= $MAX; i++ ))

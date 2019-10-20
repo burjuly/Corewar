@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_add.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:43:24 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 17:35:23 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 01:04:25 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void	op_add(t_cw *cw, t_crg *crg)
 	t_args	args;
 
 	ft_bzero(&args, sizeof(args));
-	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
-	args.pc_arg2 = (PC + OP_NAME + CODE_ARGS + REG_NUM_SIZE) % MEM_SIZE;
-	args.pc_arg3 = (PC + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
+	args.pc_arg1 = (crg->pc + OP_NAME + CODE_ARGS) % MEM_SIZE;
+	args.pc_arg2 = (crg->pc + OP_NAME + CODE_ARGS + REG_NUM_SIZE) % MEM_SIZE;
+	args.pc_arg3 =
+		(crg->pc + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
 	args.arg1 = cw->map[args.pc_arg1];
 	args.arg2 = cw->map[args.pc_arg2];
 	args.arg3 = cw->map[args.pc_arg3];

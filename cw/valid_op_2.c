@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   valid_op_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 20:43:41 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 20:50:03 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:55:37 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-int		ft_check_REG(t_cw *cw, t_crg *crg)
+int		ft_ld_indft_check_reg(t_cw *cw, t_crg *crg)
 {
-	if (ft_check_REG_help(cw, crg) == 1)
+	if (ft_ld_indft_check_reg_help(cw, crg) == 1)
 		return (1);
 	return (-1);
 }

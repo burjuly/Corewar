@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_live.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:01:03 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:19:56 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:48:41 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	op_live(t_cw *cw, t_crg *crg)
 	t_args	args;
 
 	ft_bzero(&args, sizeof(args));
-	args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
-	ft_DIR_4(cw, &args, 1);
+	args.pc_arg1 = (crg->pc + OP_NAME) % MEM_SIZE;
+	ft_dir_4(cw, &args, 1);
 	num_plr = args.arg1;
 	cw->count_live++;
 	crg->last_live = cw->round;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_lfork.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 16:02:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:16:22 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:48:52 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	op_lfork(t_cw *cw, t_crg *crg)
 
 	i = -1;
 	ft_bzero(&args, sizeof(args));
-	args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
-	ft_DIR_2(cw, &args, 1);
+	args.pc_arg1 = (crg->pc + OP_NAME) % MEM_SIZE;
+	ft_dir_2(cw, &args, 1);
 	if (args.arg1 < 0)
 		args.arg1 = MEM_SIZE + (args.arg1 % MEM_SIZE);
-	args.arg1 = (PC + args.arg1) % MEM_SIZE;
+	args.arg1 = (crg->pc + args.arg1) % MEM_SIZE;
 	crg->pc = (crg->pc + 3) % MEM_SIZE;
 	crg->step = 0;
 	ft_add_carriage(cw, -(crg->reg[0]), args.arg1);

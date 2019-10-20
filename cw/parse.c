@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 20:04:49 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/03 01:46:05 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/21 01:18:58 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	ft_flag_dump(int argc, char **argv, int *i, t_cw *cw)
 		ft_leave("Error: Bad arguments for the -dump flag");
 }
 
-void		ft_parse(int argc, char **argv, t_cw *cw)
+void		ft_parse_input(int argc, char **argv, t_cw *cw)
 {
 	int		i;
 

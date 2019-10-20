@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 01:53:36 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/21 01:40:09 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@
 # define REG_IND_DIR	120
 # define REG_DIR_DIR	104
 
-typedef struct		s_args
+typedef struct		t_args
 {
 	int				arg1;
 	int				arg2;
@@ -57,52 +57,54 @@ typedef struct		s_args
 
 typedef struct		s_plr
 {
-	int				num;
-	char			name[PROG_NAME_LENGTH + 1];
-	int				code_size;
-	char			comment[COMMENT_LENGTH + 1];
-	char			code[CHAMP_MAX_SIZE + 1];
-	int				flag_n;
+	int				num;						// номер игрока
+	char			name[PROG_NAME_LENGTH + 1];	// имя
+	int				code_size;					// размер его исполняемого кода
+	char			comment[COMMENT_LENGTH + 1];	// комментарий
+	char			code[CHAMP_MAX_SIZE + 1];	// сам код
+	int				flag_n;						// наличие поданного с игроком флага -n
 }					t_plr;
 
+// carriage - каретка
 typedef struct		s_crg
 {
-	int				pc;
-	int				carry;
-	int				reg[REG_NUMBER];
-	int				cur_op;
-	int				bef_op;
-	int				last_live;
-	int				step;
+	int				pc;			// положение на карте (координата, индекс)
+	int				carry;		// флаг carry
+	int				reg[REG_NUMBER];	// регистры
+	int				cur_op;		// код операции, на которой стоит каретка
+	int				bef_op;		// количество циклов, оставшиеся до исполнения операции, на которой стоит каретка
+	int				last_live;	// цикл, в котором в последний раз была выполнена операция live
+	int				step;		// количество байт, которые нужно будет «перешагнуть», чтобы оказаться на следующей операции
 	struct s_crg	*next;
 	int				code_args;
 	int				args[4];
 }					t_crg;
 
-typedef struct		s_op
+typedef struct 		s_op
 {
-	int				code_args[28];
-	char			arg_nbrs;
-	char			args[3];
-	int				bef_op;
-	char			need_arg_code;
-	char			t_dir;
+	int				code_args[28];	// /0
+	char			arg_nbrs;		// количество аргументов
+	char			args[3];		// массив аргументов
+	int				bef_op;			// "стоимость" в циклах
+	char			need_arg_code;	// нужен ли код типов аргументов
+	char			t_dir;		// использует T_DIR = 2
 }					t_op;
 
 typedef struct		s_cw
 {
-	t_plr			plr[MAX_PLAYERS];
-	t_crg			*crg;
-	t_op			op[16];
-	char			map[MEM_SIZE];
-	int				plr_nbrs;
-	int				cycle_to_die;
-	int				round;
-	int				ctd_round;
-	int				checks;
-	int				dump;
-	int				count_live;
-	int				last_plr;
+	t_plr			plr[MAX_PLAYERS];	// массив структур типа "игрок"
+	t_crg			*crg;				// указатель на список кареток
+	t_op			op[16];				// масcив операций
+	char			map[MEM_SIZE];		// карта
+	int				plr_nbrs;	// количество игроков
+
+	int				cycle_to_die;	// текущий cycle to die
+	int				round;		// количество прошедших с начала игры циклов
+	int				ctd_round;	// количество прошедших с последней проверки циклов
+	int				checks;		// количество проверок
+	int				dump;		// флаг dump (если > 0, тогда это номер цикла для dump)
+	int				count_live;	// количество выполненных операций live за последний период, длинной в cycles_to_die
+	int				last_plr;	// игрок, о котором в последний раз сказали, что он жив
 	int				count_crg;
 }					t_cw;
 
@@ -124,23 +126,27 @@ void				ft_init_lld(t_op *op);
 void				ft_init_lldi(t_op *op);
 void				ft_init_lfork(t_op *op);
 void				ft_init_aff(t_op *op);
-
 void				ft_parse_input(int argc, char **argv, t_cw *cw);
 void				ft_write_plr(char **argv, int *i, t_cw *cw, int pos);
 int					ft_byte_reverse(char *bytes_array, int count);
 void				ft_print_map(t_cw *cw);
 void				ft_correct_plrs(t_cw *cw);
 void				ft_sort_plrs(t_plr *plr, int size);
+
+// debug
 void				ft_print_plrs(t_plr *plr, int size);
 void				ft_print_crg(t_cw *cw, t_crg *crg);
 void				ft_print_args(t_args *args);
 void				ft_print_name_op(t_crg *crg);
+
+// арена
 void				ft_print_map(t_cw *cw);
 void				ft_add_carriage(t_cw *cw, int k, int pc);
 int					ft_search_next_plr(t_cw *cw, int num);
 void				ft_add_plr_on_map(t_cw *cw);
 void				ft_map(t_cw *cw);
 
+// операции
 void				op_ld(t_cw *cw, t_crg *crg);
 void				op_ldi(t_cw *cw, t_crg *crg);
 void				op_st(t_cw *cw, t_crg *crg);
@@ -163,23 +169,26 @@ void				op_lld(t_cw *cw, t_crg *crg);
 void				op_lfork(t_cw *cw, t_crg *crg);
 void				op_aff(t_cw *cw, t_crg *crg);
 
+// game
 void				ft_start_game(t_cw *cw);
 
+// reverse
 int					ft_reverse_2(t_cw *cw, int pc);
 int					ft_reverse_4(t_cw *cw, int pc);
 
+//Валидация аргументов
 void				ft_wrong_code_args(t_cw *cw, t_crg *crg);
-int					ft_ld_indft_check_reg_help(t_cw *cw, t_crg *crg);
+int 				ft_ld_indft_check_reg_help(t_cw *cw, t_crg *crg);
 int					ft_ld_indft_check_reg(t_cw *cw, t_crg *crg);
 void				ft_parse_code_arg(t_cw *cw, t_crg *crg);
 int					ft_valid_code_arg(t_cw *cw, t_crg *crg);
 void				ft_check_help(t_cw *cw, t_crg *crg, int *i, int *pc);
 void				ft_help_valid(t_cw *cw, t_crg *crg);
 
-void				ft_ind_with_idx_mod(
-						t_cw *cw, t_crg *crg, t_args *args, int num_arg);
+// args_help
+void				ft_ind_with_idx_mod(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
 void				ft_ind(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
-int					ft_mod_ind(int arg);
+int					ft_mod_ind(int arg); // обрезаем по модулю IND
 void				ft_dir_2(t_cw *cw, t_args *args, int num_arg);
 void				ft_dir_4(t_cw *cw, t_args *args, int num_arg);
 void				ft_reg(t_cw *cw, t_crg *crg, t_args *args, int num_arg);

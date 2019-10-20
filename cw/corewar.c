@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 17:59:29 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/12 17:56:13 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 01:18:58 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		main(int argc, char **argv)
 {
 	t_cw	cw;
 
-	ft_parse(argc, argv, &cw);
+	ft_parse_input(argc, argv, &cw);
 	ft_map(&cw);
 	ft_start_game(&cw);
 	return (0);

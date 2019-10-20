@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_zjmp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:52:12 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:40:28 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:48:52 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	op_zjmp(t_cw *cw, t_crg *crg)
 	t_args args;
 
 	ft_bzero(&args, sizeof(args));
-	args.pc_arg1 = (PC + OP_NAME) % MEM_SIZE;
-	ft_DIR_2(cw, &args, 1);
+	args.pc_arg1 = (crg->pc + OP_NAME) % MEM_SIZE;
+	ft_dir_2(cw, &args, 1);
 	args.arg1 = args.arg1 % IDX_MOD;
 	if (args.arg1 < 0)
 		args.arg1 = MEM_SIZE + (args.arg1 % MEM_SIZE);
 	if (crg->carry == 1)
 	{
-		PC = (PC + args.arg1) % MEM_SIZE;
+		crg->pc = (crg->pc + args.arg1) % MEM_SIZE;
 		crg->step = 0;
 	}
 	else

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   args_help_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 19:47:03 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 20:53:13 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:49:07 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void	ft_DIR_4(t_cw *cw, t_args *args, int num_arg)
+void	ft_dir_4(t_cw *cw, t_args *args, int num_arg)
 {
 	if (num_arg == 1)
 		args->arg1 = ft_reverse_4(cw, args->pc_arg1);
@@ -22,7 +22,7 @@ void	ft_DIR_4(t_cw *cw, t_args *args, int num_arg)
 		args->arg3 = ft_reverse_4(cw, args->pc_arg3);
 }
 
-void	ft_DIR_2(t_cw *cw, t_args *args, int num_arg)
+void	ft_dir_2(t_cw *cw, t_args *args, int num_arg)
 {
 	if (num_arg == 1)
 		args->arg1 = ft_reverse_2(cw, args->pc_arg1);
@@ -32,7 +32,7 @@ void	ft_DIR_2(t_cw *cw, t_args *args, int num_arg)
 		args->arg3 = ft_reverse_2(cw, args->pc_arg3);
 }
 
-void	ft_REG(t_cw *cw, t_crg *crg, t_args *args, int num_arg)
+void	ft_reg(t_cw *cw, t_crg *crg, t_args *args, int num_arg)
 {
 	if (num_arg == 1)
 		args->arg1 = crg->reg[(int)cw->map[args->pc_arg1] - 1];

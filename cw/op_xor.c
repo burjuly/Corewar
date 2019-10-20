@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_xor.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:51:23 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:39:48 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 00:51:06 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ void	op_xor(t_cw *cw, t_crg *crg)
 
 	ft_bzero(&args, sizeof(args));
 	args.code_args = crg->code_args;
-	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
+	args.pc_arg1 = (crg->pc + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	if (args.code_args == REG_REG_REG || args.code_args == REG_IND_REG
 	|| args.code_args == REG_DIR_REG)
-		ft_and_REG(cw, crg, &args);
+		ft_and_reg(cw, crg, &args);
 	else if (args.code_args == IND_REG_REG || args.code_args == IND_IND_REG
 	|| args.code_args == IND_DIR_REG)
-		ft_and_IND(cw, crg, &args);
+		ft_and_ind(cw, crg, &args);
 	else if (args.code_args == DIR_REG_REG || args.code_args == DIR_IND_REG
 	|| args.code_args == DIR_DIR_REG)
-		ft_and_DIR(cw, crg, &args);
+		ft_and_dir(cw, crg, &args);
 	args.arg3 = cw->map[args.pc_arg3];
 	crg->reg[args.arg3 - 1] = (args.arg1 ^ args.arg2);
 	if (crg->reg[args.arg3 - 1] == 0)
