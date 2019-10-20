@@ -1,4 +1,21 @@
-;
-; fwefwf
-wefwefwefw
-wefwef
+.name "name"
+.comment "
+comme
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	nt"
+
+marker:
+        live %0

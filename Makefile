@@ -23,7 +23,7 @@ SRCNAMES :=	asm.c assemble.c \
 			error.c filename_stuff.c \
 			to_bytecode.c file.c \
 			init.c terminate.c parse.c \
-			name_comment.c
+			name_comment.c get_words.c
 
 SRC := $(addprefix $(SRCDIR), $(SRCNAMES))
 OBJ := $(addprefix $(OBJDIR), $(SRCNAMES:.c=.o))

@@ -6,17 +6,54 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:20:16 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/20 18:17:03 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/20 22:15:38 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
+void	new_name(char *str, t_parser *parser, int32_t position)
+{
+	char	*name;
+	size_t	lenght;
+
+	name = get_words_inside(str, parser, position);
+	lenght = ft_strlen(name);
+	if (lenght > PROG_NAME_LENGTH)
+		ft_error("ERROR: So long name.");
+	parser->name = name;
+}
+
+void	new_comment(char *str, t_parser *parser, int32_t position)
+{
+	char	*comment;
+	size_t	lenght;
+
+	comment = get_words_inside(str, parser, position);
+	lenght = ft_strlen(comment);
+	if (lenght > COMMENT_LENGTH)
+		ft_error("ERROR: So long comment.");
+	parser->comment = comment;
+
+}
+
 void	new_name_or_comment(char *str, t_parser *parser, int32_t position)
 {
-	(void)str;
-	(void)parser;
-	(void)position;
+	if (!ft_strncmp(str, NAME_CMD_STRING, ft_strlen(NAME_CMD_STRING)))
+	{
+		if (parser->name)
+			syntax_error(parser->row, position);
+		new_name(str + ft_strlen(NAME_CMD_STRING), parser, position);
+	}
+	else if (!ft_strncmp(str, COMMENT_CMD_STRING, ft_strlen(COMMENT_CMD_STRING)))
+	{
+		if (parser->comment)
+			syntax_error(parser->row, position);
+		new_comment(str + ft_strlen(COMMENT_CMD_STRING), parser, position);
+	}
+	else
+		syntax_error(parser->row, position);
+	parser->flag = 0;
 }
 
 void	parse_name_and_comment(t_parser *parser)
