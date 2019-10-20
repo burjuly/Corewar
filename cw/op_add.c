@@ -6,14 +6,11 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:43:24 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 21:13:49 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 15:27:39 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
-
-// t_DIR = 4
-// Меняет carry
 
 void	ft_init_add(t_op *op)
 {
@@ -21,7 +18,6 @@ void	ft_init_add(t_op *op)
 	op->bef_op = 10;
 	op->need_arg_code = 1;
 	op->t_dir = 4;
-
 	op->code_args[0] = REG_REG_REG;
 	op->code_args[1] = '\0';
 }
@@ -34,7 +30,6 @@ void	op_add(t_cw *cw, t_crg *crg)
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	args.pc_arg2 = (PC + OP_NAME + CODE_ARGS + REG_NUM_SIZE) % MEM_SIZE;
 	args.pc_arg3 = (PC + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
-
 	args.arg1 = cw->map[args.pc_arg1];
 	args.arg2 = cw->map[args.pc_arg2];
 	args.arg3 = cw->map[args.pc_arg3]; 

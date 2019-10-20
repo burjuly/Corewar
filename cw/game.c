@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/18 22:18:33 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 13:09:20 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,16 @@ void	ft_do_cycle(t_cw *cw)
 	cw->round++;
 	cw->ctd_round++;
 /************************************************************/
-	// if (cw->round >= 5500 && cw->round <= 5606)
-	// 	ft_print_crg(cw, cw->crg);
+	if (cw->round >= 6195 && cw->round <= 6195)
+		ft_print_crg(cw, cw->crg);
 /***********************************************************/
 	while (crg != NULL)
 	{
 		num_crg++; // УБРАТЬ
-		if (cw->round >= 5583 && num_crg == 52)
+		if (cw->round >= 6194 && num_crg == 4)
 			debug = 1;
+		// if (cw->round >= 13695 && num_crg == 16464)
+		// 	debug = 1;
 		i++;
 		if (crg->bef_op == 0)
 		{
@@ -100,6 +102,7 @@ void	ft_do_cycle(t_cw *cw)
 		{
 			if (crg->cur_op > 0 && crg->cur_op <= 16)
 			{
+				//cw->map[1] = 106;
 				if (ft_valid_code_arg(cw, crg) != -1)
 					ft_do_op(cw, crg);
 				else

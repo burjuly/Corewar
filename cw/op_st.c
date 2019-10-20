@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_st.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:34:26 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/13 02:49:19 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/19 18:39:47 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	op_st(t_cw *cw, t_crg *crg)
 	args.pc_arg1 = (PC + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	args.pc_arg2 = (args.pc_arg1 + REG_NUM_SIZE) % MEM_SIZE;
 	ft_REG(cw, crg, &args, 1);
-	if (args.code_args == REG_REG)
+	if (args.code_args == REG_REG) 
 	{
 		args.arg2 = cw->map[args.pc_arg2];
 		crg->reg[args.arg2 - 1] = args.arg1;
