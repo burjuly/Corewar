@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 19:09:52 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:10:33 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	ft_add_plr_on_map(t_cw *cw)
 		else
 			break ;
 		ft_add_carriage(cw, k, i); // Добавляем новую каретку
-		printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", j + 1, cw->plr[j].code_size, cw->plr[j].name, cw->plr[j].comment);
+		ft_printf("* Player %d, weighing %d bytes, \"%s\" (\"%s\") !\n", j + 1, cw->plr[j].code_size, cw->plr[j].name, cw->plr[j].comment);
 		i = i + delta; // Позиция, где начнется код следующего чемпиона
 		k++;
 	}
