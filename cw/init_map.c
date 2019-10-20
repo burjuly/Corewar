@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/17 16:37:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:09:52 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,15 @@ void	ft_print_map(t_cw *cw)
 	while (i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i != 0)
-			printf(" \n");
+			ft_printf(" \n");
 		if (i % 64 == 0 && i != (MEM_SIZE - 1))
-			printf("0x%04x :", i);
+			ft_printf("0x%04x :", i);
 		if (i % 1 == 0)
-			printf(" ");
-		printf("%.2hhx", cw->map[i]);
+			ft_printf(" ");
+		ft_printf("%.2hhx", cw->map[i]);
 		i++;
 	}
-	printf(" \n");
+	ft_printf(" \n");
 }
 
 
@@ -88,7 +88,7 @@ void	ft_add_plr_on_map(t_cw *cw)
 	k = 1;
 	delta = MEM_SIZE / cw->plr_nbrs; // отступ между чемпионами
 	ft_memset(cw->map, 0, MEM_SIZE);
-	printf("Introducing contestants...\n");
+	ft_printf("Introducing contestants...\n");
 	while (i < 4096 && k <= cw->plr_nbrs)
 	{
 		j = ft_search_next_plr(cw, k); // Ищем кого будем добавлять на арену следующим

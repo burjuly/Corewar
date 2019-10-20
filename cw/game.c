@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 17:39:24 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:08:46 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ void	ft_do_cycle(t_cw *cw)
 	cw->round++;
 	cw->ctd_round++;
 /************************************************************/
-	if (cw->round >= 6195 && cw->round <= 6195)
-		ft_print_crg(cw, cw->crg);
+	// if (cw->round >= 6195 &cd .->crg);
 /***********************************************************/
 	while (crg != NULL)
 	{
@@ -199,14 +198,6 @@ void		ft_start_game(t_cw *cw)
 			cw->ctd_round = 0;
 		}
 	}
-	// if (cw->dump > cw->round)
-	// {
-	// 	ft_print_map(cw);
-	// 	printf("ROUND = %d\n", cw->round);
-	// 	exit(0);
-	// }
-	ft_printf("ROUND = %d\n", cw->round); // УБРАТЬ
+	ft_printf("ROUND = %d\n", cw->round);
 	ft_printf("Contestant %d, \"%s\", has won !\n", cw->last_plr, cw->plr[cw->last_plr - 1].name);
-	// if (cw->round != cw->dump)
-	// 	printf("Contestant %d, \"%s\", has won !\n", cw->last_plr, cw->plr[cw->last_plr - 1].name);
 }
