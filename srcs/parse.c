@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   asm.c                                              :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/09 13:23:00 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/20 15:27:43 by cdraugr-         ###   ########.fr       */
+/*   Created: 2019/10/20 15:31:48 by cdraugr-          #+#    #+#             */
+/*   Updated: 2019/10/20 15:56:58 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-int	main(int32_t argc, char **argv)
+void	parse(t_parser *parser)
 {
-	char	*output_filename;
-
-	if (!(output_filename = parse_filename(argc, argv)))
-		ft_error("ERROR: Invalid file name.");
-	assemble(argv[1], output_filename);
-	print_output_filename(&output_filename);
-	return (0);
+	read_file(parser);
 }

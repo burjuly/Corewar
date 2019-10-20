@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile1                                          :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: abartole <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: cdraugr- <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/17 20:55:12 by abartole          #+#    #+#              #
-#    Updated: 2019/09/17 21:34:53 by abartole         ###   ########.fr        #
+#    Created: 2019/09/17 20:55:12 by cdraugr-          #+#    #+#              #
+#    Updated: 2019/09/17 21:34:53 by cdraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ INCDIR := ./includes/
 # Srcs, objs
 SRCNAMES :=	asm.c assemble.c \
 			error.c filename_stuff.c \
-			init.c terminate.c
+			to_bytecode.c file.c \
+			init.c terminate.c parse.c \
+			name_comment.c
 
 SRC := $(addprefix $(SRCDIR), $(SRCNAMES))
 OBJ := $(addprefix $(OBJDIR), $(SRCNAMES:.c=.o))
