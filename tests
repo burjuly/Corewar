@@ -1,0 +1,52 @@
+corewar_def
+./corewar_def zork.cor         -d 57954 - 57955
+./corewar_def jumper.cor       -d 24690 - 24691
+./corewar_def bee_gees.cor     -d 27438 - 27439
+./corewar_def fluttershy.cor   -d 25902 - 25903
+
+./corewar_def zork.cor zork.cor                -d 33060 - 33061 - z1
+./corewar_def jumper.cor jumper.cor            -d 24401 - 24402 - j2
+./corewar_def fluttershy.cor fluttershy.cor    -d 25937 - 25938 - f1
+./corewar_def bee_gees.cor bee_gees.cor        -d 25902 - 25903 - b2 (sa)
+
+./corewar_def zork.cor jumper.cor             -d 24690 - 24691 - jumper
+./corewar_def jumper.cor zork.cor             -d 24690 - 24691 - jumper
+./corewar_def zork.cor bee_gees.cor           -d 24366 - 24367 - bee_gees(staying)
+./corewar_def bee_gees.cor zork.cor           -d 24366 - 24367 - bee_gees(staying)
+./corewar_def jumper.cor fluttershy.cor       -d 24437 - 24438 - fluttershy
+./corewar_def fluttershy.cor jumper.cor       -d 24437 - 24438 - fluttershy
+./corewar_def fluttershy.cor bee_gees.cor     -d 25902 - 25903 - fluttershy
+./corewar_def bee_gees.cor fluttershy.cor     -d 25902 - 25903 - fluttershy
+
+./corewar_def zork.cor zork.cor zork.cor                    -d 27432 - 27433 - z1
+./corewar_def jumper.cor jumper.cor jumper.cor              -d 24401 - 24402 - j2
+./corewar_def fluttershy.cor fluttershy.cor fluttershy.cor  -d 25902 - 25903 - f1
+./corewar_def bee_gees.cor bee_gees.cor bee_gees.cor        -d 25902 - 25903 - b3 (sa)
+
+./corewar_def zork.cor jumper.cor fluttershy.cor            -d 24366 - 24367 - fluttershy
+./corewar_def fluttershy.cor zork.cor jumper.cor            -d 24366 - 24367 - fluttershy
+./corewar_def zork.cor fluttershy.cor jumper.cor            -d 24366 - 24367 - fluttershy
+./corewar_def jumper.cor zork.cor fluttershy.cor            -d 24366 - 24367 - fluttershy
+./corewar_def jumper.cor bee_gees.cor fluttershy.cor        -d 24366 - 24367 - fluttershy
+./corewar_def bee_gees.cor fluttershy.cor zork.cor          -d 24366 - 24367 - bee_gees(staying)
+./corewar_def bee_gees.cor zork.cor jumper.cor              -d 24366 - 24367 - jumper
+./corewar_def bee_gees.cor bee_gees.cor fluttershy.cor      -d 25902 - 25903 - fluttershy
+
+./corewar_def zork.cor zork.cor zork.cor zork.cor                          -d 26689 - 26689 - z1
+./corewar_def jumper.cor jumper.cor jumper.cor jumper.cor                  -d 24401 - 24402 - j4
+./corewar_def fluttershy.cor fluttershy.cor fluttershy.cor fluttershy.cor  -d 25902 - 25903 - f1
+./corewar_def bee_gees.cor bee_gees.cor bee_gees.cor bee_gees.cor          -d 25902 - 25903 - b4 (sa)
+
+./corewar_def zork.cor jumper.cor fluttershy.cor bee_gees.cor           -d 24366 - 24367 - bee_gees(staying)
+./corewar_def zork.cor bee_gees.cor jumper.cor fluttershy.cor           -d 24366 - 24367 - bee_gees(staying)
+./corewar_def zork.cor bee_gees.cor jumper.cor zork.cor                 -d 24366 - 24367 - bee_gees(staying)
+./corewar_def zork.cor fluttershy.cor jumper.cor zork.cor               -d 24366 - 24367 - jumper
+
+ps
+"helltrain.cor" 27438
+"helltrain.cor fluttershy.cor"            25902
+"jumper.cor helltrain.cor fluttershy.cor" 24366
+"tchupka.cor TheHarvester.cor wave.cor"   55555
+"zork.cor helltrain.cor jumper.cor fluttershy.cor" 24366
+"zork.cor helltrain.cor jumper.cor helltrain.cor"  24366
+"Code_eater.cor Hidden.cor le_pet_de_nonne.cor sencha.cor" 27713
