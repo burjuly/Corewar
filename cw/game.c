@@ -6,29 +6,11 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 19:08:46 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 20:35:16 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
-
-// 1	live
-// 2	ld
-// 3	st
-// 4	add
-// 5	sub
-// 6	and
-// 7	or
-// 8	xor
-// 9	zjmp
-// 10	ldi
-// 11	sti
-// 12	fork
-// 13	lld
-// 14	lldi
-// 15	lfork
-// 16	aff
-
 
 void	ft_do_op(t_cw *cw, t_crg *crg)
 {
@@ -71,7 +53,7 @@ void	ft_do_cycle(t_cw *cw)
 {
 	t_crg	*crg;
 	int		i;
-	int		num_crg = 0; //УБРАТЬ
+	int		num_crg = 0;
 	int		debug = 0;
 	
 	i = 0;
@@ -101,7 +83,6 @@ void	ft_do_cycle(t_cw *cw)
 		{
 			if (crg->cur_op > 0 && crg->cur_op <= 16)
 			{
-				//cw->map[1] = 106;
 				if (ft_valid_code_arg(cw, crg) != -1)
 					ft_do_op(cw, crg);
 				else
@@ -126,11 +107,9 @@ void	ft_del_carriage(t_cw *cw, t_crg **cur, t_crg **prev, int *flag)
 	t_crg	*tmp;
 
 	tmp = NULL;
-	if ((*prev) == NULL) // Если удаляемая каретка первая в списке
+	if ((*prev) == NULL)
 	{
 		cw->crg = (*cur)->next;
-		// tmp = cur;
-		// free(tmp);
 		free(*cur);
 		*cur = cw->crg;
 		*flag = 1;
@@ -176,20 +155,13 @@ static void	ft_check_crgs(t_cw *cw)
 
 void		ft_start_game(t_cw *cw)
 {
-	//int debug = 0;
 	while (cw->crg != NULL)
 	{
-		//cw->round++;
-		//cw->ctd_round++;
 		if (cw->round == cw->dump)
 		{
 			ft_print_map(cw);
-			// Зашрифить каретки ?
 			exit(0);
-			//break ;
 		}
-		// if (cw->round == 24329)
-		// 	debug = 1;
 		ft_do_cycle(cw);
 		if (cw->cycle_to_die == cw->ctd_round || cw->cycle_to_die <= 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:53:44 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:07:16 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 19:12:05 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_ldi_DIR(t_cw *cw, t_crg *crg, t_args *args)
 		args->arg2 = crg->reg[(int)cw->map[args->pc_arg2] - 1];
 		args->pc_arg3 = args->pc_arg2 + REG_NUM_SIZE;
 	}
-	else if (args->code_args ==  DIR_DIR_REG)
+	else if (args->code_args == DIR_DIR_REG)
 	{
 		args->arg2 = ft_reverse_2(cw, args->pc_arg2);
 		args->pc_arg3 = args->pc_arg2 + DIR_2;
@@ -92,5 +92,6 @@ void	op_ldi(t_cw *cw, t_crg *crg)
 		ft_ldi_DIR(cw, crg, &args);
 	args.arg3 = (int)cw->map[args.pc_arg3];
 	args.address = args.arg1 + args.arg2;
-	crg->reg[args.arg3 - 1] = ft_reverse_4(cw, ((PC + args.address % IDX_MOD)) % MEM_SIZE);
+	crg->reg[args.arg3 - 1] = ft_reverse_4(cw, ((PC + args.address % IDX_MOD))
+	% MEM_SIZE);
 }

@@ -6,7 +6,7 @@
 #    By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 20:34:59 by waddam            #+#    #+#              #
-#    Updated: 2019/10/08 15:56:09 by draudrau         ###   ########.fr        #
+#    Updated: 2019/10/20 20:45:31 by draudrau         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,9 @@ SRC_CW = additions_1.c \
 		reverse.c \
 		valid_op.c \
 		args_help.c \
+		args_help_2.c \
+		valid_op_2.c \
+
 
 SRC_CW_PATH = ./
 SRC_CW_COMPL = $(addprefix $(SRC_CW_PATH), $(SRC_CW))

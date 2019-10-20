@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 15:22:54 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 20:48:22 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,6 +204,8 @@ int 				ft_check_REG_help(t_cw *cw, t_crg *crg);
 int					ft_check_REG(t_cw *cw, t_crg *crg);
 void				ft_parse_code_arg(t_cw *cw, t_crg *crg);
 int					ft_valid_code_arg(t_cw *cw, t_crg *crg);
+void				ft_check_help(t_cw *cw, t_crg *crg, int *i, int *pc);
+void				ft_help_valid(t_cw *cw, t_crg *crg);
 
 
 // args_help
