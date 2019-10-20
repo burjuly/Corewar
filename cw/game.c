@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 20:35:16 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 21:51:12 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
+
+// 1	live
+// 2	ld
+// 3	st
+// 4	add
+// 5	sub
+// 6	and
+// 7	or
+// 8	xor
+// 9	zjmp
+// 10	ldi
+// 11	sti
+// 12	fork
+// 13	lld
+// 14	lldi
+// 15	lfork
+// 16	aff
+
 
 void	ft_do_op(t_cw *cw, t_crg *crg)
 {
@@ -53,9 +71,9 @@ void	ft_do_cycle(t_cw *cw)
 {
 	t_crg	*crg;
 	int		i;
-	int		num_crg = 0;
+	int		num_crg = 0; //УБРАТЬ
 	int		debug = 0;
-	
+
 	i = 0;
 	crg = cw->crg;
 	cw->round++;
@@ -83,6 +101,7 @@ void	ft_do_cycle(t_cw *cw)
 		{
 			if (crg->cur_op > 0 && crg->cur_op <= 16)
 			{
+				//cw->map[1] = 106;
 				if (ft_valid_code_arg(cw, crg) != -1)
 					ft_do_op(cw, crg);
 				else
@@ -91,7 +110,7 @@ void	ft_do_cycle(t_cw *cw)
 /************************************************************/
 				// if (cw->round >= 4703 && cw->round <= 4704)
 				// 	ft_print_crg(cw, cw->crg);
-/***********************************************************/				
+/***********************************************************/
 				crg->step = 0;
 				crg->code_args = 0;
 			}
@@ -107,17 +126,23 @@ void	ft_del_carriage(t_cw *cw, t_crg **cur, t_crg **prev, int *flag)
 	t_crg	*tmp;
 
 	tmp = NULL;
-	if ((*prev) == NULL)
+	if ((*prev) == NULL) // Если удаляемая каретка первая в списке
 	{
 		cw->crg = (*cur)->next;
+		// tmp = cur;
+		// free(tmp);
+		// ft_memdel((void **)cur);
 		free(*cur);
+		// *cur = NULL;
 		*cur = cw->crg;
 		*flag = 1;
 	}
 	else
 	{
 		tmp = (*cur)->next;
+		// ft_memdel((void **)cur);
 		free(*cur);
+		*cur = NULL;
 		(*prev)->next = tmp;
 	}
 	cw->count_crg--;
@@ -129,22 +154,27 @@ static void	ft_check_crgs(t_cw *cw)
 	t_crg	*prev_crg;
 	int		i = 0;
 	int		flag;
+	int 	debug = 0;
 
 	cur_crg = cw->crg;
 	prev_crg = NULL;
 	cw->checks++;
 	while (cur_crg != NULL)
 	{
+		i++;
 		flag = 0;
+		if (cw->round == 19312 && i == 39731)
+			debug = 1;
 		if (cw->round - cur_crg->last_live >= cw->cycle_to_die || cw->cycle_to_die <= 0)
 		{
-			i++;
 			ft_del_carriage(cw, &cur_crg, &prev_crg, &flag);
 		}
 		else
 			prev_crg = cur_crg;
 		if (cur_crg != NULL && flag == 0)
 			cur_crg = cur_crg->next;
+		else if (cur_crg == NULL)
+			cur_crg = prev_crg;
 	}
 	if (cw->count_live >= NBR_LIVE || cw->checks == MAX_CHECKS)
 	{
@@ -155,13 +185,20 @@ static void	ft_check_crgs(t_cw *cw)
 
 void		ft_start_game(t_cw *cw)
 {
+	//int debug = 0;
 	while (cw->crg != NULL)
 	{
+		//cw->round++;
+		//cw->ctd_round++;
 		if (cw->round == cw->dump)
 		{
 			ft_print_map(cw);
+			// Зашрифить каретки ?
 			exit(0);
+			//break ;
 		}
+		// if (cw->round == 24329)
+		// 	debug = 1;
 		ft_do_cycle(cw);
 		if (cw->cycle_to_die == cw->ctd_round || cw->cycle_to_die <= 0)
 		{
