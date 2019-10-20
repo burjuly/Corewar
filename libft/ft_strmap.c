@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/10 18:18:37 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/21 05:43:43 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/15 17:12:18 by draudrau          #+#    #+#             */
+/*   Updated: 2018/12/25 15:26:28 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,23 @@
 
 char	*ft_strmap(char const *s, char (*f)(char))
 {
-	char	*temp;
-	size_t	i;
-	size_t	len;
+	char	*tab;
+	int		i;
 
-	if (s && f)
+	if (s == NULL || f == NULL)
 	{
-		len = ft_strlen(s);
-		if (!(temp = (char *)malloc(sizeof(char) * (len + 1))))
-			return (NULL);
-		i = 0;
-		while (i < len)
-		{
-			temp[i] = f(s[i]);
-			i++;
-		}
-		temp[i] = '\0';
-		return (temp);
-	}
-	else
 		return (NULL);
+	}
+	if ((tab = (char *)malloc(ft_strlen(s) + 1)) == NULL)
+	{
+		return (NULL);
+	}
+	i = 0;
+	while (s[i] != '\0')
+	{
+		tab[i] = f(s[i]);
+		i++;
+	}
+	tab[i] = '\0';
+	return (tab);
 }

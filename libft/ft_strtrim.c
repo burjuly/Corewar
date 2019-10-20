@@ -3,65 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/12 18:23:37 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/12 18:23:46 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/16 20:03:02 by draudrau          #+#    #+#             */
+/*   Updated: 2019/01/20 17:07:39 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	ft_len(char const *s)
+static	char	*ft_null_s(void)
 {
-	size_t	count;
-	size_t	len;
+	char *null_s;
 
-	count = 0;
-	len = ft_strlen(s);
-	while ((*s == ' ') || (*s == '\n') || (*s == '\t'))
-	{
-		s++;
-		count++;
-	}
-	while (*s)
-		s++;
-	s--;
-	while ((*s == ' ') || (*s == '\n') || (*s == '\t'))
-	{
-		s--;
-		count++;
-		if (count > len)
-			return (0);
-	}
-	len = len - count;
-	return (len);
+	if ((null_s = (char*)malloc(1)) == NULL)
+		return (NULL);
+	else
+		null_s[0] = '\0';
+	return (null_s);
 }
 
 char			*ft_strtrim(char const *s)
 {
-	char	*temp;
-	size_t	len;
-	size_t	temp_len;
+	size_t	i;
+	size_t	k;
+	size_t	w;
+	char	*tab;
 
 	if (s == NULL)
 		return (NULL);
-	len = ft_len(s);
-	temp_len = len;
-	if (!(temp = (char *)malloc(sizeof(char) * (len + 1))))
+	i = 0;
+	while (s[i] == ' ' || s[i] == '\n' || s[i] == '\t')
+		i++;
+	if (*s == '\0' || i == ft_strlen(s))
+		return (ft_null_s());
+	w = 0;
+	k = ft_strlen(s) - 1;
+	while (s[k] == ' ' || s[k] == '\n' || s[k] == '\t')
+		k--;
+	if ((tab = (char*)malloc(k - i + 2)) == NULL)
 		return (NULL);
-	while ((*s == ' ') || (*s == '\n') || (*s == '\t'))
-		s++;
-	while (len > 0)
+	while (k >= i + w)
 	{
-		*temp++ = *s++;
-		len--;
+		tab[w] = s[i + w];
+		w++;
 	}
-	*temp = '\0';
-	while (temp_len > 0)
-	{
-		temp_len--;
-		temp--;
-	}
-	return (temp);
+	tab[w] = '\0';
+	return (tab);
 }

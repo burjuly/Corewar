@@ -3,38 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/04 16:39:39 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/09 19:32:18 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/11 16:08:24 by draudrau          #+#    #+#             */
+/*   Updated: 2019/01/25 17:59:51 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strstr(const char *haystack, const char *needle)
+char				*ft_strstr(const char *s1, const char *s2)
 {
-	char	*hst;
-	char	*ndl;
-	size_t	i;
-	size_t	j;
+	int	i;
+	int	j;
+	int	t;
 
-	hst = (char *)haystack;
-	ndl = (char *)needle;
 	i = 0;
-	if (ndl[0] == '\0')
-		return (hst);
-	while (hst[i] != '\0')
+	t = 0;
+	if (s2[i] == '\0')
+		return ((char*)s1);
+	while (s1[t] != '\0')
 	{
 		j = 0;
-		if (hst[i] == ndl[j])
+		i = t;
+		while (s2[j] == s1[i])
 		{
-			while ((hst[i + j] == ndl[j]) && ndl[j] != '\0')
-				j++;
-			if (ndl[j] == '\0')
-				return (&hst[i]);
+			if (s2[j + 1] == '\0')
+				return ((char*)s1 + t);
+			i++;
+			j++;
 		}
-		i++;
+		t++;
 	}
 	return (NULL);
 }

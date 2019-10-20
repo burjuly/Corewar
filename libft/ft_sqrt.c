@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_swapchar.c                                      :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/21 18:21:59 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/21 18:24:07 by waddam           ###   ########.fr       */
+/*   Created: 2018/11/25 18:32:32 by draudrau          #+#    #+#             */
+/*   Updated: 2019/03/10 13:26:40 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	ft_swapchar(char **s1, char **s2)
-{
-	char	*temp;
+#include "libft.h"
 
-	temp = *s1;
-	*s1 = *s2;
-	*s2 = temp;
+int	ft_sqrt(int nb)
+{
+	int	i;
+
+	i = 1;
+	if (nb <= 0)
+		return (0);
+	while (i <= nb)
+	{
+		if ((i * i) == nb)
+			return (i);
+		i++;
+	}
+	return (0);
 }

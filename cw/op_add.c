@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:43:24 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 15:27:39 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 17:35:23 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ void	op_add(t_cw *cw, t_crg *crg)
 	args.pc_arg3 = (PC + OP_NAME + CODE_ARGS + 2 * REG_NUM_SIZE) % MEM_SIZE;
 	args.arg1 = cw->map[args.pc_arg1];
 	args.arg2 = cw->map[args.pc_arg2];
-	args.arg3 = cw->map[args.pc_arg3]; 
+	args.arg3 = cw->map[args.pc_arg3];
 	crg->reg[args.arg3 - 1] = crg->reg[args.arg1 - 1] + crg->reg[args.arg2 - 1];
-	(crg->reg[args.arg3 - 1] == 0) ? (crg->carry = 1) : (crg->carry = 0);
+	if (crg->reg[args.arg3 - 1] == 0)
+		crg->carry = 1;
+	else
+		crg->carry = 0;
 }

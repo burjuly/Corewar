@@ -3,101 +3,104 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/15 13:41:19 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/16 18:49:59 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/19 14:43:29 by draudrau          #+#    #+#             */
+/*   Updated: 2019/01/15 18:50:55 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_delimiter(char a, char c)
+static int	ft_parts(char const *s, char c)
 {
-	return (a == c ? 1 : 0);
-}
+	int		i;
+	int		count;
+	_Bool	fl;
 
-static size_t	ft_words(char *s, char c)
-{
-	int		flag;
-	size_t	words;
-
-	flag = 0;
-	words = 0;
-	while (*s)
+	i = 0;
+	fl = 0;
+	count = 0;
+	while (s[i])
 	{
-		if (ft_delimiter(*s, c) == 1)
+		if (s[i] == c)
+			fl = 0;
+		else if (!fl)
 		{
-			flag = 0;
-			s++;
+			count++;
+			fl = 1;
 		}
-		else
-		{
-			if (flag == 0)
-				words++;
-			flag = 1;
-			s++;
-		}
+		i++;
 	}
-	return (words);
+	return (count);
 }
 
-static size_t	ft_characters(char *s, char c)
+static int	ft_l(char const *s, char c)
 {
-	size_t	len;
+	int i;
+	int len;
 
+	i = 0;
 	len = 0;
-	while ((ft_delimiter(*s, c) == 0) && *s)
+	while (s[i])
 	{
-		len++;
-		s++;
-	}
-	return (len);
-}
-
-static int		ft_allocate(size_t j, char **array, size_t len)
-{
-	if (!(array[j] = (char *)malloc(sizeof(char) * (len + 1))))
-	{
-		while (j > 0)
+		while (s[i] != c && s[i] != '\0')
 		{
-			free(array[j - 1]);
-			array[j - 1] = NULL;
-			j--;
+			len++;
+			i++;
 		}
-		free(array);
-		array = NULL;
-		return (0);
+		return (len);
 	}
-	else
-		return (1);
+	return (0);
 }
 
-char			**ft_strsplit(char const *s, char c)
+static void	ft_free(char ***tab, int k)
 {
-	char	**array;
-	char	*temp;
-	size_t	i;
-	size_t	j;
+	while (k--)
+	{
+		free((*tab)[k]);
+		(*tab)[k] = NULL;
+	}
+	free(*tab);
+	*tab = NULL;
+}
+
+static char	**ft_spl(char **t, char const *s, char c)
+{
+	int k;
+	int n;
+
+	k = 0;
+	n = 0;
+	while (*s != '\0')
+	{
+		while (*s == c && *s != '\0')
+			s++;
+		if (*s != c && *s != '\0')
+		{
+			if ((t[k] = (char*)malloc(sizeof(char) * (ft_l(s, c) + 1))) == NULL)
+			{
+				ft_free(&t, k);
+				return (NULL);
+			}
+			while (*s != c && *s != '\0')
+				t[k][n++] = (char)*s++;
+			t[k][n] = '\0';
+			n = 0;
+			k++;
+		}
+	}
+	t[k] = NULL;
+	return (t);
+}
+
+char		**ft_strsplit(char const *s, char c)
+{
+	char	**t;
 
 	if (s == NULL)
 		return (NULL);
-	temp = (char *)s;
-	i = 0;
-	j = 0;
-	if (!(array = (char **)malloc(sizeof(char *) * (ft_words(temp, c) + 1))))
+	if ((t = (char**)malloc(sizeof(char*) * (ft_parts(s, c) + 1))) == NULL)
 		return (NULL);
-	while (j < ft_words(temp, c))
-	{
-		while (ft_delimiter(temp[i], c) == 1)
-			i++;
-		if (!(ft_allocate(j, array, ft_characters(&temp[i], c))))
-			return (NULL);
-		ft_strncpy(array[j], &temp[i], ft_characters(&temp[i], c));
-		array[j][ft_characters(&temp[i], c)] = '\0';
-		i += ft_characters(&temp[i], c);
-		j++;
-	}
-	array[j] = NULL;
-	return (array);
+	return (ft_spl(t, s, c));
 }

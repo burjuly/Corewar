@@ -3,60 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/16 20:06:16 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/16 20:19:14 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/16 18:15:23 by draudrau          #+#    #+#             */
+/*   Updated: 2018/12/27 20:35:00 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_count(int count, unsigned int temp)
+static int	count_of_digits(int n)
 {
-	while (temp > 9)
+	int count;
+
+	if (n == 0)
+		return (1);
+	count = 0;
+	if (n < 0)
 	{
-		temp = temp / 10;
+		count++;
+		n = (-1) * n;
+	}
+	while (n)
+	{
+		n = n / 10;
 		count++;
 	}
 	return (count);
 }
 
-static char	*ft_allocate(int count, unsigned int temp, char sign)
-{
-	char	*str;
-
-	if (!(str = (char *)malloc(sizeof(char) * (count + 1))))
-		return (NULL);
-	str[count] = '\0';
-	while (count > 0)
-	{
-		str[count - 1] = (temp % 10) + '0';
-		temp = temp / 10;
-		count--;
-	}
-	if (sign == '-')
-		str[0] = '-';
-	return (str);
-}
-
 char		*ft_itoa(int n)
 {
-	char			sign;
-	int				count;
-	unsigned int	temp;
+	char	*res;
+	int		i;
+	int		is_neg;
 
-	sign = '+';
-	count = 1;
-	temp = 0;
+	is_neg = 1;
 	if (n < 0)
+		is_neg = -1;
+	i = count_of_digits(n);
+	if (!(res = (char *)malloc(sizeof(char) * (i + 1))))
+		return (NULL);
+	res[i] = 0;
+	while (i)
 	{
-		temp = -n;
-		sign = '-';
-		count++;
+		res[i - 1] = is_neg * (n % 10) + 48;
+		n = n / 10;
+		i--;
 	}
-	else
-		temp = n;
-	count = ft_count(count, temp);
-	return (ft_allocate(count, temp, sign));
+	if (is_neg == -1)
+		res[0] = '-';
+	return (res);
 }

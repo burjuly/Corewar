@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/01 12:37:56 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/09 19:18:03 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/04 15:59:19 by draudrau          #+#    #+#             */
+/*   Updated: 2019/01/25 16:10:27 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,5 @@ char	*ft_strcpy(char *dst, const char *src)
 		i++;
 	}
 	dst[i] = '\0';
-	if (ft_strlen(dst) > ft_strlen(src))
-	{
-		while (i < ft_strlen(dst))
-		{
-			dst[i] = '\0';
-			i++;
-		}
-	}
-	return (dst);
+	return ((char*)dst);
 }

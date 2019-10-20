@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsub.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/11 00:16:05 by waddam            #+#    #+#             */
-/*   Updated: 2018/12/11 00:16:07 by waddam           ###   ########.fr       */
+/*   Created: 2018/12/16 17:15:37 by draudrau          #+#    #+#             */
+/*   Updated: 2019/02/17 19:28:25 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,25 @@
 
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
-	char	*temp;
+	char	*tab;
+	size_t	len_s;
 	size_t	i;
 
-	if (s)
-	{
-		i = 0;
-		if (!(temp = ft_strnew(len)))
-			return (NULL);
-		while ((i < len) && *s)
-		{
-			temp[i] = s[start + i];
-			i++;
-		}
-		temp[i] = '\0';
-		return (temp);
-	}
-	else
+	if (s == NULL)
 		return (NULL);
+	len_s = ft_strlen(s);
+	if (start + 1 > len_s)
+		return (NULL);
+	if (len == 0 && start == 0)
+		return (ft_strnew(0));
+	if ((tab = (char *)malloc(len + 1)) == NULL)
+		return (NULL);
+	i = 0;
+	while (len > i)
+	{
+		tab[i] = s[start + i];
+		i++;
+	}
+	tab[i] = '\0';
+	return (tab);
 }

@@ -6,7 +6,7 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/20 13:09:20 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/20 17:39:24 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,8 +205,8 @@ void		ft_start_game(t_cw *cw)
 	// 	printf("ROUND = %d\n", cw->round);
 	// 	exit(0);
 	// }
-	printf("ROUND = %d\n", cw->round); // УБРАТЬ
-	printf("Contestant %d, \"%s\", has won !\n", cw->last_plr, cw->plr[cw->last_plr - 1].name);
+	ft_printf("ROUND = %d\n", cw->round); // УБРАТЬ
+	ft_printf("Contestant %d, \"%s\", has won !\n", cw->last_plr, cw->plr[cw->last_plr - 1].name);
 	// if (cw->round != cw->dump)
 	// 	printf("Contestant %d, \"%s\", has won !\n", cw->last_plr, cw->plr[cw->last_plr - 1].name);
 }
