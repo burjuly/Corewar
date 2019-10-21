@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   players.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:48:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/20 19:43:01 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/22 01:10:00 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,7 @@ static void	ft_write_data(char *name, t_plr *plr)
 	if ((fd = open(name, O_RDONLY)) != -1)
 	{
 		ft_fill_plr(fd, plr);
-		if (close(fd) == -1)
-			ft_leave("Error: Cannot close file");
+		close(fd);
 	}
 	else
 		ft_leave("Error: Cannot open file");

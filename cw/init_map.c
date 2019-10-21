@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/22 00:42:17 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/22 00:56:07 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,6 @@ void	ft_add_plr_on_map(t_cw *cw)
 void	ft_map(t_cw *cw)
 {
 	if (cw->plr_nbrs == 0)
-		ft_leave("Error: No champions.\n");
+		ft_leave("Error: No champions.");
 	ft_add_plr_on_map(cw);
 }

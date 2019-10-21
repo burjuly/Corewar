@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 20:04:49 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/22 00:42:21 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/22 00:56:24 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void		ft_parse_input(int argc, char **argv, t_cw *cw)
 
 	i = 1;
 	if (argc <= 1)
-		ft_leave("Error: Too few arguments.\n");
+		ft_leave("Error: Too few arguments.");
 	ft_initialize(cw);
 	while (i < argc)
 	{
@@ -120,7 +120,7 @@ void		ft_parse_input(int argc, char **argv, t_cw *cw)
 		else if (ft_analyze_plr(argv, &i) == 0)
 			ft_write_plr(argv, &i, cw, 0);
 		else
-			ft_leave("Error: Bad input.\n");
+			ft_leave("Error: Bad input.");
 		i++;
 	}
 	ft_correct_plrs(cw);

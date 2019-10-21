@@ -24,3 +24,14 @@ echo "invalid"
 ./corewar -n 0 ../zork.cor -n 1 ../zork.cor
 ./corewar -n 3 ../zork.cor -n 1 ../zork.cor
 ./corewar zork.cor -na 1 zork.cor
+
+valgrind --leak-check=full -v ./corewar
+valgrind ./corewar -dump
+valgrind ./corewar -dump -1
+valgrind ./corewar -dump -1 ultima.cor
+valgrind ./corewar -dump 1 ultima.cor
+valgrind ./corewar -dump +111111111 ultima.cor
+valgrind ./corewar ultima.cor zork.cor
+valgrind ./corewar -n 3 jumper.cor zork.cor  bee_gees.cor
+./corewar -n 3 jumper.cor zork.cor -n +2 bee_gees.cor
+./corewar -dump zork.cor
