@@ -3,103 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/21 01:53:51 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/21 20:59:45 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
-
-/*
-** 1	live
-** 2	ld
-** 3	st
-** 4	add
-** 5	sub
-** 6	and
-** 7	or
-** 8	xor
-** 9	zjmp
-** 10	ldi
-** 11	sti
-** 12	fork
-** 13	lld
-** 14	lldi
-** 15	lfork
-** 16	aff
-*/
-
-static void	ft_do_op(t_cw *cw, t_crg *crg)
-{
-	if (crg->cur_op == 1)
-		op_live(cw, crg);
-	else if (crg->cur_op == 2)
-		op_ld(cw, crg);
-	else if (crg->cur_op == 3)
-		op_st(cw, crg);
-	else if (crg->cur_op == 4)
-		op_add(cw, crg);
-	else if (crg->cur_op == 5)
-		op_sub(cw, crg);
-	else if (crg->cur_op == 6)
-		op_and(cw, crg);
-	else if (crg->cur_op == 7)
-		op_or(cw, crg);
-	else if (crg->cur_op == 8)
-		op_xor(cw, crg);
-	else if (crg->cur_op == 9)
-		op_zjmp(cw, crg);
-	else if (crg->cur_op == 10)
-		op_ldi(cw, crg);
-	else if (crg->cur_op == 11)
-		op_sti(cw, crg);
-	else if (crg->cur_op == 12)
-		op_fork(cw, crg);
-	else if (crg->cur_op == 13)
-		op_lld(cw, crg);
-	else if (crg->cur_op == 14)
-		op_lldi(cw, crg);
-	else if (crg->cur_op == 15)
-		op_lfork(cw, crg);
-	else if (crg->cur_op == 16)
-		op_aff(cw, crg);
-}
-
-static void	ft_do_cycle(t_cw *cw)
-{
-	t_crg	*crg;
-
-	crg = cw->crg;
-	while (crg != NULL)
-	{
-		if (crg->bef_op == 0)
-		{
-			crg->cur_op = cw->map[crg->pc];
-			if (crg->cur_op > 0 && crg->cur_op <= 16)
-				crg->bef_op = cw->op[crg->cur_op - 1].bef_op;
-		}
-		if (crg->bef_op > 0)
-			(crg->bef_op)--;
-		if (crg->bef_op == 0)
-		{
-			if (crg->cur_op > 0 && crg->cur_op <= 16)
-			{
-				if (ft_valid_code_arg(cw, crg) != -1)
-					ft_do_op(cw, crg);
-				else
-					ft_wrong_code_args(cw, crg);
-				crg->pc = (crg->pc + crg->step) % MEM_SIZE;
-				crg->step = 0;
-				crg->code_args = 0;
-			}
-			else
-				crg->pc = (crg->pc + 1) % MEM_SIZE;
-		}
-		crg = crg->next;
-	}
-}
 
 static void	ft_del_carriage(t_cw *cw, t_crg **cur, t_crg **prev, int *flag)
 {

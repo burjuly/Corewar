@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 01:53:36 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/21 20:58:41 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,10 @@ void				op_aff(t_cw *cw, t_crg *crg);
 
 void				ft_start_game(t_cw *cw);
 
+void				ft_do_op(t_cw *cw, t_crg *crg);
+
+void				ft_do_cycle(t_cw *cw);
+
 int					ft_reverse_2(t_cw *cw, int pc);
 int					ft_reverse_4(t_cw *cw, int pc);
 
@@ -184,5 +188,6 @@ void				ft_dir_2(t_cw *cw, t_args *args, int num_arg);
 void				ft_dir_4(t_cw *cw, t_args *args, int num_arg);
 void				ft_reg(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
 void				ft_write_int_in_map(t_cw *cw, int pc, int value);
+
 
 #endif

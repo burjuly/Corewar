@@ -6,18 +6,11 @@
 /*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 19:59:05 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/06 16:02:26 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 21:03:11 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
-
-/*
-** TODO
-** Перенести сортировку в players2.c
-** Сделать функции для сортировки с флагом и без, вызывать их из ft_correct_plrs
-** void swap?
-*/
 
 static void	ft_swap_char(char *a, char *b)
 {

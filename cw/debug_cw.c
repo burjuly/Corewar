@@ -3,36 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   debug_cw.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
+/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 00:32:25 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 01:24:38 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/21 21:28:42 by draudrau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
 
-void	ft_print_plrs(t_plr *plr, int size)
-{
-	int		i;
-
-	i = 0;
-	while (i < size)
-	{
-		ft_printf(">>Player%i<<\n", i + 1);
-		ft_printf("num:       %i\n", plr[i].num);
-		ft_printf("name:      %s\n", plr[i].name);
-		ft_printf("code_size: %i\n", plr[i].code_size);
-		ft_printf("comment:   %s\n", plr[i].comment);
-		ft_printf("code:      %s\n", plr[i].code);
-		ft_printf("flag_n:    %i\n", plr[i].flag_n);
-		i++;
-		if (i != size)
-			ft_printf("\n");
-	}
-}
-
-void	ft_print_args(t_args *args)
+void		ft_print_args(t_args *args)
 {
 	ft_printf("CODE_ARGS = %d\n", args->code_args);
 	ft_printf("ARG 1 = %d\n", args->arg1);
@@ -44,14 +24,31 @@ void	ft_print_args(t_args *args)
 	ft_printf("adrress = %d\n", args->address);
 }
 
-void	ft_print_crg(t_cw *cw, t_crg *crg)
+static void	ft_print_help(t_crg *crg)
 {
-	int		i;
-	int		j;
+	int i;
+	int j;
+
+	j = 1;
+	while (crg != NULL)
+	{
+		i = -1;
+		ft_printf("КАРЕТКА №%d\n", j);
+		while (++i < 16)
+			ft_printf("reg[%d] = %d\n", i, crg->reg[i]);
+		ft_printf("pc = %d\n", crg->pc);
+		ft_printf("carry = %d\n", crg->carry);
+		ft_printf("cur_op = %d\n", crg->cur_op);
+		crg = crg->next;
+		j++;
+	}
+}
+
+void		ft_print_crg(t_cw *cw, t_crg *crg)
+{
 	int		count;
 	t_crg	*tmp;
 
-	j = 1;
 	count = 0;
 	tmp = crg;
 	while (tmp)
@@ -62,23 +59,30 @@ void	ft_print_crg(t_cw *cw, t_crg *crg)
 	ft_printf("\nROUND = %d\n", cw->round);
 	ft_printf("CYCLE TO DIE = %d\n", cw->cycle_to_die);
 	ft_printf("КОЛ-ВО КАРЕТОК = %d\n", count);
-	//printf("КОЛ-ВО КАРЕТОК = %d\n", cw->count_crg);
-	while (crg != NULL)
-	{
-		i = -1;
-		ft_printf("КАРЕТКА №%d\n", j);
-		while (++i < 16)
-			ft_printf("reg[%d] = %d\n", i, crg->reg[i]);
-		ft_printf("pc = %d\n", crg->pc);
-		ft_printf("carry = %d\n", crg->carry);
-		ft_printf("cur_op = %d\n", crg->cur_op);
-		//printf("bef_op = %d\n", crg->bef_op);
-		crg = crg->next;
-		j++;
-	}
+	ft_print_help(crg);
 }
 
-void	ft_print_name_op(t_crg *crg)
+static void	ft_print_name_help(t_crg *crg)
+{
+	if (crg->cur_op == 9)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ zjmp\n");
+	else if (crg->cur_op == 10)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
+	else if (crg->cur_op == 11)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
+	else if (crg->cur_op == 12)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
+	else if (crg->cur_op == 13)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
+	else if (crg->cur_op == 14)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");
+	else if (crg->cur_op == 15)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
+	else if (crg->cur_op == 16)
+		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
+}
+
+void		ft_print_name_op(t_crg *crg)
 {
 	if (crg->cur_op == 1)
 		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ live\n");
@@ -96,20 +100,5 @@ void	ft_print_name_op(t_crg *crg)
 		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ or\n");
 	else if (crg->cur_op == 8)
 		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ xor\n");
-	else if (crg->cur_op == 9)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ zjmp\n");
-	else if (crg->cur_op == 10)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ ldi\n");
-	else if (crg->cur_op == 11)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ sti\n");
-	else if (crg->cur_op == 12)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ fork\n");
-	else if (crg->cur_op == 13)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ lld\n");
-	else if (crg->cur_op == 14)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ lldi\n");
-	else if (crg->cur_op == 15)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ lfork\n");
-	else if (crg->cur_op == 16)
-		ft_printf("ЗАШЛИ В ОПЕРАЦИЮ aff\n");
+	ft_print_name_help(crg);
 }
