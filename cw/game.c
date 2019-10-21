@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/21 20:59:45 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/22 01:33:58 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ void		ft_start_game(t_cw *cw)
 			cw->ctd_round = 0;
 		}
 	}
-	ft_printf("ROUND = %d\n", cw->round);
 	ft_printf("Contestant %d, \"%s\", has won !\n",
 		cw->last_plr, cw->plr[cw->last_plr - 1].name);
 }
