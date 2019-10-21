@@ -1,0 +1,26 @@
+#valid
+echo "valid"
+./corewar ../zork.cor
+./corewar ../zork.cor -n 1 ../zork.cor
+./corewar -n 1 ../zork.cor ../zork.cor
+./corewar -n 2 ../zork.cor -n 1 ../zork.cor
+./corewar zork.cor
+./corewar zork.cor -n 2 jumper.cor
+./corewar jumper.cor zork.cor -n 1 zork.cor zork.cor
+./corewar -n 3 jumper.cor zork.cor  bee_gees.cor -n 2 bigzork.cor
+./corewar jumper.cor zork.cor -n 1 bee_gees.cor
+./corewar zork.cor -n 1 bee_gees.cor jumper.cor
+
+#invalid
+echo "invalid"
+./corewar ../zork.cor sdf
+./corewar sdf ../zork.cor
+./corewar ../zork.cor -n
+./corewar ../zork.cor -n 1
+./corewar ../zork.cor -n ../zork.cor 1
+./corewar -n ../zork.cor ../zork.cor
+ ./corewar -n 1 ../zork.cor ../zork.co
+./corewar -n 1 ../zork.cor -n 1 ../zork.cor
+./corewar -n 0 ../zork.cor -n 1 ../zork.cor
+./corewar -n 3 ../zork.cor -n 1 ../zork.cor
+./corewar zork.cor -na 1 zork.cor
