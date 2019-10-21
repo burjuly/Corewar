@@ -3,15 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+         #
+#    By: waddam <waddam@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/10/01 20:34:59 by waddam            #+#    #+#              #
-#    Updated: 2019/10/21 20:59:11 by draudrau         ###   ########.fr        #
+#    Updated: 2019/10/22 00:34:51 by waddam           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CW = corewar
 SRC_CW = additions_1.c \
+		additions_2.c \
 		corewar.c \
 		debug_cw.c \
 		init_map.c \
@@ -37,10 +38,10 @@ SRC_CW = additions_1.c \
 		game_2.c \
 		cycle.c \
 		reverse.c \
-		valid_op.c \
 		args_help.c \
 		args_help_2.c \
-		valid_op_2.c \
+		valid_op.c \
+		valid_op_2.c
 
 
 SRC_CW_PATH = ./

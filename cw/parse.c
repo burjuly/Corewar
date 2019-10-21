@@ -6,11 +6,36 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 20:04:49 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 01:18:58 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/22 00:42:21 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../corewar.h"
+
+static int	ft_check_overflow(char *argv, int num)
+{
+	int		i;
+	int		j;
+	char	*str;
+
+	i = 0;
+	j = 0;
+	str = ft_itoa(num);
+	if (num != 0)
+	{
+		j = ft_skip_null_sign(argv);
+		i = ft_skip_null_sign(str);
+	}
+	while (str[i] != '\0')
+	{
+		if (argv[j] != str[i])
+			return (1);
+		i++;
+		j++;
+	}
+	free(str);
+	return (0);
+}
 
 static int	ft_analyze_plr(char **argv, int *i)
 {
@@ -36,16 +61,16 @@ static void	ft_flag_n(int argc, char **argv, int *i, t_cw *cw)
 	if (*i + 2 < argc)
 	{
 		(*i)++;
+		if (argv[*i][0] == '+')
+			(argv[*i])++;
 		if (ft_strlen(argv[*i]) > 1 || ft_isdigit(argv[*i][0]) == 0)
 			ft_leave("Error: Bad arguments for the -n flag");
 		pos = ft_atoi(argv[*i]);
 		if (pos > MAX_PLAYERS || pos < 1)
-			ft_leave("Error: Bad arguments for the -n flag \
-(set incorrect number for player)");
+			ft_leave("Error: Bad arguments for the -n flag");
 		(*i)++;
 		if (ft_analyze_plr(argv, i) != 0)
-			ft_leave("Error: Bad arguments for the -n flag \
-(incorrect champion format)");
+			ft_leave("Error: Bad arguments for the -n flag");
 		ft_write_plr(argv, i, cw, pos);
 	}
 	else
@@ -57,17 +82,22 @@ static void	ft_flag_dump(int argc, char **argv, int *i, t_cw *cw)
 	int		j;
 
 	j = 0;
+	if (cw->dump != -1)
+		ft_leave("Error: Double -dump flag");
 	if (*i + 1 < argc)
 	{
 		(*i)++;
+		if (argv[*i][0] == '+')
+			j++;
 		while (argv[*i][j] != '\0')
 		{
 			if (ft_isdigit(argv[*i][j]) == 0)
-				ft_leave("Error: Bad arguments for the -dump flag \
-(set incorrect dump)");
+				ft_leave("Error: Bad arguments for the -dump flag");
 			j++;
 		}
 		cw->dump = ft_atoi(argv[*i]);
+		if (ft_check_overflow(argv[*i], cw->dump) == 1)
+			ft_leave("Error: Bad arguments for the -dump flag");
 	}
 	else
 		ft_leave("Error: Bad arguments for the -dump flag");
@@ -79,8 +109,7 @@ void		ft_parse_input(int argc, char **argv, t_cw *cw)
 
 	i = 1;
 	if (argc <= 1)
-		ft_leave("Error: Too few arguments.\n\
-Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
+		ft_leave("Error: Too few arguments.\n");
 	ft_initialize(cw);
 	while (i < argc)
 	{
@@ -91,8 +120,7 @@ Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
 		else if (ft_analyze_plr(argv, &i) == 0)
 			ft_write_plr(argv, &i, cw, 0);
 		else
-			ft_leave("Error: Bad input.\n\
-Usage: ./corewar [-dump nbr_cycles] [[-n number] champion1.cor] ...");
+			ft_leave("Error: Bad input.\n");
 		i++;
 	}
 	ft_correct_plrs(cw);

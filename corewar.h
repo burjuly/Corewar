@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   corewar.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: draudrau <draudrau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 20:58:41 by draudrau         ###   ########.fr       */
+/*   Updated: 2019/10/21 23:51:57 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void				ft_add_carriage(t_cw *cw, int k, int pc);
 int					ft_search_next_plr(t_cw *cw, int num);
 void				ft_add_plr_on_map(t_cw *cw);
 void				ft_map(t_cw *cw);
+int					ft_skip_null_sign(char *argv);
 
 void				op_ld(t_cw *cw, t_crg *crg);
 void				op_ldi(t_cw *cw, t_crg *crg);
@@ -188,6 +189,5 @@ void				ft_dir_2(t_cw *cw, t_args *args, int num_arg);
 void				ft_dir_4(t_cw *cw, t_args *args, int num_arg);
 void				ft_reg(t_cw *cw, t_crg *crg, t_args *args, int num_arg);
 void				ft_write_int_in_map(t_cw *cw, int pc, int value);
-
 
 #endif

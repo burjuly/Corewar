@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 17:59:29 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 01:18:58 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/22 00:41:53 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 void	ft_leave(char *msg)
 {
 	ft_putendl_fd(msg, 2);
+	ft_putendl_fd("Usage: ./corewar [-dump nbr_cycles] \
+[[-n number] champion1.cor] ...", 2);
 	exit(0);
 }
 
