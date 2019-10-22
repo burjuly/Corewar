@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:31:48 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 15:36:42 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:22:45 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,8 @@ void	parse(t_parser *parser)
 	ft_putendl(parser->name);
 	ft_putstr("Comment: ");
 	ft_putendl(parser->comment);
+	ft_putnbr(parser->row);
+	ft_putchar(' ');
+	ft_putnbr(parser->column);
+	ft_putchar('\n');
 }

@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 21:46:52 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 16:41:38 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 17:49:42 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ size_t	get_lenght(const t_parser *parser, size_t row, size_t column)
 	{
 		while (parser->file[row][column] && parser->file[row][column] != '"')
 		{
-			++column;
 			++lenght;
+			++column;
 		}
 		if (parser->file[row][column] != '"')
 		{
+			++lenght;
 			++row;
 			column = 0;
-			++lenght;
 		}
 	}
 	if (!parser->file[row] || parser->file[row][column] != '"')
