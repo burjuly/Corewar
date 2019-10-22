@@ -6,23 +6,32 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:31:48 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 17:22:45 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:12:57 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
+void	parse_code(t_parser *parser)
+{
+	while (parser->file[parser->row])
+	{
+		while (parser->file[parser->row] &&
+			(!parser->file[parser->row][parser->column] ||
+			is_comment_char(parser->file[parser->row][parser->column])))
+		{
+			++parser->row;
+			parser->column = 0;
+		}
+		// ft_putendl(&(parser->file[parser->row][parser->column]));  //
+		if (parser->file[parser->row])
+			make_new_token(parser);
+	}
+}
+
 void	parse(t_parser *parser)
 {
 	read_file(parser);
 	parse_name_and_comment(parser);
-	// ...
-	ft_putstr("Name: ");
-	ft_putendl(parser->name);
-	ft_putstr("Comment: ");
-	ft_putendl(parser->comment);
-	ft_putnbr(parser->row);
-	ft_putchar(' ');
-	ft_putnbr(parser->column);
-	ft_putchar('\n');
+	parse_code(parser);
 }

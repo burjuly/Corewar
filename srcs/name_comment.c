@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:20:16 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 17:22:05 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 23:12:36 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,8 @@ void	parse_name_and_comment(t_parser *parser)
 {
 	while (parser->file[parser->row])
 	{
-		while ((parser->file[parser->row][parser->column] == ' ' ||
-				parser->file[parser->row][parser->column] == '\t') &&
-				parser->file[parser->row][parser->column] != '\0')
+		while (parser->file[parser->row][parser->column] != '\0' &&
+				ft_is_blank(parser->file[parser->row][parser->column]))
 			++parser->column;
 		if (parser->file[parser->row][parser->column] == '\0' ||
 				is_comment_char(parser->file[parser->row][parser->column]))
@@ -75,6 +74,4 @@ void	parse_name_and_comment(t_parser *parser)
 	}
 	if (!parser->name || !parser->comment)
 		ft_error("ERROR: No name or comment.");
-	++parser->row;
-	parser->column = 0;
 }

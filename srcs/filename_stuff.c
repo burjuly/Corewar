@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:25:49 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 19:32:10 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 19:59:43 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char		*parse_filename(int32_t argc, char **argv)
 
 	output = NULL;
 	if (argc != 2)
-		ft_error("usage: ./asm file.s");
+		ft_error("Usage: ./asm <sourcefile.s>");
 	if (ft_chrcnt(argv[1], '.') == 0)
 		return (NULL);
 	input = ft_strtrim(argv[1]);

@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 19:42:39 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 18:48:14 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 21:59:09 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ char			*get_words_inside(t_parser *parser);
 
 void			assemble(char *input_filename, char *output_filename);
 void			parse(t_parser *parser);
+void			parse_code(t_parser *parser);
+void			make_new_token(t_parser *parser);
 
 /*
 ** name and comment

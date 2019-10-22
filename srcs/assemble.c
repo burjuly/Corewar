@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 15:11:34 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 19:37:54 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 20:00:04 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void			assemble(char *argv, char *output)
 	init_parser(&parser);
 	input = ft_strtrim(argv);
 	if ((parser.fd = open(input, O_RDONLY)) == -1)
-		ft_error("ERROR: Can't open given file.");
+		ft_error("ERROR: Can't read source file.");
 	ft_strdel(&input);
 	parse(&parser);
 	close(parser.fd);
