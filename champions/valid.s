@@ -1,21 +1,19 @@
-.name "name"
+.name"name"
 .comment "
-comme
 
 
 
+a
 
 
+b
 
 
+c
 
+d
 
+f
 
-
-
-
-
-	nt"
-
-marker:
-        live %0
+"
+live %0

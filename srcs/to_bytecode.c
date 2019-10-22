@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 12:34:32 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/20 14:41:11 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:02:08 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void		write_bytecode_to_file(const t_parser *parser)
 	bytecode = ft_strnew((size_t)len);
 	value_to_bytecode(bytecode, position, COREWAR_EXEC_MAGIC, 4);
 	position += 4;
-	// ft_memcpy(&bytecode[position], parser->name, ft_strlen(parser->name));
+	ft_memcpy(&bytecode[position], parser->name, ft_strlen(parser->name));
 	position += PROG_NAME_LENGTH;
 	position += 4;
 	value_to_bytecode(bytecode, position, parser->position, 4);
 	position += 4;
-	// ft_memcpy(&bytecode[position], parser->comment, ft_strlen(parser->comment));
+	ft_memcpy(&bytecode[position], parser->comment, ft_strlen(parser->comment));
 	position += COMMENT_LENGTH;
 	position += 4;
 	// ft_memcpy(&bytecode[position], parser->code, (size_t)parser->position);

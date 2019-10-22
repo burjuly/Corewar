@@ -6,7 +6,7 @@
 #    By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/07/25 15:55:10 by cdraugr-          #+#    #+#              #
-#    Updated: 2019/10/09 14:17:45 by cdraugr-         ###   ########.fr        #
+#    Updated: 2019/10/22 16:50:59 by cdraugr-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,6 +84,7 @@ SRC := ft_atoi.c \
 	ft_strrchr.c \
 	ft_strrev.c \
 	ft_strsplit.c \
+	ft_strsplit_n.c \
 	ft_strstr.c \
 	ft_strsub.c \
 	ft_strtrim.c \

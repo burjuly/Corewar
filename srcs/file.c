@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:20:45 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/20 15:56:33 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:51:49 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void		read_file(t_parser *parser)
 		free(tmp);
 	}
 	check_end_line(file);
-	parser->file = ft_strsplit(file, '\n');
+	parser->file = ft_strsplit_n(file, '\n');
 	free(file);
 }

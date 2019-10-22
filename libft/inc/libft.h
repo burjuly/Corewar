@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 16:38:09 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/09/08 16:08:05 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/22 16:50:01 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strmap(char const *s, char (*f)(char));
 char				*ft_strcat(char *dest, const char *src);
 char				*ft_strcpy(char *dest, const char *src);
+char				**ft_strsplit_n(char const *s, char c);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strchr(const char *s, int c);
