@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 19:42:39 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 16:00:54 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 19:18:00 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct		s_token
 {
 	char			*content;
 	t_type			type;
-	unsigned		bytes;
-	unsigned		data;
+	uint32_t		bytes;
+	uint32_t		data;
 	struct s_token	*next;
 }					t_token;
 
@@ -57,7 +57,6 @@ typedef struct		s_parser
 	char			*comment;
 	char			**file;
 	int32_t			fd;
-	int32_t			position;
 	int32_t			flag;
 	size_t			row;
 	size_t			column;
@@ -68,7 +67,6 @@ typedef struct		s_parser
 	t_token			*tokens;
 	t_token			*head;
 }					t_parser;
-
 
 /*
 ** file stuff
@@ -106,7 +104,8 @@ void				push_back_token(t_parser *parser, char *str);
 void				add_label(t_parser *parser, t_token *token);
 void				next_parse_args(t_parser *parser, int i);
 void				param_count(t_parser *parser, int32_t args, int32_t *i);
-void				parse_args(t_parser *parser, int32_t i, int32_t args, size_t column);
+void				parse_args(t_parser *parser, int32_t i, int32_t args,
+								size_t column);
 void				check_args(char *string, t_parser *parser);
 
 /*
@@ -119,19 +118,16 @@ void				new_comment(t_parser *parser);
 void				new_name_or_comment(t_parser *parser);
 
 /*
-** t_parser
-*/
-
-void				init_parser(t_parser *parser);
-void				terminate_parser(t_parser *parser);
-
-/*
-** converting to byte
+** to file
 */
 
 void				value_to_bytecode(char *data, int32_t pos,
 										int32_t value, size_t size);
-void				write_bytecode_to_file(const t_parser *parser);
+void				write_bytecode_to_file(t_parser *parser);
+void				write_to_file(t_parser *parser);
+void				convert_to_bytecode(t_parser *parser);
+uint32_t			add_bytes(t_token *operator, char *label, t_parser *parser);
+void				search_label(t_parser *parser, char *label);
 
 /*
 ** errors

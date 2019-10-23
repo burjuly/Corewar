@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/10/23 16:00:28 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 18:57:52 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@
 # define COMMENT_CHAR		'#'
 # define ALT_COMMENT_CHAR	';'
 # define LABEL_CHAR			':'
+# define REG_CHAR			'r'
 # define DIRECT_CHAR		'%'
 # define SEPARATOR_CHAR		','
-# define REG_CHAR			'r'
 
 # define LABEL_CHARS		"abcdefghijklmnopqrstuvwxyz_0123456789"
 
@@ -62,12 +62,12 @@ typedef char				t_arg_type;
 # define COMMENT_LENGTH		(2048)
 # define COREWAR_EXEC_MAGIC	0xea83f3
 
-typedef struct				header_s
+typedef struct				s_header
 {
-  unsigned int				magic;
-  char						prog_name[PROG_NAME_LENGTH + 1];
-  unsigned int				prog_size;
-  char						comment[COMMENT_LENGTH + 1];
-}							header_t;
+	unsigned int			magic;
+	char					prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int			prog_size;
+	char					comment[COMMENT_LENGTH + 1];
+}							t_header;
 
 #endif

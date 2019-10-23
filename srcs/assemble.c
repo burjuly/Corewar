@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 15:11:34 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 13:02:59 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 19:17:54 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void			assemble(char *argv, char *output)
 	t_parser	parser;
 	char		*input;
 
-	init_parser(&parser);
+	bzero((void *)(&parser), sizeof(t_parser));
 	input = ft_strtrim(argv);
 	if ((parser.fd = open(input, O_RDONLY)) == -1)
 		ft_error("ERROR: Can't read source file.");
@@ -28,5 +28,4 @@ void			assemble(char *argv, char *output)
 		ft_error("ERROR: Can't create a file.");
 	write_bytecode_to_file(&parser);
 	close(parser.fd);
-	terminate_parser(&parser);
 }

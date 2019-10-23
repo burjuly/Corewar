@@ -21,11 +21,10 @@ INCDIR := ./includes/
 # Srcs, objs
 SRCNAMES :=	asm.c assemble.c \
 			error.c filename_stuff.c \
-			to_bytecode.c file.c \
-			init.c terminate.c parse.c \
+			to_bytecode.c file.c parse.c \
 			name_comment.c get_words.c \
 			utils.c new_token.c add_token.c \
-			parse_args.c check_args.c
+			parse_args.c check_args.c to_file.c
 
 SRC := $(addprefix $(SRCDIR), $(SRCNAMES))
 OBJ := $(addprefix $(OBJDIR), $(SRCNAMES:.c=.o))

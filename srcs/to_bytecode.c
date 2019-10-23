@@ -6,45 +6,85 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 12:34:32 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 16:02:08 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 19:58:02 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void		value_to_bytecode(char *data, int32_t pos,
+void			value_to_bytecode(char *data, int32_t position,
 								int32_t value, size_t size)
 {
-	int8_t	i;
+	int8_t		i;
 
 	i = 0;
 	while (size--)
 	{
-		data[pos + size] = (uint8_t)((value >> i) & 0xFF);
+		data[position + size] = (uint8_t)((value >> i) & 0xFF);
 		i += 8;
 	}
 }
 
-void		write_bytecode_to_file(const t_parser *parser)
+void			search_label(t_parser *parser, char *label)
 {
-	int32_t	len;
-	int32_t	position;
-	char	*bytecode;
+	t_label		*head;
 
-	position = 0;
-	len = 4 + PROG_NAME_LENGTH + 4 + 4 + COMMENT_LENGTH + 4 + parser->position;
-	bytecode = ft_strnew((size_t)len);
-	value_to_bytecode(bytecode, position, COREWAR_EXEC_MAGIC, 4);
-	position += 4;
-	ft_memcpy(&bytecode[position], parser->name, ft_strlen(parser->name));
-	position += PROG_NAME_LENGTH;
-	position += 4;
-	value_to_bytecode(bytecode, position, parser->position, 4);
-	position += 4;
-	ft_memcpy(&bytecode[position], parser->comment, ft_strlen(parser->comment));
-	position += COMMENT_LENGTH;
-	position += 4;
-	// ft_memcpy(&bytecode[position], parser->code, (size_t)parser->position);
-	write(parser->fd, bytecode, (size_t)len);
-	ft_strdel(&bytecode);
+	head = parser->labels;
+	while (head)
+	{
+		if (ft_strequ(head->point->content, label))
+			return ;
+		head = head->next;
+	}
+	ft_error("ERROR: invalid label.");
+}
+
+uint32_t		add_bytes(t_token *operator, char *label, t_parser *parser)
+{
+	uint32_t	cur_byte;
+	uint32_t	label_byte;
+	t_label		*head;
+
+	head = parser->labels;
+	cur_byte = operator->bytes;
+	while (head->next)
+	{
+		if (ft_strequ(head->point->content, label))
+			break ;
+		head = head->next;
+	}
+	while (head->point->next && head->point->next->type != OPERATOR)
+		head->point = head->point->next;
+	if (head->point->next)
+		label_byte = head->point->next->bytes;
+	else
+		label_byte = head->point->bytes;
+	return (label_byte - cur_byte);
+}
+
+void			convert_to_bytecode(t_parser *parser)
+{
+	t_token		*operator;
+
+	operator = NULL;
+	while (parser->tokens)
+	{
+		if (parser->tokens->type == OPERATOR)
+			operator = parser->tokens;
+		else if (parser->tokens->type == INDIRECT_LABEL ||
+				parser->tokens->type == DIRECT_LABEL)
+		{
+			search_label(parser, parser->tokens->content);
+			parser->tokens->data = add_bytes(operator, parser->tokens->content, parser);
+		}
+		parser->tokens = parser->tokens->next;
+	}
+}
+
+void			write_bytecode_to_file(t_parser *parser)
+{
+	parser->tokens = parser->head;
+	convert_to_bytecode(parser);
+	parser->tokens = parser->head;
+	write_to_file(parser);
 }

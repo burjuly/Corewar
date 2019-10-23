@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/22 16:10:58 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 15:14:23 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 17:08:42 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int32_t		is_operation(t_parser *parser, char *given_str, size_t column)
 
 int32_t		label_or_comand(t_parser *parser, char *str, size_t *column)
 {
-
 	if (is_label(parser, str))
 	{
 		add_label_token(parser, str);

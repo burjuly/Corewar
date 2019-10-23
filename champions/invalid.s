@@ -3,5 +3,4 @@
 
 marker:
 
-label:
-        live %0
+label: live %0
