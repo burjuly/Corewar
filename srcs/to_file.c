@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:12:35 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 20:28:44 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 21:57:06 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		fill_args_data(t_parser *par, uint32_t *dest, char *bytecode)
 		len = g_op[par->op].t_dir_size;
 	else if (par->head->type == INDIRECT || par->head->type == INDIRECT_LABEL)
 		len = 2;
-	value_to_bytecode(bytecode, *dest, len, par->head->data);
+	value_to_bytecode(bytecode, *dest, par->head->data, len);
 	*dest += len;
 	par->head = par->head->next;
 }
