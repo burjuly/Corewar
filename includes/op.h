@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/10/09 13:33:08 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:00:28 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define LABEL_CHAR			':'
 # define DIRECT_CHAR		'%'
 # define SEPARATOR_CHAR		','
+# define REG_CHAR			'r'
 
 # define LABEL_CHARS		"abcdefghijklmnopqrstuvwxyz_0123456789"
 

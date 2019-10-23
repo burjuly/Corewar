@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 13:23:00 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 23:07:06 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 16:19:10 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,5 +20,5 @@ int	main(int32_t argc, char **argv)
 		ft_error("ERROR: Invalid file name.");
 	assemble(argv[1], output_filename);
 	print_output_filename(&output_filename);
-	return (0);
+	exit(0);
 }

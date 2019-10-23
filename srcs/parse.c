@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 15:31:48 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/22 23:12:57 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 13:14:20 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	parse_code(t_parser *parser)
 			++parser->row;
 			parser->column = 0;
 		}
-		// ft_putendl(&(parser->file[parser->row][parser->column]));  //
 		if (parser->file[parser->row])
 			make_new_token(parser);
 	}
