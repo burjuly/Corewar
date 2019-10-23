@@ -6,13 +6,14 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/23 19:12:35 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 19:57:50 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:28:44 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void	code_of_args_type(t_token *token, uint32_t dest, uint8_t n_arg, char *bytecode)
+void		code_of_type(t_token *token, uint32_t dest,
+								uint8_t n_arg, char *bytecode)
 {
 	int8_t	res;
 	int		arg;
@@ -48,18 +49,18 @@ void		fill_args_data(t_parser *par, uint32_t *dest, char *bytecode)
 	par->head = par->head->next;
 }
 
-void	filler_char_array(t_parser *par, uint32_t dest, char *bytecode)
+void		filler_char_array(t_parser *par, uint32_t dest, char *bytec)
 {
 	while (par->head)
 	{
 		if (par->head->type == OPERATOR)
 		{
 			par->op = par->head->data;
-			value_to_bytecode(bytecode, dest, g_op[par->head->data].code, 1);
+			value_to_bytecode(bytec, dest, g_op[par->head->data].code, 1);
 			++dest;
 			if (g_op[par->head->data].args_types_code)
 			{
-				code_of_args_type(par->head, dest, g_op[par->op].args_num, bytecode);
+				code_of_type(par->head, dest, g_op[par->op].args_num, bytec);
 				++dest;
 			}
 			par->head = par->head->next;
@@ -67,7 +68,7 @@ void	filler_char_array(t_parser *par, uint32_t dest, char *bytecode)
 		else if (par->head->type == REGISTER || par->head->type == DIRECT ||
 			par->head->type == INDIRECT || par->head->type == DIRECT_LABEL ||
 				par->head->type == INDIRECT_LABEL)
-			fill_args_data(par, &dest, bytecode);
+			fill_args_data(par, &dest, bytec);
 		else
 			par->head = par->head->next;
 	}
@@ -92,7 +93,8 @@ void		write_to_file(t_parser *parser)
 				ft_strlen(parser->comment));
 	position += COMMENT_LENGTH;
 	position += 4;
-	filler_char_array(parser, 4 + PROG_NAME_LENGTH + 8 + COMMENT_LENGTH + 4, bytecode);
+	filler_char_array(parser, 4 + PROG_NAME_LENGTH + 8 + COMMENT_LENGTH + 4,
+						bytecode);
 	write(parser->fd, bytecode, 4 + PROG_NAME_LENGTH + 4 + 4 +
 							COMMENT_LENGTH + 4 + parser->bytes);
 	ft_strdel(&bytecode);

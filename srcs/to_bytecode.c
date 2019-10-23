@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 12:34:32 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 19:58:02 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 20:28:27 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void			convert_to_bytecode(t_parser *parser)
 				parser->tokens->type == DIRECT_LABEL)
 		{
 			search_label(parser, parser->tokens->content);
-			parser->tokens->data = add_bytes(operator, parser->tokens->content, parser);
+			parser->tokens->data = add_bytes(operator,
+										parser->tokens->content, parser);
 		}
 		parser->tokens = parser->tokens->next;
 	}
