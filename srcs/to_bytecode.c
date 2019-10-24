@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/20 12:34:32 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 20:28:27 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:14:25 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ void			search_label(t_parser *parser, char *label)
 			return ;
 		head = head->next;
 	}
-	ft_error("ERROR: invalid label.");
+	ft_putendl(label);
+	ft_error("ERROR: Invalid label.");
 }
 
 uint32_t		add_bytes(t_token *operator, char *label, t_parser *parser)

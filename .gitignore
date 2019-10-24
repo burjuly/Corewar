@@ -53,4 +53,4 @@ dkms.conf
 
 # Trash
 .DS_Store
-vm_champs/
+vm_champs/*

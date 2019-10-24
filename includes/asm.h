@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 19:42:39 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 19:18:00 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:46:06 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,11 @@ void				syntax_error(const size_t row, const size_t column);
 int32_t				is_comment_char(const int c);
 int32_t				label_or_comand(t_parser *parser, char *str,
 										size_t *column);
+
+/*
+** parser
+*/
+
+void				terminate_parser(t_parser *parser);
 
 #endif

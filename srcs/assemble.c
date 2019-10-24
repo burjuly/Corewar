@@ -6,7 +6,7 @@
 /*   By: cdraugr- <cdraugr-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/09 15:11:34 by cdraugr-          #+#    #+#             */
-/*   Updated: 2019/10/23 19:17:54 by cdraugr-         ###   ########.fr       */
+/*   Updated: 2019/10/23 22:44:16 by cdraugr-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ void			assemble(char *argv, char *output)
 		ft_error("ERROR: Can't create a file.");
 	write_bytecode_to_file(&parser);
 	close(parser.fd);
+	terminate_parser(&parser);
 }
