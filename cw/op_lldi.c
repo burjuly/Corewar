@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/06 22:08:26 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/21 01:12:24 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 07:22:01 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void		op_lldi(t_cw *cw, t_crg *crg)
 
 	ft_bzero(&args, sizeof(args));
 	args.code_args = crg->code_args;
-	args.pc_arg1 = crg->pc + OP_NAME + CODE_ARGS;
+	args.pc_arg1 = (crg->pc + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	if (args.code_args == REG_REG_REG || args.code_args == REG_DIR_REG)
 		ft_lldi_reg(cw, crg, &args);
 	else if (args.code_args == IND_REG_REG || args.code_args == IND_DIR_REG)

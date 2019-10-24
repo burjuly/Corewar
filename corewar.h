@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/28 18:00:42 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 23:51:57 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 00:23:20 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ typedef struct		s_cw
 	int				dump;
 	int				count_live;
 	int				last_plr;
-	int				count_crg;
 }					t_cw;
 
 void				ft_leave(char *msg);

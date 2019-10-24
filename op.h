@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 23:25:16 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 23:25:23 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 03:35:48 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # define CHAMP_MAX_SIZE		(MEM_SIZE / 6)
 
 # define COMMENT_CHAR		'#'
-# define ALT_COMMENT_CHAR	';' // удалить, если ассемблерист не реализует
 # define LABEL_CHAR			':'
 # define DIRECT_CHAR		'%'
 # define SEPARATOR_CHAR		','
@@ -45,8 +44,6 @@
 # define NBR_LIVE			21
 # define MAX_CHECKS			10
 
-typedef char				t_arg_type; // удалить, если ассемблерист не реализует
-
 # define T_REG				1
 # define T_DIR				2
 # define T_IND				4
@@ -55,13 +52,5 @@ typedef char				t_arg_type; // удалить, если ассемблерист
 # define PROG_NAME_LENGTH	(128)
 # define COMMENT_LENGTH		(2048)
 # define COREWAR_EXEC_MAGIC	0xea83f3
-
-typedef struct				s_header // удалить, если ассемблерист не реализует
-{
-	unsigned int			magic;
-	char					prog_name[PROG_NAME_LENGTH + 1];
-	unsigned int			prog_size;
-	char					comment[COMMENT_LENGTH + 1];
-}							t_header;
 
 #endif

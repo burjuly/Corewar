@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/05 15:58:17 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/21 01:03:46 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 07:21:23 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void		op_lld(t_cw *cw, t_crg *crg)
 
 	ft_bzero(&args, sizeof(args));
 	args.code_args = crg->code_args;
-	args.pc_arg1 = crg->pc + OP_NAME + CODE_ARGS;
+	args.pc_arg1 = (crg->pc + OP_NAME + CODE_ARGS) % MEM_SIZE;
 	if (args.code_args == DIR_REG)
 		ft_lld_dir(cw, crg, &args);
 	else if (args.code_args == IND_REG)
 		ft_lld_ind(cw, crg, &args);
 	args.arg2 = cw->map[args.pc_arg2];
 	crg->reg[args.arg2 - 1] = args.arg1;
-	if (args.arg1 == 1)
+	if (args.arg1 == 0)
 		crg->carry = 1;
 	else
 		crg->carry = 0;

@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 20:21:44 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/22 01:40:53 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 00:23:19 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	ft_print_map(t_cw *cw)
 	i = 0;
 	while (i < MEM_SIZE)
 	{
-		if (i % 32 == 0 && i != 0)
-			ft_printf("\n");
-		if (i % 32 == 0 && i != (MEM_SIZE - 1))
+		if (i % 64 == 0 && i != 0)
+			ft_printf(" \n");
+		if (i % 64 == 0 && i != (MEM_SIZE - 1))
 			ft_printf("0x%04x :", i);
 		if (i % 1 == 0)
 			ft_printf(" ");
 		ft_printf("%.2hhx", cw->map[i]);
 		i++;
 	}
-	ft_printf("\n");
+	ft_printf(" \n");
 }
 
 void	ft_add_carriage(t_cw *cw, int k, int pc)
@@ -57,7 +57,6 @@ void	ft_add_carriage(t_cw *cw, int k, int pc)
 		new->next = start;
 		cw->crg = new;
 	}
-	cw->count_crg++;
 }
 
 int		ft_search_next_plr(t_cw *cw, int num)

@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 12:11:48 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/21 00:55:37 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 03:35:53 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int		ft_ld_indft_check_reg_help(t_cw *cw, t_crg *crg)
 	{
 		if (crg->args[i] == 1)
 		{
-			if (cw->map[pc] < 1 || cw->map[pc] > 16)
+			if (cw->map[pc] < 1 || cw->map[pc] > REG_NUMBER)
 				return (-1);
 			pc = (pc + REG_NUM_SIZE) % MEM_SIZE;
 			crg->step = crg->step + REG_NUM_SIZE;

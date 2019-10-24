@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/29 14:48:45 by waddam            #+#    #+#             */
-/*   Updated: 2019/10/22 01:10:00 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 03:27:20 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ static void	ft_write_data(char *name, t_plr *plr)
 
 void		ft_write_plr(char **argv, int *i, t_cw *cw, int pos)
 {
+	int		plr_nbrs;
 	int		j;
 
+	plr_nbrs = cw->plr_nbrs;
 	j = 0;
-	while (cw->plr[j].name[0] != '\0')
+	while (--plr_nbrs >= 0)
 		j++;
 	if (j >= 4)
 		ft_leave("Error: Too many champions");
@@ -85,8 +87,7 @@ static void	ft_valid_plrs(t_plr *plr, int size)
 		if (plr[i].flag_n == 1)
 		{
 			if (plr[i].num > size)
-				ft_leave("Error: Bad arguments for the -n flag \
-(set incorrect number for player)");
+				ft_leave("Error: Bad arguments for the -n flag");
 			temp = plr[i].num;
 		}
 		else

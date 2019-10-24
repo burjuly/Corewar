@@ -6,7 +6,7 @@
 /*   By: waddam <waddam@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 17:06:16 by draudrau          #+#    #+#             */
-/*   Updated: 2019/10/22 01:33:58 by waddam           ###   ########.fr       */
+/*   Updated: 2019/10/24 07:18:46 by waddam           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ static void	ft_del_carriage(t_cw *cw, t_crg **cur, t_crg **prev, int *flag)
 		*cur = NULL;
 		(*prev)->next = tmp;
 	}
-	cw->count_crg--;
 }
 
 static void	ft_check_crgs(t_cw *cw)
